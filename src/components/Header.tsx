@@ -1,11 +1,13 @@
 import Counter from './Counter'
 
-export default function Header(){
+type Props = { cartCount?: number }
+
+export default function Header({cartCount = 0}: Props){
   return (
     <header className="header">
       <div className="header-inner">
         <h1 className="brand">Vape Store</h1>
-        <Counter />
+        <Counter count={cartCount} />
       </div>
     </header>
   )

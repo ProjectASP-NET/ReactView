@@ -1,7 +1,4 @@
-import { useState } from 'react'
-
-export default function Counter(){
-  const [count] = useState(0)
+export default function Counter({count = 0}:{count?: number}){
   return (
     <div className="counter">🛒 {count}</div>
   )

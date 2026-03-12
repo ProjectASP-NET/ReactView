@@ -1,0 +1,111 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  background: linear-gradient(90deg,#161616,#1f1f2a);
+  padding: 1rem 2rem;
+  color: #fff;
+}
+.header-inner{display:flex;align-items:center;justify-content:space-between;max-width:1200px;margin:0 auto}
+.brand{margin:0;font-size:1.4rem}
+.counter{background:#262626;padding:0.4rem 0.6rem;border-radius:8px}
+
+.container{max-width:1200px;margin:1.2rem auto;padding:0 1rem}
+.hero{background:transparent;padding:1rem 0;margin-bottom:1rem}
+.hero-title{margin:0 0 .8rem 0}
+.searchbar input{width:100%;max-width:560px;padding:.6rem 1rem;border-radius:8px;border:1px solid #333;background:#0f0f10;color:#fff}
+.filters{margin-top:.6rem}
+.filter{margin-right:.5rem;padding:.4rem .8rem}
+.filter.active{background:#646cff;color:#fff}
+
+.product-list .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
+.product-card{background:linear-gradient(180deg,#0f0f10 0%, #141416 60%);padding:0;border-radius:12px;overflow:hidden;color:#fff;display:flex;flex-direction:column;border:1px solid rgba(255,255,255,0.04)}
+.product-media{background:linear-gradient(180deg,#141416,#0f0f12);display:block}
+.product-card img{width:100%;height:180px;object-fit:cover;display:block}
+.product-body{padding:1rem}
+.product-body h3{margin:.2rem 0;font-size:1.05rem}
+.product-meta{display:flex;justify-content:space-between;align-items:center;margin-top:.6rem}
+.price{font-weight:700;background:linear-gradient(90deg,#ffafbd,#ffc3a0);-webkit-background-clip:text;background-clip:text;color:transparent}
+.muted{color:#bdbdbd;font-size:.95rem;max-height:3.6rem;overflow:hidden}
+
+.product-card:hover{transform:translateY(-8px);box-shadow:0 18px 40px rgba(20,18,30,0.6);transition:all .22s cubic-bezier(.2,.9,.3,1)}
+.product-card{transition:transform .22s ease, box-shadow .22s ease}
+
+/* Actions and buttons */
+.product-actions{display:flex;gap:8px;margin-top:10px;align-items:center}
+.like-btn, .add-btn{border:0;padding:.5rem .8rem;border-radius:8px;cursor:pointer;font-weight:600}
+.add-btn{background:linear-gradient(90deg,#646cff,#8ea2ff);color:#081022;box-shadow:0 6px 18px rgba(100,108,255,0.12)}
+.add-btn:hover{transform:translateY(-2px)}
+
+/* Like button style + shimmer */
+.like-btn{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.03);color:#fff}
+.like-btn .heart{display:inline-block;font-size:1.05rem;transition:transform .18s ease,color .22s ease,text-shadow .22s ease}
+.like-btn .count{opacity:.9;font-size:0.95rem}
+.like-btn:hover{transform:translateY(-2px)}
+
+.like-btn.liked{background:linear-gradient(90deg,#ff7eb6,#ff9ec5);color:#fff;box-shadow:0 8px 30px rgba(255,126,182,0.12)}
+.like-btn.liked .heart{color:#fff;transform:scale(1.08);text-shadow:0 6px 18px rgba(255,126,182,0.25)}
+
+@keyframes shimmer-pulse {
+  0%{filter:brightness(1)}
+  50%{filter:brightness(1.06)}
+  100%{filter:brightness(1)}
+}
+.like-btn.liked{
+  animation: shimmer-pulse 1.2s ease-in-out infinite;
+}
+.empty{padding:2rem;color:#ddd}
+.about{padding:1rem;margin-top:1rem;color:#ddd}
+
+@media (max-width:600px){
+  .product-card img{height:140px}
+  .hero-title{font-size:1.2rem}
+  .product-body{padding:.8rem}
+}
+
+.site-footer{margin-top:2rem;padding:1rem;text-align:center;color:#aaa}
