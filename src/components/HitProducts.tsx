@@ -31,6 +31,7 @@ export default function FeaturedProducts() {
                       src={product.img}
                       alt={product.name}
                       fill
+                      sizes="(max-width: 768px) 100vw, 33vw"
                       className="object-contain transition-transform duration-500 group-hover:scale-110"
                     />
                     <span className="absolute left-3 top-3 rounded-full bg-black/40 px-3 py-1 text-[10px] font-bold tracking-widest backdrop-blur-md uppercase text-white">
