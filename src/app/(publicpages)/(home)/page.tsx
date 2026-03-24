@@ -3,27 +3,62 @@ import FadeIn from '@/app/components/FadeIn'
 
 export default function HomePage() {
   return (
-    <main className="relative min-h-[calc(100vh-64px)] flex items-center justify-center overflow-hidden">
-      <div className="absolute top-0 -z-10 h-full w-full ">
-        <div className="absolute bottom-auto left-auto right-0 top-0 h-125 w-125 -translate-x-[30%] translate-y-[20%] rounded-full bg-[rgba(37,99,235,0.15)] opacity-50 blur-[80px]"></div>
-      </div>
-<FadeIn>  
-      <div className="text-center px-6">
-        <h1 className="text-6xl md:text-8xl font-black tracking-tighter mb-6">
-          HELLO FROM<br />
-          <span className="text-blue-600 italic">D&DLiquid</span>
-        </h1>
-   
-        <p className="max-w-2xl mx-auto text-gray-500 text-lg md:text-xl mb-10">
-          WebSite was made just for fun 
-        </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center font-bold">
-          <Link href="/catalog" className="bg-black text-white px-10 py-4 rounded-full hover:bg-gray-800 transition shadow-xl">
-            Catalog
-          </Link>
-        </div>  
+    <FadeIn>
+    <main className="flex min-h-screen flex-col">
+      <section className="relative flex h-screen w-full items-center justify-center bg-[url('/banner.png')] bg-cover bg-fixed bg-center bg-no-repeat">
+        <div className="absolute inset-0 bg-black/60 bg-linear-to-t from-black via-black/40 to-transparent" />
+        <div className="relative z-10 flex flex-col items-center gap-6 px-6 text-center">
+          <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-4 py-1.5 backdrop-blur-md">
+            <span className="h-2 w-2 rounded-full bg-green-500 animate-pulse" />
+            <span className="text-xs font-medium tracking-widest text-white/80 uppercase">
+              Быстрая доставка по Кишиневу
+            </span>
+          </div>
+          <h1 className="max-w-4xl text-5xl font-black tracking-tighter text-white sm:text-7xl md:text-8xl">
+            ИСКУССТВО <br />
+            <span className="text-transparent bg-clip-text bg-linear-to-r from-gray-200 to-gray-500">
+              ГУСТОГО ПАРА
+            </span>
+          </h1>
+          <p className="max-w-2xl text-lg font-light text-white/70 sm:text-xl">
+            D&D Liquid — это премиальные жидкости и топовые девайсы для тех, кто не согласен на компромиссы во вкусе.
+          </p>
+          <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+            <Link
+              href="/catalog"
+              className="group relative overflow-hidden rounded-full bg-white px-8 py-4 text-sm font-bold tracking-wider text-black transition-transform hover:scale-105 active:scale-95"
+            >
+              <span className="relative z-10">ОТКРЫТЬ КАТАЛОГ</span>
+              <div className="absolute inset-0 -translate-x-full bg-linear-to-r from-transparent via-black/10 to-transparent transition-transform duration-500 group-hover:translate-x-full" />
+            </Link>
+            <Link
+              href="/about"
+              className="rounded-full border border-white/20 bg-white/5 px-8 py-4 text-sm font-bold tracking-wider text-white backdrop-blur-md transition-all hover:bg-white/10 hover:shadow-[0_0_20px_rgba(255,255,255,0.1)] active:scale-95"
+            >
+              О БРЕНДЕ
+            </Link>
+          </div>
         </div>
-      </FadeIn>
+      </section>
+      <section className="relative z-20 flex min-h-screen flex-col items-center justify-center bg-[#0a0a0a] px-6 py-24 text-white">
+        <h2 className="mb-12 text-center text-4xl font-bold tracking-tight md:text-6xl">
+          ПОЧЕМУ <span className="text-white/50">D&D LIQUID?</span>
+        </h2>
+        <div className="grid max-w-6xl grid-cols-1 gap-8 md:grid-cols-3">
+          {[
+            { title: "ОРИГИНАЛ", desc: "Только сертифицированная продукция от мировых брендов." },
+            { title: "ВКУС", desc: "Сотни уникальных миксов от классики до экзотики." },
+            { title: "КАЧЕСТВО", desc: "Тщательный контроль на каждом этапе производства." },
+          ].map((item, i) => (
+            <div key={i} className="flex flex-col gap-4 rounded-3xl border border-white/10 bg-white/5 p-8 transition-colors hover:bg-white/10">
+              <h3 className="text-xl font-bold tracking-wider">{item.title}</h3>
+              <p className="font-light text-white/60 leading-relaxed">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
     </main>
-  )
+    </FadeIn>
+  );
 }
