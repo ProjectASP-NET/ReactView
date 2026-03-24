@@ -1,6 +1,6 @@
 import Link from 'next/link'
-import FadeIn from '@/app/components/FadeIn'
-import FeaturedProducts from '@/app/components/HitProducts';
+import FadeIn from '@/components/FadeIn'
+import FeaturedProducts from '@/components/HitProducts';
 
 export default function HomePage() {
   return (
