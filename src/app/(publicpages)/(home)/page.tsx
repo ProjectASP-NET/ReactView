@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import FadeIn from '@/app/components/FadeIn'
+import FeaturedProducts from '@/app/components/HitProducts';
 
 export default function HomePage() {
   return (
@@ -57,7 +58,7 @@ export default function HomePage() {
           ))}
         </div>
       </section>
-
+    <FeaturedProducts />
     </main>
     </FadeIn>
   );

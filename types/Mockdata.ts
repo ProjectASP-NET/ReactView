@@ -5,6 +5,7 @@ export interface IProductProps{
     img : string;
     brand? : string;
     description? : string;  
+    InStock : boolean;
 }
 export interface ILiquid extends IProductProps{
     type : 'liquid';
