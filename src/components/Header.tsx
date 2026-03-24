@@ -3,16 +3,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Navigation } from "./Navigation";
 
 export function Header() {
-  const pathname = usePathname();
-
-  const navLinks = [
-    { name: "Главная", href: "/" },
-    { name: "Каталог", href: "/catalog" },
-    { name: "Профиль", href: "/profile" },
-  ];
-
+      const pathname = usePathname();
   return (
     <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-black/40 backdrop-blur-lg transition-all duration-300">
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-8">
@@ -31,25 +25,7 @@ export function Header() {
             D&D <span className="font-bold text-white">Liquid</span>
           </span>
         </Link>
-        <nav className="flex items-center gap-8">
-          {navLinks.map((link) => {
-            const isActive = pathname === link.href;
-            return (
-              <Link
-                key={link.name}
-                href={link.href}
-                className={`relative py-2 font-medium tracking-wide transition-colors ${
-                  isActive ? "text-white" : "text-white/60 hover:text-white"
-                }`}
-              >
-                {link.name}
-                {isActive && (
-                  <span className="absolute -bottom-1 left-0 h-px w-full bg-linear-to-r from-transparent via-white/50 to-transparent" />
-                )}
-              </Link>
-            );
-          })}
-        </nav>
+        <Navigation />
       </div>
     </header>
   );
