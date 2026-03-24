@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import FadeIn from '@/app/comonents/FadeIn'
 
 export default function HomePage() {
   return (
@@ -7,7 +8,7 @@ export default function HomePage() {
       <div className="absolute top-0 -z-10 h-full w-full ">
         <div className="absolute bottom-auto left-auto right-0 top-0 h-[500px] w-[500px] -translate-x-[30%] translate-y-[20%] rounded-full bg-[rgba(37,99,235,0.15)] opacity-50 blur-[80px]"></div>
       </div>
-
+<FadeIn>  
       <div className="text-center px-6">
         <h1 className="text-6xl md:text-8xl font-black tracking-tighter mb-6">
           HELLO FROM<br />
@@ -22,6 +23,7 @@ export default function HomePage() {
           </Link>
         </div>
       </div>
+      </FadeIn>
     </main>
   )
 }

@@ -6,7 +6,7 @@ export function Header(){
         <Link
         href="/"
         className="flex item-center gap-5">
-            <Image className="w-fit h-fit"
+            <Image className="w-fit h-fit "
             src="/logo1.png"
             alt="D&DLiquid"
             width={10}
@@ -14,7 +14,7 @@ export function Header(){
             priority
             />
         </Link>
-        <nav className="flex gap-6 text-sm text-white/50">
+        <nav className="flex gap-6 text-align:center text-white/90">
         <Link href="/">Home</Link>
         <Link href="/">Catalog</Link>
         <Link href="/">Profile</Link>
