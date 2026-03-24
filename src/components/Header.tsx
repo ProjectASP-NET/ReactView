@@ -8,9 +8,9 @@ export function Header() {
   const pathname = usePathname();
 
   const navLinks = [
-    { name: "Home", href: "/" },
-    { name: "Catalog", href: "/catalog" },
-    { name: "Profile", href: "/profile" },
+    { name: "Главная", href: "/" },
+    { name: "Каталог", href: "/catalog" },
+    { name: "Профиль", href: "/profile" },
   ];
 
   return (
