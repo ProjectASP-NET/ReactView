@@ -1,5 +1,6 @@
 import { MOCK_PRODUCTS } from "@/types/Products";
 import { ProductCard } from "@/components/ProductCard"
+import { SortLogic } from "@/components/SortLogic";
 export default function Catalog(){
     return(
     <main className="mx-auto max-w-7xl px-6 py-24 lg:px-8">
@@ -12,14 +13,7 @@ export default function Catalog(){
             Премиальные жидкости и девайсы для истинных ценителей.
           </p>
         </div>
-        <div className="flex items-center gap-3 text-sm font-bold text-white/60 bg-white/5 px-4 py-2 rounded-xl border border-white/10">
-          <span>СОРТИРОВКА:</span>
-          <select className="bg-transparent text-white focus:outline-none cursor-pointer outline-none">
-            <option className="bg-[#0a0a0a] text-white">Сначала новые</option>
-            <option className="bg-[#0a0a0a] text-white">Сначала дешевые</option>
-            <option className="bg-[#0a0a0a] text-white">Сначала дорогие</option>
-          </select>
-        </div>
+        <SortLogic />
       </div>
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {MOCK_PRODUCTS.map((product) => (

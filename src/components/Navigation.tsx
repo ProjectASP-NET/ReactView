@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { MENU } from "./menu.data";
+import { MENU } from "../types/menu.data";
 
 export function Navigation() {
   const pathname = usePathname();
