@@ -9,7 +9,7 @@ interface ProductProps{
  export function AddtoCart({ productID , inStock } : ProductProps){
     const [isAdded,SetisAdded] = useState(false);
     const handleAdd = () => {
-        console.log('Товар добавлен в корзину ${productID}');
+        console.log(`Товар добавлен в корзину ${productID}`);
         SetisAdded(true);
         setTimeout(() => SetisAdded(false), 2000);
     };
