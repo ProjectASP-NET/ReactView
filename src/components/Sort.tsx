@@ -1,6 +1,6 @@
 "use client";
 import { useRouter, useSearchParams } from "next/navigation";
-export function SortLogic() {
+export function Sort() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const currentSort = searchParams.get("sort") || "new";
