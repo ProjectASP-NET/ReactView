@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { MENU } from "../types/menu.data";
+import { CartIcon } from "./CartIcon";
 
 export function Navigation() {
   const pathname = usePathname();
@@ -25,6 +26,7 @@ export function Navigation() {
           </Link>
         );
       })}
+      <CartIcon />
     </nav>
   );
 }

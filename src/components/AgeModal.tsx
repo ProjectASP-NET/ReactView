@@ -1,20 +1,16 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Image from "next/image";
 
 export default function AgeModal() {
-  const [showModal, setShowModal] = useState<boolean | null>(null);
-  const [error, setError] = useState(false);
-
-  useEffect(() => {
-    const isVerified = localStorage.getItem("age_verified");
-    if (!isVerified) {
-      setShowModal(true);
-    } else {
-      setShowModal(false);
+  const [showModal, setShowModal] = useState(() => {
+    if (typeof window !== "undefined") {
+      return !localStorage.getItem("age_verified");
     }
-  }, []);
+    return false;
+  });
+  const [error, setError] = useState(false);
   const handleConfirm = () => {
     localStorage.setItem("age_verified", "true");
     setShowModal(false);

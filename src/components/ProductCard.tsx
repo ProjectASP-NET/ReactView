@@ -20,7 +20,7 @@ export function ProductCard({product} : CardProps) {
           priority={Number(product.id) < 4}
         />
         <span className="absolute left-3 top-3 rounded-full bg-black/60 px-3 py-1 text-[10px] font-bold tracking-widest text-white backdrop-blur-md uppercase">
-          {product.type === "liquid" ? "Жидкость" : "Девайс"}
+          {product.type === "liquid" ? "Жидкость" : product.type === "vape" ? "Девайс" : "Расходник"}
         </span>
       </Link>
       <div className="flex flex-1 flex-col justify-between">

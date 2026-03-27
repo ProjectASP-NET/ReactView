@@ -1,0 +1,147 @@
+import Image from "next/image";
+import Link from "next/link";
+import { MOCK_PRODUCTS } from "@/types/Products";
+import { AddtoCart } from "@/components/AddtoCartB";
+import { notFound } from "next/navigation";
+import { ProductCard } from "@/components/ProductCard";
+
+interface ProductPageProps {
+  params: Promise<{ id: string }>;
+}
+
+export default async function ProductPage({ params }: ProductPageProps) {
+  const { id } = await params;
+  const product = MOCK_PRODUCTS.find((p) => p.id === id);
+
+  if (!product) {
+    notFound();
+  }
+
+  const relatedProducts = MOCK_PRODUCTS.filter(
+    (p) => p.id !== id && p.type === product.type
+  ).slice(0, 4);
+
+  const getTypeLabel = (type: string) => {
+    switch (type) {
+      case "liquid":
+        return "Жидкость";
+      case "vape":
+        return "Девайс";
+      case "consumables":
+        return "Расходник";
+      default:
+        return type;
+    }
+  };
+
+  return (
+    <main className="mx-auto max-w-7xl px-6 py-24 lg:px-8">
+      <nav className="mb-8 flex items-center gap-2 text-sm text-white/40">
+        <Link href="/catalog" className="hover:text-white transition-colors">
+          Каталог
+        </Link>
+        <span>/</span>
+        <span className="text-white/60">{product.name}</span>
+      </nav>
+
+      <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
+        <div className="relative aspect-square w-full overflow-hidden rounded-3xl bg-black/50">
+          <Image
+            src={product.img}
+            alt={product.name}
+            fill
+            className="object-contain p-8"
+            priority
+          />
+          <span className="absolute left-4 top-4 rounded-full bg-black/60 px-4 py-2 text-xs font-bold tracking-widest text-white backdrop-blur-md uppercase">
+            {getTypeLabel(product.type)}
+          </span>
+        </div>
+
+        <div className="flex flex-col justify-center">
+          <p className="text-sm font-bold uppercase tracking-widest text-white/40 mb-2">
+            {product.brand}
+          </p>
+          <h1 className="text-4xl font-black text-white mb-4">{product.name}</h1>
+
+          <div className="mb-6 flex items-baseline gap-2">
+            <span className="text-5xl font-black text-white">
+              {product.price}
+            </span>
+            <span className="text-xl font-light text-white/50">MDL</span>
+          </div>
+
+          <div className="mb-8 rounded-2xl border border-white/10 bg-white/5 p-6">
+            <div className="grid grid-cols-2 gap-4 text-sm">
+              <div>
+                <p className="text-white/40">Тип</p>
+                <p className="font-bold text-white">{getTypeLabel(product.type)}</p>
+              </div>
+              {"volume" in product && (
+                <div>
+                  <p className="text-white/40">Объём</p>
+                  <p className="font-bold text-white">{product.volume} мл</p>
+                </div>
+              )}
+              {"nicotine" in product && (
+                <div>
+                  <p className="text-white/40">Никотин</p>
+                  <p className="font-bold text-white">{product.nicotine} мг</p>
+                </div>
+              )}
+              {"flavor" in product && (
+                <div>
+                  <p className="text-white/40">Вкусы</p>
+                  <p className="font-bold text-white">
+                    {product.flavor.join(", ")}
+                  </p>
+                </div>
+              )}
+              {"batteryCapacity" in product && (
+                <div>
+                  <p className="text-white/40">Ёмкость батареи</p>
+                  <p className="font-bold text-white">
+                    {product.batteryCapacity} mAh
+                  </p>
+                </div>
+              )}
+              {"maxPower" in product && (
+                <div>
+                  <p className="text-white/40">Макс. мощность</p>
+                  <p className="font-bold text-white">{product.maxPower} Вт</p>
+                </div>
+              )}
+              {"color" in product && (
+                <div>
+                  <p className="text-white/40">Цвет</p>
+                  <p className="font-bold text-white">{product.color}</p>
+                </div>
+              )}
+              <div>
+                <p className="text-white/40">Наличие</p>
+                <p className={`font-bold ${product.InStock ? "text-green-500" : "text-red-500"}`}>
+                  {product.InStock ? "В наличии" : "Нет в наличии"}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <AddtoCart productID={product.id} inStock={product.InStock} />
+        </div>
+      </div>
+
+      {relatedProducts.length > 0 && (
+        <section className="mt-24">
+          <h2 className="mb-8 text-2xl font-bold text-white/80">
+            Похожие товары
+          </h2>
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {relatedProducts.map((p) => (
+              <ProductCard key={p.id} product={p} />
+            ))}
+          </div>
+        </section>
+      )}
+    </main>
+  );
+}

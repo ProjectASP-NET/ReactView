@@ -2,11 +2,9 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { Navigation } from "./Navigation";
 
 export function Header() {
-      const pathname = usePathname();
   return (
     <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-black/40 backdrop-blur-lg transition-all duration-300">
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-8">
