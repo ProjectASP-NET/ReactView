@@ -13,7 +13,7 @@ export function SortLogic(products: Product[], sortType: string): Product[] {
         case "old":
          return Number(a.id) - Number(b.id)
       default:
-        return Number(a.id) - Number(b.id)
+        return Number(b.id) - Number(a.id)
     }
   });
 }

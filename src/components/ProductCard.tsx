@@ -17,6 +17,7 @@ export function ProductCard({product} : CardProps) {
           fill
           className="object-contain transition-transform duration-500 group-hover:scale-110"
           sizes="(max-width: 768px) 100vw, 33vw"
+          priority={Number(product.id) < 4}
         />
         <span className="absolute left-3 top-3 rounded-full bg-black/60 px-3 py-1 text-[10px] font-bold tracking-widest text-white backdrop-blur-md uppercase">
           {product.type === "liquid" ? "Жидкость" : "Девайс"}
