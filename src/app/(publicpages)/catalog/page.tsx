@@ -1,15 +1,16 @@
 import { MOCK_PRODUCTS } from "@/types/Products";
 import { ProductCard } from "@/components/ProductCard"
 import { Sort } from "@/components/Sort";
-import { SortLogic } from "@/types/SortLogic";
+import { SortLogic } from "@/utility/SortLogic";
 import FadeIn from "@/components/FadeIn";
 interface CatalogProps {
-  searchParams: {
+  searchParams: Promise<{
     sort?: string;
-  };
+  }>;
 }
-export default function Catalog({searchParams}: CatalogProps) {
-        const sortQuery = searchParams.sort || "new";
+export default async function Catalog({searchParams}: CatalogProps) {
+    const resolvedSearchParams = await searchParams;
+        const sortQuery = resolvedSearchParams.sort || "new";
       const sortedProducts = SortLogic(MOCK_PRODUCTS, sortQuery);
     return(
        <FadeIn>
@@ -37,6 +38,6 @@ export default function Catalog({searchParams}: CatalogProps) {
         </div>
       )}
     </main>
-    </FadeIn>
+    </FadeIn> 
   );
 }

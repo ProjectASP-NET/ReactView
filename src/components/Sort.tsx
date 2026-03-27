@@ -19,9 +19,11 @@ export function Sort() {
         onChange={handleSortChange}
         className=" appearance-none bg-transparent text-white outline-none cursor-pointer focus:outline-none"
       >
-        <option value="new" className="bg-[#0a0a0a] text-white">Сначала новые</option>
+        <option value="new" className="bg-[#0a0a0a] text-white">Сначала новые</option>    
+       <option value="old" className="bg-[#0a0a0a] text-white">Сначала старые</option>
         <option value="cheap" className="bg-[#0a0a0a] text-white">Сначала дешевые</option>
         <option value="expensive" className="bg-[#0a0a0a] text-white">Сначала дорогие</option>
+   
       </select>
     </div>
   );
