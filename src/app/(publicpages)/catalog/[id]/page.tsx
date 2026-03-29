@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { MOCK_PRODUCTS } from "@/types/Products";
 import { AddtoCart } from "@/components/AddtoCartB";
-import { ProductRadar } from "@/components/ProductRadar";
+import { ProductRadarModal } from "@/components/ProductRadarModal";
 import { notFound } from "next/navigation";
 import { ProductCard } from "@/components/ProductCard";
 
@@ -131,7 +131,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
           </div>
 
           {product.type !== "consumables" && (
-            <ProductRadar product={product} />
+            <ProductRadarModal product={product} />
           )}
 
           <AddtoCart productID={product.id} inStock={product.InStock} />
