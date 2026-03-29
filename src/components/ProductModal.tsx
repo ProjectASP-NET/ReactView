@@ -60,7 +60,7 @@ export function ProductModal({ product, isOpen, onClose }: ProductModalProps) {
             </p>
             <h2 className="text-3xl font-black text-white mb-4">{product.name}</h2>
             <p className="text-white/60 mb-8 line-clamp-4">
-              Подробное описание товара. Премиальное качество, насыщенный вкус и отличная вкусопередача.
+           {product.description}
             </p>
           </div>
           
