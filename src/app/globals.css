@@ -33,7 +33,7 @@
   --color-vape-dark: #121212;
   --color-vape-purple: #8b5cf6;
   --font-heading: "Inter", sans-serif;
-  --spacing-128: 32rem;
+  --spacing-128: "32rem";
 }
 
 body {
