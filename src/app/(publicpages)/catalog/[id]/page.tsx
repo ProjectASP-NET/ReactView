@@ -37,12 +37,12 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
   return (
     <main className="mx-auto max-w-7xl px-6 py-24 lg:px-8">
-      <nav className="mb-8 flex items-center gap-2 text-sm text-[var(--text-muted)]">
-        <Link href="/catalog" className="hover:text-[var(--text-primary)] transition-colors">
+      <nav className="mb-8 flex items-center gap-2 text-sm text-[--text-muted)]">
+        <Link href="/catalog" className="hover:text-[--text-primary)] transition-colors">
           Каталог
         </Link>
         <span>/</span>
-        <span className="text-[var(--text-secondary)]">{product.name}</span>
+        <span className="text-[--text-secondary)]">{product.name}</span>
       </nav>
 
       <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
@@ -61,66 +61,66 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
         <div className="flex flex-col gap-8">
           <div className="flex flex-col justify-center">
-            <p className="text-sm font-bold uppercase tracking-widest text-[var(--text-muted)] mb-2">
+            <p className="text-sm font-bold uppercase tracking-widest text-[--text-muted)] mb-2">
               {product.brand}
             </p>
-            <h1 className="text-4xl font-black text-[var(--text-primary)] mb-4">{product.name}</h1>
+            <h1 className="text-4xl font-black text-[--text-primary)] mb-4">{product.name}</h1>
 
             <div className="mb-6 flex items-baseline gap-2">
-              <span className="text-5xl font-black text-[var(--text-primary)]">
+              <span className="text-5xl font-black text-[--text-primary)]">
                 {product.price}
               </span>
-              <span className="text-xl font-light text-[var(--text-muted)]">MDL</span>
+              <span className="text-xl font-light text-[--text-muted)]">MDL</span>
             </div>
 
-            <div className="mb-8 rounded-2xl border border-[var(--border)] bg-[var(--card-bg)] p-6">
+            <div className="mb-8 rounded-2xl border border-[--border)] bg-[--card-bg)] p-6">
               <div className="grid grid-cols-2 gap-4 text-sm">
                 <div>
-                  <p className="text-[var(--text-muted)]">Тип</p>
-                  <p className="font-bold text-[var(--text-primary)]">{getTypeLabel(product.type)}</p>
+                  <p className="text-[--text-muted)]">Тип</p>
+                  <p className="font-bold text-[--text-primary)]">{getTypeLabel(product.type)}</p>
                 </div>
                 {"volume" in product && (
                   <div>
-                    <p className="text-[var(--text-muted)]">Объём</p>
-                    <p className="font-bold text-[var(--text-primary)]">{product.volume} мл</p>
+                    <p className="text-[--text-muted)]">Объём</p>
+                    <p className="font-bold text-[--text-primary)]">{product.volume} мл</p>
                   </div>
                 )}
                 {"nicotine" in product && (
                   <div>
-                    <p className="text-[var(--text-muted)]">Никотин</p>
-                    <p className="font-bold text-[var(--text-primary)]">{product.nicotine} мг</p>
+                    <p className="text-[--text-muted)]">Никотин</p>
+                    <p className="font-bold text-[--text-primary)]">{product.nicotine} мг</p>
                   </div>
                 )}
                 {"flavor" in product && (
                   <div>
-                    <p className="text-[var(--text-muted)]">Вкусы</p>
-                    <p className="font-bold text-[var(--text-primary)]">
+                    <p className="text-[--text-muted)]">Вкусы</p>
+                    <p className="font-bold text-[--text-primary)]">
                       {product.flavor.join(", ")}
                     </p>
                   </div>
                 )}
                 {"batteryCapacity" in product && (
                   <div>
-                    <p className="text-[var(--text-muted)]">Ёмкость батареи</p>
-                    <p className="font-bold text-[var(--text-primary)]">
+                    <p className="text-[--text-muted)]">Ёмкость батареи</p>
+                    <p className="font-bold text-[--text-primary)]">
                       {product.batteryCapacity} mAh
                     </p>
                   </div>
                 )}
                 {"maxPower" in product && (
                   <div>
-                    <p className="text-[var(--text-muted)]">Макс. мощность</p>
-                    <p className="font-bold text-[var(--text-primary)]">{product.maxPower} Вт</p>
+                    <p className="text-[--text-muted)]">Макс. мощность</p>
+                    <p className="font-bold text-[--text-primary)]">{product.maxPower} Вт</p>
                   </div>
                 )}
                 {"color" in product && (
                   <div>
-                    <p className="text-[var(--text-muted)]">Цвет</p>
-                    <p className="font-bold text-[var(--text-primary)]">{product.color}</p>
+                    <p className="text-[--text-muted)]">Цвет</p>
+                    <p className="font-bold text-[--text-primary)]">{product.color}</p>
                   </div>
                 )}
                 <div>
-                  <p className="text-[var(--text-muted)]">Наличие</p>
+                  <p className="text-[--text-muted)]">Наличие</p>
                   <p className={`font-bold ${product.InStock ? "text-green-500" : "text-red-500"}`}>
                     {product.InStock ? "В наличии" : "Нет в наличии"}
                   </p>
@@ -140,7 +140,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
       {relatedProducts.length > 0 && (
         <section className="mt-24">
-          <h2 className="mb-8 text-2xl font-bold text-[var(--text-secondary)]">
+          <h2 className="mb-8 text-2xl font-bold text-[--text-secondary)]">
             Похожие товары
           </h2>
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
