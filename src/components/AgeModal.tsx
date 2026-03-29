@@ -1,29 +1,32 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 
 export default function AgeModal() {
-  const [showModal, setShowModal] = useState(() => {
-    if (typeof window !== "undefined") {
-      return !localStorage.getItem("age_verified");
-    }
-    return false;
-  });
-  const [error, setError] = useState(false);
+  const [showModal, setShowModal] = useState<boolean | "declined">(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    const verified = localStorage.getItem("age_verified");
+    if (!verified) setShowModal(true);
+  }, []);
+
   const handleConfirm = () => {
     localStorage.setItem("age_verified", "true");
     setShowModal(false);
   };
 
   const handleDecline = () => {
-    setError(true);
+    setShowModal("declined");
   };
 
-  if (showModal === null || showModal === false) return null;
+  if (!mounted) return null;
+  if (!showModal) return null;
 
   return (
-    <div className="fixed inset-0 z-100 flex items-center justify-center bg-black/80 p-4 backdrop-blur-xl transition-all">
+    <div className="fixed inset-0 z-100 flex items-center justify-center bg-black/80 p-4 backdrop-blur-xl">
       <div className="relative w-full max-w-md overflow-hidden rounded-3xl border border-[var(--border)] bg-[var(--section-bg)] p-8 text-center shadow-2xl">
         <div className="absolute -top-24 -left-24 h-48 w-48 rounded-full bg-[var(--text-muted)]/5 blur-3xl" />
         <div className="absolute -bottom-24 -right-24 h-48 w-48 rounded-full bg-[var(--text-muted)]/5 blur-3xl" />
@@ -46,7 +49,7 @@ export default function AgeModal() {
             Доступ к сайту <b>D&D Liquid</b> разрешен только совершеннолетним. 
             Продукция содержит никотин, который вызывает привыкание.
           </p>
-          {error && (
+          {showModal === "declined" && (
             <p className="mb-6 text-sm font-bold text-red-500 animate-pulse">
               Извините, доступ на сайт закрыт.
             </p>
