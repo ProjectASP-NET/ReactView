@@ -3,17 +3,49 @@
 :root {
   --background: #050505;
   --foreground: #ffffff;
+  --card-bg: rgba(255, 255, 255, 0.05);
+  --card-border: rgba(255, 255, 255, 0.1);
+  --card-hover: rgba(255, 255, 255, 0.1);
+  --text-primary: rgba(255, 255, 255, 0.9);
+  --text-secondary: rgba(255, 255, 255, 0.6);
+  --text-muted: rgba(255, 255, 255, 0.4);
+  --border: rgba(255, 255, 255, 0.1);
+  --header-bg: rgba(0, 0, 0, 0.4);
+  --section-bg: #0a0a0a;
 }
-@theme {
 
-  --color-vape-neon: #00ffcc;     
-  --color-vape-dark: #121212;     
-  --color-vape-purple: #8b5cf6;   
+[data-theme="light"] {
+  --background: #f5f5f5;
+  --foreground: #0a0a0a;
+  --card-bg: #ffffff;
+  --card-border: rgba(0, 0, 0, 0.1);
+  --card-hover: rgba(0, 0, 0, 0.05);
+  --text-primary: rgba(0, 0, 0, 0.9);
+  --text-secondary: rgba(0, 0, 0, 0.6);
+  --text-muted: rgba(0, 0, 0, 0.4);
+  --border: rgba(0, 0, 0, 0.1);
+  --header-bg: rgba(255, 255, 255, 0.4);
+  --section-bg: #e5e5e5;
+}
+
+@theme {
+  --color-vape-neon: #00ffcc;
+  --color-vape-dark: #121212;
+  --color-vape-purple: #8b5cf6;
   --font-heading: "Inter", sans-serif;
   --spacing-128: "32rem";
 }
+
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+*, *::before, *::after {
+  transition: background-color 0.5s ease, 
+              color 0.5s ease, 
+              border-color 0.5s ease,
+              box-shadow 0.5s ease;
 }

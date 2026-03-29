@@ -31,17 +31,17 @@ export function ProductModal({ product, isOpen, onClose }: ProductModalProps) {
       onClick={onClose}
     >
       <div 
-        className="relative w-full max-w-4xl rounded-3xl border border-white/10 bg-[#0a0a0a] p-6 md:p-8 shadow-2xl flex flex-col md:flex-row gap-8"
+        className="relative w-full max-w-4xl rounded-3xl border border-[var(--border)] bg-[var(--section-bg)] p-6 md:p-8 shadow-2xl flex flex-col md:flex-row gap-8"
         onClick={(e) => e.stopPropagation()} 
       >
         <button 
           onClick={onClose}
-          className="absolute right-6 top-6 text-white/40 hover:text-white transition-colors"
+          className="absolute right-6 top-6 text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
         >
           ✕
         </button>
 
-        <div className="relative shrink-0 w-full md:w-1/2 aspect-square bg-black/50 rounded-2xl flex items-center justify-center p-6 border border-white/5">
+        <div className="relative shrink-0 w-full md:w-1/2 aspect-square bg-black/50 rounded-2xl flex items-center justify-center p-6 border border-[var(--border)]">
            <Image 
             src={product.img} 
             alt={product.name}
@@ -55,18 +55,18 @@ export function ProductModal({ product, isOpen, onClose }: ProductModalProps) {
 
         <div className="flex flex-col justify-center w-full md:w-1/2">
           <div>
-            <p className="text-[10px] font-bold uppercase tracking-widest text-white/40 mb-2">
+            <p className="text-[10px] font-bold uppercase tracking-widest text-[var(--text-muted)] mb-2">
               {product.brand}
             </p>
-            <h2 className="text-3xl font-black text-white mb-4">{product.name}</h2>
-            <p className="text-white/60 mb-8 line-clamp-4">
+            <h2 className="text-3xl font-black text-[var(--text-primary)] mb-4">{product.name}</h2>
+            <p className="text-[var(--text-secondary)] mb-8 line-clamp-4">
            {product.description}
             </p>
           </div>
           
           <div className="mt-auto">
-            <p className="text-4xl font-black text-white mb-6">
-              {product.price} <span className="text-lg font-light text-white/50">MDL</span>
+            <p className="text-4xl font-black text-[var(--text-primary)] mb-6">
+              {product.price} <span className="text-lg font-light text-[var(--text-muted)]">MDL</span>
             </p>
             <AddtoCart productID={product.id} inStock={product.InStock} />
           </div>

@@ -123,12 +123,12 @@ export function ProductRadar({ product }: Props) {
               )
                 .map((p) => `${p.x},${p.y}`)
                 .join(" ")}
-              className="stroke-white/10 fill-none"
+              className="stroke-[var(--border)] fill-none"
             />
             <text
               x={center + 4}
               y={center - (level / 100) * maxRadius + 3}
-              className="fill-white/30 text-[8px]"
+              className="fill-[var(--text-muted)] text-[8px]"
             >
               {level}
             </text>
@@ -148,7 +148,7 @@ export function ProductRadar({ product }: Props) {
               y1={center}
               x2={x2}
               y2={y2}
-              className={`stroke-white/20 transition-colors ${
+              className={`stroke-[var(--border)] transition-colors ${
                 hoveredIndex === i ? "stroke-green-500/60" : ""
               }`}
               strokeWidth={hoveredIndex === i ? 2 : 1}
@@ -220,7 +220,7 @@ export function ProductRadar({ product }: Props) {
               y={y}
               textAnchor={textAnchor}
               dominantBaseline="middle"
-              className={`fill-white/60 text-[10px] font-medium transition-colors ${
+              className={`fill-[var(--text-secondary)] text-[10px] font-medium transition-colors ${
                 hoveredIndex === i ? "fill-green-500" : ""
               }`}
             >
@@ -241,13 +241,13 @@ export function ProductRadar({ product }: Props) {
               width={80}
               height={36}
               rx={8}
-              className="fill-black/80 stroke-white/20"
+              className="fill-black/80 stroke-[var(--border)]"
             />
             <text
               x={pathPoints[hoveredIndex].x}
               y={pathPoints[hoveredIndex].y - 38}
               textAnchor="middle"
-              className="fill-white/60 text-[9px]"
+              className="fill-[var(--text-secondary)] text-[9px]"
             >
               {metrics[hoveredIndex].label}
             </text>
@@ -275,8 +275,8 @@ export function ProductRadar({ product }: Props) {
             onMouseEnter={() => setHoveredIndex(i)}
             onMouseLeave={() => setHoveredIndex(null)}
           >
-            <span className="text-white/40">{m.label}</span>
-            <span className={`font-medium transition-colors ${hoveredIndex === i ? "text-green-500" : "text-white"}`}>
+            <span className="text-[var(--text-muted)]">{m.label}</span>
+            <span className={`font-medium transition-colors ${hoveredIndex === i ? "text-green-500" : "text-[var(--text-primary)]"}`}>
               {isLiquid && m.label === "Холодок"
                 ? iceLabels[m.rawValue as keyof typeof iceLabels]
                 : `${Math.round(m.value)}%`}

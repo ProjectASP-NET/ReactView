@@ -12,17 +12,17 @@ export function Sort() {
   };
 
   return (
-    <div className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm font-bold text-white/60">
+    <div className="flex items-center gap-3 rounded-xl border border-[var(--border)] bg-[var(--card-bg)] px-4 py-2 text-sm font-bold text-[var(--text-secondary)]">
       <span>СОРТИРОВКА:</span>
       <select 
         value={currentSort}
         onChange={handleSortChange}
-        className=" appearance-none bg-transparent text-white outline-none cursor-pointer focus:outline-none"
+        className="appearance-none bg-transparent text-[var(--text-primary)] outline-none cursor-pointer focus:outline-none"
       >
-        <option value="new" className="bg-[#0a0a0a] text-white">Сначала новые</option>    
-       <option value="old" className="bg-[#0a0a0a] text-white">Сначала старые</option>
-        <option value="cheap" className="bg-[#0a0a0a] text-white">Сначала дешевые</option>
-        <option value="expensive" className="bg-[#0a0a0a] text-white">Сначала дорогие</option>
+        <option value="new" className="bg-[var(--section-bg)] text-[var(--text-primary)]">Сначала новые</option>    
+       <option value="old" className="bg-[var(--section-bg)] text-[var(--text-primary)]">Сначала старые</option>
+        <option value="cheap" className="bg-[var(--section-bg)] text-[var(--text-primary)]">Сначала дешевые</option>
+        <option value="expensive" className="bg-[var(--section-bg)] text-[var(--text-primary)]">Сначала дорогие</option>
    
       </select>
     </div>
