@@ -17,12 +17,12 @@ export function Navigation() {
             key={item.name}
             href={item.href}
             className={`relative py-2 font-medium tracking-wide transition-colors ${
-              isActive ? "text-[var(--text-primary)]" : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+              isActive ? "text-(--text-primary)" : "text-(--text-secondary) hover:text-(--text-primary)"
             }`}
           >
             {item.name}
             {isActive && (
-              <span className="absolute -bottom-1 left-0 h-px w-full bg-gradient-to-r from-transparent via-[var(--text-secondary)] to-transparent" />
+              <span className="absolute -bottom-1 left-0 h-px w-full bg-linear-to-r from-transparent via-(--text-secondary) to-transparent" />
             )}
           </Link>
         );
