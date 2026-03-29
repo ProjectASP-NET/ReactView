@@ -59,77 +59,86 @@ export default async function ProductPage({ params }: ProductPageProps) {
           </span>
         </div>
 
-        <div className="flex flex-col justify-center gap-8 lg:flex-row lg:items-start">
-          <p className="text-sm font-bold uppercase tracking-widest text-white/40 mb-2">
-            {product.brand}
-          </p>
-          <h1 className="text-4xl font-black text-white mb-4">{product.name}</h1>
+        <div className="flex flex-col gap-8 lg:grid lg:grid-cols-[1fr_320px] lg:items-start">
+          <div className="flex flex-col justify-center">
+            <p className="text-sm font-bold uppercase tracking-widest text-white/40 mb-2">
+              {product.brand}
+            </p>
+            <h1 className="text-4xl font-black text-white mb-4">{product.name}</h1>
 
-          <div className="mb-6 flex items-baseline gap-2">
-            <span className="text-5xl font-black text-white">
-              {product.price}
-            </span>
-            <span className="text-xl font-light text-white/50">MDL</span>
-          </div>
+            <div className="mb-6 flex items-baseline gap-2">
+              <span className="text-5xl font-black text-white">
+                {product.price}
+              </span>
+              <span className="text-xl font-light text-white/50">MDL</span>
+            </div>
 
-          <div className="mb-8 rounded-2xl border border-white/10 bg-white/5 p-6">
-            <div className="grid grid-cols-2 gap-4 text-sm">
-              <div>
-                <p className="text-white/40">Тип</p>
-                <p className="font-bold text-white">{getTypeLabel(product.type)}</p>
-              </div>
-              {"volume" in product && (
+            <div className="mb-8 rounded-2xl border border-white/10 bg-white/5 p-6">
+              <div className="grid grid-cols-2 gap-4 text-sm">
                 <div>
-                  <p className="text-white/40">Объём</p>
-                  <p className="font-bold text-white">{product.volume} мл</p>
+                  <p className="text-white/40">Тип</p>
+                  <p className="font-bold text-white">{getTypeLabel(product.type)}</p>
                 </div>
-              )}
-              {"nicotine" in product && (
+                {"volume" in product && (
+                  <div>
+                    <p className="text-white/40">Объём</p>
+                    <p className="font-bold text-white">{product.volume} мл</p>
+                  </div>
+                )}
+                {"nicotine" in product && (
+                  <div>
+                    <p className="text-white/40">Никотин</p>
+                    <p className="font-bold text-white">{product.nicotine} мг</p>
+                  </div>
+                )}
+                {"flavor" in product && (
+                  <div>
+                    <p className="text-white/40">Вкусы</p>
+                    <p className="font-bold text-white">
+                      {product.flavor.join(", ")}
+                    </p>
+                  </div>
+                )}
+                {"batteryCapacity" in product && (
+                  <div>
+                    <p className="text-white/40">Ёмкость батареи</p>
+                    <p className="font-bold text-white">
+                      {product.batteryCapacity} mAh
+                    </p>
+                  </div>
+                )}
+                {"maxPower" in product && (
+                  <div>
+                    <p className="text-white/40">Макс. мощность</p>
+                    <p className="font-bold text-white">{product.maxPower} Вт</p>
+                  </div>
+                )}
+                {"color" in product && (
+                  <div>
+                    <p className="text-white/40">Цвет</p>
+                    <p className="font-bold text-white">{product.color}</p>
+                  </div>
+                )}
                 <div>
-                  <p className="text-white/40">Никотин</p>
-                  <p className="font-bold text-white">{product.nicotine} мг</p>
-                </div>
-              )}
-              {"flavor" in product && (
-                <div>
-                  <p className="text-white/40">Вкусы</p>
-                  <p className="font-bold text-white">
-                    {product.flavor.join(", ")}
+                  <p className="text-white/40">Наличие</p>
+                  <p className={`font-bold ${product.InStock ? "text-green-500" : "text-red-500"}`}>
+                    {product.InStock ? "В наличии" : "Нет в наличии"}
                   </p>
                 </div>
-              )}
-              {"batteryCapacity" in product && (
-                <div>
-                  <p className="text-white/40">Ёмкость батареи</p>
-                  <p className="font-bold text-white">
-                    {product.batteryCapacity} mAh
-                  </p>
-                </div>
-              )}
-              {"maxPower" in product && (
-                <div>
-                  <p className="text-white/40">Макс. мощность</p>
-                  <p className="font-bold text-white">{product.maxPower} Вт</p>
-                </div>
-              )}
-              {"color" in product && (
-                <div>
-                  <p className="text-white/40">Цвет</p>
-                  <p className="font-bold text-white">{product.color}</p>
-                </div>
-              )}
-              <div>
-                <p className="text-white/40">Наличие</p>
-                <p className={`font-bold ${product.InStock ? "text-green-500" : "text-red-500"}`}>
-                  {product.InStock ? "В наличии" : "Нет в наличии"}
-                </p>
               </div>
             </div>
+
+            <AddtoCart productID={product.id} inStock={product.InStock} />
+
+          {product.type !== "consumables" && (
+            <div className="lg:hidden mt-4">
+              <ProductRadar product={product} />
+            </div>
+          )}
           </div>
 
-          <AddtoCart productID={product.id} inStock={product.InStock} />
           {product.type !== "consumables" && (
-            <div className="lg:sticky lg:top-24 lg:w-80">
+            <div className="hidden lg:block lg:sticky lg:top-24">
               <ProductRadar product={product} />
             </div>
           )}
