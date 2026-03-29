@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Minus, Plus, Trash2 } from "lucide-react";
 import { useCart } from "@/context/CartContext";
+import { PAGES } from "@/config/pages.config";
 
 export default function CartPage() {
   const { items, updateQuantity, removeFromCart, totalPrice, clearCart } =
@@ -19,7 +20,7 @@ export default function CartPage() {
             Добавьте товары из каталога
           </p>
           <Link
-            href="/catalog"
+            href={PAGES.CART}
             className="mt-6 rounded-full bg-white px-8 py-3 text-sm font-bold text-black transition-transform hover:scale-105 active:scale-95"
           >
             ПЕРЕЙТИ В КАТАЛОГ

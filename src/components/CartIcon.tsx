@@ -3,13 +3,14 @@
 import { ShoppingCart } from "lucide-react";
 import Link from "next/link";
 import { useCart } from "@/context/CartContext";
+import { PAGES } from "@/config/pages.config";
 
 export function CartIcon() {
   const { totalItems } = useCart();
 
   return (
     <Link
-      href="/cart"
+      href = {PAGES.CART}
       className="relative flex h-10 w-10 items-center justify-center rounded-xl bg-white/5 transition-colors hover:bg-white/10"
     >
       <ShoppingCart size={20} className="text-white/80" />
