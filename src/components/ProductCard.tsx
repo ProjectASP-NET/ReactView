@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { PAGES } from "@/config/pages.config";
 import { AddtoCart } from "./AddtoCartB";
+import { QuickViewButton } from "./QuickViewButton";
 import { Product } from "@/types/Mockdata";
 interface CardProps{
     product : Product;
@@ -41,6 +42,7 @@ export function ProductCard({product} : CardProps) {
         productID={product.id}
         inStock = {product.InStock}
         />
+        <QuickViewButton product={product} />
     </div>        
     </div>
      );
