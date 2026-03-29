@@ -59,7 +59,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
           </span>
         </div>
 
-        <div className="flex flex-col gap-8 lg:grid lg:grid-cols-[1fr_320px] lg:items-start">
+        <div className="flex flex-col gap-8">
           <div className="flex flex-col justify-center">
             <p className="text-sm font-bold uppercase tracking-widest text-white/40 mb-2">
               {product.brand}
@@ -128,20 +128,13 @@ export default async function ProductPage({ params }: ProductPageProps) {
               </div>
             </div>
 
-            <AddtoCart productID={product.id} inStock={product.InStock} />
-
-          {product.type !== "consumables" && (
-            <div className="lg:hidden mt-4">
-              <ProductRadar product={product} />
-            </div>
-          )}
           </div>
 
           {product.type !== "consumables" && (
-            <div className="hidden lg:block lg:sticky lg:top-24">
-              <ProductRadar product={product} />
-            </div>
+            <ProductRadar product={product} />
           )}
+
+          <AddtoCart productID={product.id} inStock={product.InStock} />
         </div>
       </div>
 
