@@ -26,7 +26,7 @@ export function AddtoCart({ productID, inStock }: AddtoCartProps) {
     return (
       <button
         disabled
-        className="mt-4 w-full rounded-xl bg-[var(--card-bg)] py-3 text-sm font-bold text-[var(--text-muted)] cursor-not-allowed border border-[var(--border)]"
+        className="mt-4 w-full rounded-xl bg-[--card-bg] py-3 text-sm font-bold text-[--text-muted] cursor-not-allowed border border-[--border]"
       >
         НЕТ В НАЛИЧИИ
       </button>
@@ -37,7 +37,7 @@ export function AddtoCart({ productID, inStock }: AddtoCartProps) {
     <button
       onClick={handleAdd}
       className={`mt-4 flex w-full items-center justify-center gap-2 rounded-xl py-3 text-sm font-bold transition-all active:scale-95 ${
-        isAdded ? "bg-green-500 text-white" : "bg-[var(--text-primary)] text-[var(--background)] hover:scale-[1.02]"
+        isAdded ? "bg-green-500 text-white" : "bg-[--text-primary] text-[--background] hover:scale-[1.02]"
       }`}
     >
       <ShoppingCart size={18} />

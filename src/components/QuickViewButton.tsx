@@ -13,7 +13,7 @@ export function QuickViewButton({ product }: { product: Product }) {
           e.preventDefault(); 
           setIsOpen(true);
         }}
-        className="mt-3 w-full rounded-xl border border-[var(--border)] bg-transparent py-2.5 text-xs font-bold uppercase tracking-widest text-[var(--text-secondary)] transition-colors hover:bg-[var(--card-hover)] hover:text-[var(--text-primary)]"
+        className="mt-3 w-full rounded-xl border border-[--border] bg-transparent py-2.5 text-xs font-bold uppercase tracking-widest text-[--text-secondary] transition-colors hover:bg-[--card-hover] hover:text-[--text-primary]"
       >
         Быстрый просмотр
       </button>

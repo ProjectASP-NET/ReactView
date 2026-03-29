@@ -31,8 +31,8 @@ export function Filter() {
           onClick={() => handleFilterChange(filter.value)}
           className={`rounded-full px-4 py-2 text-sm font-medium transition-all ${
             currentFilter === filter.value
-              ? "bg-[var(--text-primary)] text-[var(--background)]"
-              : "bg-[var(--card-bg)] text-[var(--text-secondary)] border border-[var(--border)] hover:border-[var(--text-secondary)]"
+              ? "bg-[--text-primary] text-[--background]"
+              : "bg-[--card-bg] text-[--text-secondary] border border-[--border] hover:border-[--text-secondary]"
           }`}
         >
           {filter.label}
