@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { MOCK_PRODUCTS } from "@/types/Products";
 import { AddtoCart } from "@/components/AddtoCartB";
+import { ProductRadar } from "@/components/ProductRadar";
 import { notFound } from "next/navigation";
 import { ProductCard } from "@/components/ProductCard";
 
@@ -58,7 +59,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
           </span>
         </div>
 
-        <div className="flex flex-col justify-center">
+        <div className="flex flex-col justify-center gap-8 lg:flex-row lg:items-start">
           <p className="text-sm font-bold uppercase tracking-widest text-white/40 mb-2">
             {product.brand}
           </p>
@@ -127,6 +128,11 @@ export default async function ProductPage({ params }: ProductPageProps) {
           </div>
 
           <AddtoCart productID={product.id} inStock={product.InStock} />
+          {product.type !== "consumables" && (
+            <div className="lg:sticky lg:top-24 lg:w-80">
+              <ProductRadar product={product} />
+            </div>
+          )}
         </div>
       </div>
 
