@@ -13,6 +13,8 @@ export const MOCK_PRODUCTS: Product[] = [
     maxPower: 16,
     color: "Space Grey",
     InStock : true,
+    CoilResistence : 0.4,
+    TankCapacity : 4,
   },
   {
     id: "2",
@@ -26,6 +28,7 @@ export const MOCK_PRODUCTS: Product[] = [
     nicotine: 20,
     flavor: ["Ice", "WaterMelon"],
     InStock : false,
+    Icelevel : 75,
   },
   {
       id: "3",
@@ -49,6 +52,8 @@ export const MOCK_PRODUCTS: Product[] = [
     maxPower: 16,
     color: "Space Grey",
     InStock : true,
+     CoilResistence : 0.4,
+    TankCapacity : 4,
   }, {
     id: "5",
     type: "vape",
@@ -61,6 +66,8 @@ export const MOCK_PRODUCTS: Product[] = [
     maxPower: 16,
     color: "Space Grey",
     InStock : true,
+     CoilResistence : 0.4,
+    TankCapacity : 4,
   },
    {
     id: "6",
@@ -74,6 +81,8 @@ export const MOCK_PRODUCTS: Product[] = [
     maxPower: 16,
     color: "Space Grey",
     InStock : true,
+     CoilResistence : 0.4,
+    TankCapacity : 4,
   },
    {
     id: "7",
@@ -87,5 +96,7 @@ export const MOCK_PRODUCTS: Product[] = [
     maxPower: 16,
     color: "Space Grey",
     InStock : true,
+     CoilResistence : 0.4,
+    TankCapacity : 4,
   },
 ];

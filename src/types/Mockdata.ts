@@ -12,12 +12,15 @@ export interface ILiquid extends IProductProps{
     volume: 10 | 30 | 50 | 100;
     flavor : string[];
     nicotine : number;
+    Icelevel : 0 | 25 | 50 | 75 | 100;
 }
 export interface IVape extends IProductProps{
     type : 'vape'
     batteryCapacity: number;    
     maxPower: number;          
     color: string;
+    TankCapacity : number;
+    CoilResistence : number;
 }
 export interface IConsumables extends IProductProps{
     type : 'consumables'
