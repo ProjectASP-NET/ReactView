@@ -1,14 +1,18 @@
 import Link from "next/link";
 import Image from "next/image";
+import { Scale } from "lucide-react";
 import { PAGES } from "@/config/pages.config";
 import { AddtoCart } from "./AddtoCartB";
 import { QuickViewButton } from "./QuickViewButton";
 import { Product } from "@/types/Mockdata";
+import { useCompare } from "@/context/CompareContext";
 interface CardProps{
     product : Product;
 }
 export function ProductCard({product} : CardProps) {
-    const productURL = `${PAGES.CATALOG}/${product.id}`
+    const productURL = `${PAGES.CATALOG}/${product.id}`;
+    const { toggleCompare, isInCompare } = useCompare();
+    const isAdded = isInCompare(product.id);
     return ( 
     <div className="group relative flex flex-col rounded-3xl border border-(--card-border) bg-(--card-bg) p-4 transition-all hover:border-(--text-secondary) hover:bg-(--card-hover)">
       <Link href={productURL} className="block relative mb-4 aspect-square w-full overflow-hidden rounded-2xl bg-black/50 p-6">
@@ -43,6 +47,20 @@ export function ProductCard({product} : CardProps) {
         inStock = {product.InStock}
         />
         <QuickViewButton product={product} />
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            toggleCompare(product);
+          }}
+          className={`mt-2 flex h-10 w-full items-center justify-center gap-2 rounded-xl border text-sm font-medium transition-colors ${
+            isAdded
+              ? "border-(--text-secondary) bg-(--text-secondary) text-(--background)"
+              : "border-(--border) bg-(--card-bg) text-(--text-secondary) hover:border-(--text-secondary)"
+          }`}
+        >
+          <Scale size={16} />
+          {isAdded ? "В сравнении" : "Сравнить"}
+        </button>
     </div>        
     </div>
      );

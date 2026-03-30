@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { MENU } from "../types/menu.data";
 import { CartIcon } from "./CartIcon";
 import { ThemeToggle } from "./ThemeToggle";
+import { CompareIcon } from "./CompareIcon";
 
 export function Navigation() {
   const pathname = usePathname();
@@ -28,6 +29,7 @@ export function Navigation() {
         );
       })}
       <ThemeToggle />
+      <CompareIcon />
       <CartIcon />
     </nav>
   );
