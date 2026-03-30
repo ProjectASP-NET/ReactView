@@ -42,7 +42,7 @@ export function ProductModal({ product, isOpen, onClose }: ProductModalProps) {
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-[320px] sm:max-w-[480px] md:max-w-[640px] lg:max-w-[900px]
+        className="relative w-full max-w-[320px] sm:max-w-120 md:max-w-160 lg:max-w-225
                     max-h-[90vh] overflow-y-auto rounded-2xl sm:rounded-3xl 
                     border border-(--border) bg-(--section-bg) p-4 sm:p-6 md:p-8
                     shadow-2xl"
