@@ -1,10 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { CartProvider } from "@/context/CartContext";
-import { ThemeProvider } from "@/context/ThemeContext";
-import { CompareProvider } from "@/context/CompareContext";
-import { LikeandFavProvider } from "@/context/LikeandFavContext";
+import { ClientProviders } from "./ClientProviders";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,13 +32,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} min-h-full flex flex-col antialiased`}
         suppressHydrationWarning
       >
-        <ThemeProvider>
-          <CartProvider>
-            <CompareProvider>
-              <LikeandFavProvider>{children}</LikeandFavProvider>
-            </CompareProvider>
-          </CartProvider>
-        </ThemeProvider>
+        <ClientProviders>{children}</ClientProviders>
       </body>
     </html>
   );
