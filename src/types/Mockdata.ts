@@ -8,6 +8,7 @@ export interface IProductProps{
     InStock : boolean;
     IsLiked? : boolean;
     InFavorite? : boolean;
+    LikeCount : number;
 }
 export interface ILiquid extends IProductProps{
     type : 'liquid';

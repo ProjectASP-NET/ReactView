@@ -15,6 +15,7 @@ export const MOCK_PRODUCTS: Product[] = [
     InStock: true,
     CoilResistence: 0.4,
     TankCapacity: 4,
+    LikeCount: 47,
   },
   {
     id: "2",
@@ -29,6 +30,7 @@ export const MOCK_PRODUCTS: Product[] = [
     flavor: ["Ice", "WaterMelon"],
     InStock: false,
     Icelevel: 75,
+    LikeCount: 0,
   },
   {
     id: "3",
@@ -39,6 +41,7 @@ export const MOCK_PRODUCTS: Product[] = [
     price: 400,
     img: "/Automizer.jpg",
     InStock: true,
+    LikeCount: 0,
   },
   {
     id: "4",
@@ -54,6 +57,7 @@ export const MOCK_PRODUCTS: Product[] = [
     InStock: true,
     CoilResistence: 0.3,
     TankCapacity: 5.5,
+    LikeCount: 72,
   },
   {
     id: "5",
@@ -69,6 +73,7 @@ export const MOCK_PRODUCTS: Product[] = [
     InStock: true,
     CoilResistence: 0.25,
     TankCapacity: 4.5,
+    LikeCount: 0,
   },
   {
     id: "6",
@@ -84,6 +89,7 @@ export const MOCK_PRODUCTS: Product[] = [
     InStock: true,
     CoilResistence: 0.5,
     TankCapacity: 3.5,
+    LikeCount: 0,
   },
   {
     id: "7",
@@ -99,6 +105,7 @@ export const MOCK_PRODUCTS: Product[] = [
     InStock: true,
     CoilResistence: 0.4,
     TankCapacity: 4,
+    LikeCount: 58,
   },
   {
     id: "8",
@@ -114,6 +121,7 @@ export const MOCK_PRODUCTS: Product[] = [
     InStock: true,
     CoilResistence: 0.35,
     TankCapacity: 5,
+    LikeCount: 0,
   },
   {
     id: "9",
@@ -129,6 +137,7 @@ export const MOCK_PRODUCTS: Product[] = [
     InStock: true,
     CoilResistence: 0.7,
     TankCapacity: 2,
+    LikeCount: 0,
   },
   {
     id: "10",
@@ -144,6 +153,7 @@ export const MOCK_PRODUCTS: Product[] = [
     InStock: true,
     CoilResistence: 0.5,
     TankCapacity: 3.5,
+    LikeCount: 23,
   },
   {
     id: "11",
@@ -159,6 +169,7 @@ export const MOCK_PRODUCTS: Product[] = [
     InStock: false,
     CoilResistence: 0.6,
     TankCapacity: 5,
+    LikeCount: 89,
   },
   {
     id: "12",
@@ -173,6 +184,7 @@ export const MOCK_PRODUCTS: Product[] = [
     flavor: ["Mango", "Passion Fruit"],
     InStock: true,
     Icelevel: 25,
+    LikeCount: 0,
   },
   {
     id: "13",
@@ -187,6 +199,7 @@ export const MOCK_PRODUCTS: Product[] = [
     flavor: ["Blueberry", "Raspberry", "Blackberry"],
     InStock: true,
     Icelevel: 100,
+    LikeCount: 65,
   },
   {
     id: "14",
@@ -201,6 +214,7 @@ export const MOCK_PRODUCTS: Product[] = [
     flavor: ["Tobacco", "Caramel"],
     InStock: true,
     Icelevel: 0,
+    LikeCount: 0,
   },
   {
     id: "15",
@@ -215,6 +229,7 @@ export const MOCK_PRODUCTS: Product[] = [
     flavor: ["Coconut", "Peach", "Melon"],
     InStock: true,
     Icelevel: 50,
+    LikeCount: 0,
   },
   {
     id: "16",
@@ -229,6 +244,7 @@ export const MOCK_PRODUCTS: Product[] = [
     flavor: ["Lemon", "Cream", "Biscuit"],
     InStock: true,
     Icelevel: 0,
+    LikeCount: 0,
   },
   {
     id: "17",
@@ -243,6 +259,7 @@ export const MOCK_PRODUCTS: Product[] = [
     flavor: ["Grape", "Lemonade", "Ice"],
     InStock: true,
     Icelevel: 75,
+    LikeCount: 34,
   },
   {
     id: "18",
@@ -257,6 +274,7 @@ export const MOCK_PRODUCTS: Product[] = [
     flavor: ["Strawberry", "Cheesecake", "Cream"],
     InStock: true,
     Icelevel: 0,
+    LikeCount: 0,
   },
   {
     id: "19",
@@ -271,6 +289,7 @@ export const MOCK_PRODUCTS: Product[] = [
     flavor: ["Banana", "Milk", "Vanilla"],
     InStock: true,
     Icelevel: 0,
+    LikeCount: 0,
   },
   {
     id: "20",
@@ -285,6 +304,7 @@ export const MOCK_PRODUCTS: Product[] = [
     flavor: ["Cola", "Ice"],
     InStock: true,
     Icelevel: 100,
+    LikeCount: 0,
   },
   {
     id: "21",
@@ -299,6 +319,7 @@ export const MOCK_PRODUCTS: Product[] = [
     flavor: ["Watermelon", "Lime"],
     InStock: true,
     Icelevel: 50,
+    LikeCount: 0,
   },
   {
     id: "22",
@@ -309,6 +330,7 @@ export const MOCK_PRODUCTS: Product[] = [
     price: 350,
     img: "/Automizer.jpg",
     InStock: true,
+    LikeCount: 0,
   },
   {
     id: "23",
@@ -319,6 +341,7 @@ export const MOCK_PRODUCTS: Product[] = [
     price: 280,
     img: "/Automizer.jpg",
     InStock: true,
+    LikeCount: 0,
   },
   {
     id: "24",
@@ -329,6 +352,7 @@ export const MOCK_PRODUCTS: Product[] = [
     price: 380,
     img: "/Automizer.jpg",
     InStock: true,
+    LikeCount: 0,
   },
   {
     id: "25",
@@ -339,6 +363,7 @@ export const MOCK_PRODUCTS: Product[] = [
     price: 320,
     img: "/Automizer.jpg",
     InStock: true,
+    LikeCount: 0,
   },
   {
     id: "26",
@@ -349,6 +374,7 @@ export const MOCK_PRODUCTS: Product[] = [
     price: 290,
     img: "/Automizer.jpg",
     InStock: true,
+    LikeCount: 42,
   },
   {
     id: "27",
@@ -359,6 +385,7 @@ export const MOCK_PRODUCTS: Product[] = [
     price: 340,
     img: "/Automizer.jpg",
     InStock: false,
+    LikeCount: 0,
   },
   {
     id: "28",
@@ -369,6 +396,7 @@ export const MOCK_PRODUCTS: Product[] = [
     price: 310,
     img: "/Automizer.jpg",
     InStock: true,
+    LikeCount: 0,
   },
   {
     id: "29",
@@ -379,6 +407,7 @@ export const MOCK_PRODUCTS: Product[] = [
     price: 250,
     img: "/Automizer.jpg",
     InStock: true,
+    LikeCount: 0,
   },
   {
     id: "30",
@@ -389,6 +418,7 @@ export const MOCK_PRODUCTS: Product[] = [
     price: 270,
     img: "/Automizer.jpg",
     InStock: true,
+    LikeCount: 0,
   },
   {
     id: "31",
@@ -399,5 +429,6 @@ export const MOCK_PRODUCTS: Product[] = [
     price: 360,
     img: "/Automizer.jpg",
     InStock: true,
+    LikeCount: 0,
   },
 ];
