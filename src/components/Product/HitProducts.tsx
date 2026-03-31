@@ -7,7 +7,9 @@ import { MOCK_PRODUCTS } from "../../types/Products";
 
 export default function FeaturedProducts() {
   const [emblaRef] = useEmblaCarousel({ dragFree: true });
-  const featuredItems = MOCK_PRODUCTS.slice(1, 7);
+  const featuredItems = [...MOCK_PRODUCTS]
+  .sort((a,b) =>b.LikeCount - a.LikeCount) 
+  .slice(0, 7);
 
   return (
     <section className="w-full bg-(--section-bg) py-24 text-(--text-primary)">
