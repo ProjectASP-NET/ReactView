@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import FadeIn from '@/components/FadeIn'
 import FeaturedProducts from '@/components/HitProducts';
+import { PAGES } from '@/config/pages.config';
 
 export default function HomePage() {
   return (
@@ -33,7 +34,7 @@ export default function HomePage() {
               <div className="absolute inset-0 -translate-x-full bg-linear-to-r from-transparent via-black/10 to-transparent transition-transform duration-500 group-hover:translate-x-full" />
             </Link>
             <Link
-              href="/about"
+              href={PAGES.ABOUT}
               className="rounded-full border border-(--border) bg-(--card-bg) px-8 py-4 text-sm font-bold tracking-wider text-(--text-primary) backdrop-blur-md transition-all hover:bg-(--card-hover) hover:shadow-[0_0_20px_rgba(255,255,255,0.1) active:scale-95"
             >
               О БРЕНДЕ

@@ -105,7 +105,7 @@ export default function AboutUs() {
 
       <section className="mb-20">
         <div className="relative rounded-3xl border border-(--border) bg-(--card-bg) overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-(--text-secondary)/5 to-transparent" />
+          <div className="absolute inset-0 bg-linear-to-br from-(--text-secondary)/5 to-transparent" />
           <div className="relative p-8 lg:p-12">
             <h2 className="text-2xl font-bold mb-6">Наша миссия</h2>
             <p className="text-lg text-(--text-secondary) mb-6">
