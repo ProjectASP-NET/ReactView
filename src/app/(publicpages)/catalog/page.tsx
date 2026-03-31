@@ -16,6 +16,19 @@ function CatalogContent() {
   const filterQuery = searchParams.get("filter") || "all";
   const searchQuery = searchParams.get("search") || "";
 
+  const getCatalogBg = () => {
+    switch (filterQuery) {
+      case "liquid":
+        return "var(--catalog-gradient-liquid)";
+      case "vape":
+        return "var(--catalog-gradient-vape)";
+      case "consumables":
+        return "var(--catalog-gradient-consumables)";
+      default:
+        return "var(--catalog-gradient)";
+    }
+  };
+
   let filteredProducts =
     filterQuery === "all"
       ? MOCK_PRODUCTS
@@ -33,7 +46,10 @@ function CatalogContent() {
   const sortedProducts = SortLogic(filteredProducts, sortQuery);
 
   return (
-    <>
+    <div 
+      className={`min-h-[calc(100vh-200px)] rounded-3xl p-6 transition-all duration-500`}
+      style={{ background: getCatalogBg() }}
+    >
       <div className="mb-8">
         <Filter />
       </div>
@@ -48,7 +64,7 @@ function CatalogContent() {
           <p className="text-sm">Попробуйте изменить параметры поиска или фильтрации</p>
         </div>
       )}
-    </>
+    </div>
   );
 }
 

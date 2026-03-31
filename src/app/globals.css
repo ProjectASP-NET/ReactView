@@ -12,6 +12,11 @@
   --border: rgba(255, 255, 255, 0.1);
   --header-bg: rgba(0, 0, 0, 0.4);
   --section-bg: #0a0a0a;
+  
+  --catalog-gradient: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+  --catalog-gradient-liquid: linear-gradient(135deg, #1a0a1a 0%, #2d1b4e 50%, #1a0a1a 100%);
+  --catalog-gradient-vape: linear-gradient(135deg, #0a1a1a 0%, #1b2d4e 50%, #0a1a1a 100%);
+  --catalog-gradient-consumables: linear-gradient(135deg, #0a1a0a 0%, #1b4e2d 50%, #0a1a0a 100%);
 }
 
 [data-theme="light"] {
