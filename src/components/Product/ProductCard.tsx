@@ -3,8 +3,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { Scale } from "lucide-react";
 import { PAGES } from "@/config/pages.config";
-import { AddtoCart } from "./Buttons/AddtoCartB";
-import { QuickViewButton } from "./Buttons/QuickViewButton";
+import { AddtoCart } from "../Buttons/AddtoCartB";
+import { QuickViewButton } from "../Buttons/QuickViewButton";
 import { Product } from "@/types/Mockdata";
 import { useCompare } from "@/context/CompareContext";
 interface CardProps{

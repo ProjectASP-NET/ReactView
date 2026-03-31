@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { Product } from "@/types/Mockdata";
 import { useEffect } from "react";
-import { AddtoCart } from "./Buttons/AddtoCartB";
+import { AddtoCart } from "../Buttons/AddtoCartB";
 import { X } from "lucide-react";
 
 interface ProductModalProps {

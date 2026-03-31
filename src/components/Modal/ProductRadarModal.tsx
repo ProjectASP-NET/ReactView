@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, BarChart3 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Product } from "@/types/Mockdata";
-import { ProductRadar } from "./ProductRadar";
+import { ProductRadar } from "../Product/ProductRadar";
 
 interface Props {
   product: Product;

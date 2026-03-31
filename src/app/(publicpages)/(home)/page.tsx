@@ -1,6 +1,6 @@
 import Link from 'next/link'
-import FadeIn from '@/components/FadeIn'
-import FeaturedProducts from '@/components/HitProducts';
+import FadeIn from '@/components/UI/FadeIn'
+import FeaturedProducts from '@/components/Product/HitProducts';
 import { PAGES } from '@/config/pages.config';
 
 export default function HomePage() {

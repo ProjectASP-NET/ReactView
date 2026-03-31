@@ -1,9 +1,9 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import { ProductCard } from "@/components/ProductCard";
-import { Sort } from "@/components/Sort";
-import { Filter } from "@/components/Filter";
+import { ProductCard } from "@/components/Product/ProductCard";
+import { Sort } from "@/components/Filters/Sort";
+import { Filter } from "@/components/Filters/Filter";
 import { SortLogic } from "@/utility/SortLogic";
 import { MOCK_PRODUCTS } from "@/types/Products";
 import { Suspense } from "react";

@@ -2,10 +2,10 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { MENU } from "../types/menu.data";
-import { CartIcon } from "./CartIcon";
-import { ThemeToggle } from "./ThemeToggle";
-import { CompareIcon } from "./CompareIcon";
+import { MENU } from "../../types/menu.data";
+import { CartIcon } from "../Icons/CartIcon";
+import { ThemeToggle } from "../UI/ThemeToggle";
+import { CompareIcon } from "../Icons/CompareIcon";
 
 export function Navigation() {
   const pathname = usePathname();

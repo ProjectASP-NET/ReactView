@@ -1,8 +1,8 @@
 import type { PropsWithChildren} from "react";
-import { Header } from "../../components/Header";
-import AgeModal from "@/components/AgeModal";
+import { Header } from "../../components/Layout/Header";
+import AgeModal from "@/components/Modal/AgeModal";
 import { Metadata } from "next";
-import { Footer } from "@/components/Footer";
+import { Footer } from "@/components/Layout/Footer";
 export default function Layout({children}:
 PropsWithChildren<unknown>){
     return <div>

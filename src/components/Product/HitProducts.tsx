@@ -3,7 +3,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
 import Link from "next/link";
 import { ShoppingCart } from "lucide-react";
-import { MOCK_PRODUCTS } from "../types/Products";
+import { MOCK_PRODUCTS } from "../../types/Products";
 export default function FeaturedProducts() {
   const [emblaRef] = useEmblaCarousel({ dragFree: true });
   const featuredItems = MOCK_PRODUCTS.slice(1, 7);

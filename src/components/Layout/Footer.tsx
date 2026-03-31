@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { MENU } from "../types/menu.data";
+import { MENU } from "../../types/menu.data";
 
 export function Footer() {
   return (
