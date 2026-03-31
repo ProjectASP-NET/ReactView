@@ -6,6 +6,8 @@ export interface IProductProps{
     brand? : string;
     description? : string;  
     InStock : boolean;
+    IsLiked? : boolean;
+    InFavorite? : boolean;
 }
 export interface ILiquid extends IProductProps{
     type : 'liquid';

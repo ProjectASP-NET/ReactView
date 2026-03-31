@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { MOCK_PRODUCTS } from "@/types/Products";
-import { AddtoCart } from "@/components/AddtoCartB";
+import { AddtoCart } from "@/components/Buttons/AddtoCartB";
 import { ProductRadarModal } from "@/components/ProductRadarModal";
 import { notFound } from "next/navigation";
 import { ProductCard } from "@/components/ProductCard";

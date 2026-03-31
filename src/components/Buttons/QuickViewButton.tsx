@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Product } from "@/types/Mockdata";
-import { ProductModal } from "./ProductModal";
+import { ProductModal } from "../ProductModal";
 
 export function QuickViewButton({ product }: { product: Product }) {
   const [isOpen, setIsOpen] = useState(false);
