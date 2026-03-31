@@ -47,11 +47,13 @@ function CatalogContent() {
 
   return (
     <div 
-      className={`min-h-calc(100vh-200px) rounded-3xl p-6 transition-all duration-500`}
+      className="min-h-[calc(100vh-200px)] rounded-3xl p-6 transition-all duration-500"
       style={{ background: getCatalogBg() }}
     >
       <div className="mb-8">
-        <Filter />
+        <Suspense fallback={<div className="flex gap-2"><div className="h-10 w-20 animate-pulse rounded-full bg-(--card-bg)" /><div className="h-10 w-20 animate-pulse rounded-full bg-(--card-bg)" /><div className="h-10 w-20 animate-pulse rounded-full bg-(--card-bg)" /><div className="h-10 w-20 animate-pulse rounded-full bg-(--card-bg)" /></div>}>
+          <Filter />
+        </Suspense>
       </div>
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {sortedProducts.map((product) => (
@@ -107,7 +109,9 @@ export default function Catalog() {
               </p>
             </div>
             <div className="flex flex-col gap-4 md:flex-row">
-              <SearchInput />
+              <Suspense fallback={<div className="h-10 w-full max-w-md animate-pulse rounded-xl bg-(--card-bg)" />}>
+                <SearchInput />
+              </Suspense>
               <Suspense fallback={<div className="h-10 w-32 animate-pulse rounded-xl bg-(--card-bg)" />}>
                 <Sort />
               </Suspense>
