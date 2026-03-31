@@ -7,6 +7,7 @@ import { Filter } from "@/components/Filters/Filter";
 import { SortLogic } from "@/utility/SortLogic";
 import { MOCK_PRODUCTS } from "@/types/Products";
 import { Suspense } from "react";
+import FadeIn from "@/components/UI/FadeIn";
 
 function CatalogContent() {
   const searchParams = useSearchParams();
@@ -55,6 +56,7 @@ function CatalogLoading() {
 
 export default function Catalog() {
   return (
+     <FadeIn>
     <main className="mx-auto max-w-7xl px-6 py-24 lg:px-8">
       <div className="mb-12 flex flex-col gap-6 border-b border-(--border) pb-8 md:flex-row md:items-end md:justify-between">
         <div>
@@ -73,5 +75,6 @@ export default function Catalog() {
         <CatalogContent />
       </Suspense>
     </main>
+      </FadeIn>
   );
 }

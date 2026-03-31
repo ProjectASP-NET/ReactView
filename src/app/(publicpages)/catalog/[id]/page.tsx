@@ -3,6 +3,7 @@ import Link from "next/link";
 import { MOCK_PRODUCTS } from "@/types/Products";
 import { AddtoCart } from "@/components/Buttons/AddtoCartB";
 import { ProductRadarModal } from "@/components/Modal/ProductRadarModal";
+import { ProductPageActions } from "@/components/Product/ProductPageActions";
 import { notFound } from "next/navigation";
 import { ProductCard } from "@/components/Product/ProductCard";
 
@@ -133,6 +134,8 @@ export default async function ProductPage({ params }: ProductPageProps) {
           {product.type !== "consumables" && (
             <ProductRadarModal product={product} />
           )}
+
+          <ProductPageActions product={product} />
 
           <AddtoCart productID={product.id} inStock={product.InStock} />
         </div>

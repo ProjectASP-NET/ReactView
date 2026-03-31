@@ -4,7 +4,8 @@ import Image from "next/image";
 import { Product } from "@/types/Mockdata";
 import { useEffect } from "react";
 import { AddtoCart } from "../Buttons/AddtoCartB";
-import { X } from "lucide-react";
+import { X, Heart, Star } from "lucide-react";
+import { useLikeandFav } from "@/context/LikeandFavContext";
 
 interface ProductModalProps {
   product: Product;
@@ -13,6 +14,10 @@ interface ProductModalProps {
 }
 
 export function ProductModal({ product, isOpen, onClose }: ProductModalProps) {
+  const { toggleLike, toggleFavorite, isLiked, isFavorite } = useLikeandFav();
+  const liked = isLiked(product.id);
+  const favorited = isFavorite(product.id);
+
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
@@ -87,6 +92,30 @@ export function ProductModal({ product, isOpen, onClose }: ProductModalProps) {
                 </span>
               </p>
               <AddtoCart productID={product.id} inStock={product.InStock} />
+              <div className="mt-3 flex gap-2">
+                <button
+                  onClick={() => toggleLike(product.id)}
+                  className={`flex flex-1 items-center justify-center gap-1.5 rounded-xl border py-2.5 text-sm font-medium transition-colors ${
+                    liked
+                      ? "border-red-500 bg-red-500 text-white"
+                      : "border-(--border) bg-(--card-bg) text-(--text-secondary) hover:border-red-500 hover:text-red-500"
+                  }`}
+                >
+                  <Heart size={16} fill={liked ? "currentColor" : "none"} />
+                  <span>{product.LikeCount + (liked ? 1 : 0)}</span>
+                </button>
+                <button
+                  onClick={() => toggleFavorite(product)}
+                  className={`flex flex-1 items-center justify-center gap-1.5 rounded-xl border py-2.5 text-sm font-medium transition-colors ${
+                    favorited
+                      ? "border-yellow-500 bg-yellow-500 text-black"
+                      : "border-(--border) bg-(--card-bg) text-(--text-secondary) hover:border-yellow-500 hover:text-yellow-500"
+                  }`}
+                >
+                  <Star size={16} fill={favorited ? "currentColor" : "none"} />
+                  {favorited ? "В избранном" : "В избранное"}
+                </button>
+              </div>
             </div>
           </div>
         </div>
