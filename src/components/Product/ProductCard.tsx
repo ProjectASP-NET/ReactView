@@ -12,7 +12,7 @@ interface CardProps{
     product : Product;
 }
 export function ProductCard({product} : CardProps) {
-    const productURL = `${PAGES.CATALOG}/${product.id}`;
+    const productURL = PAGES.getProduct(product.id);
     const { toggleCompare, isInCompare } = useCompare();
     const { toggleLike, toggleFavorite, isLiked, isFavorite } = useLikeandFav();
     const isAdded = isInCompare(product.id);

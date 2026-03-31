@@ -3,5 +3,7 @@ export const PAGES = {
     CATALOG: "/catalog",
     CART: "/cart",
     MATCHER: "/matcher",
-    ABOUT:'/about',
+    ABOUT: "/about",
+
+    getProduct: (id: string) => `/catalog/${id}`,
 };

@@ -285,7 +285,7 @@ export default function MatcherPage() {
                       className="py-4 px-4 text-center text-sm font-bold"
                     >
                       <Link
-                        href={`${PAGES.CATALOG}/${item.id}`}
+                        href={PAGES.getProduct(item.id)}
                         className="hover:text-(--text-secondary)"
                       >
                         {item.name}
