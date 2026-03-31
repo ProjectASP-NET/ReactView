@@ -31,24 +31,24 @@ export function SearchInput() {
   };
 
   return (
-    <div className="relative w-full max-w-md">
+    <div className="relative w-full min-w-75 mt-4">
       <Search
-        size={18}
-        className="absolute left-4 top-1/2 -translate-y-1/2 text-(--text-muted)"
+        size={25}
+        className="absolute left-4 top-1/2 -translate-y-1/2 text-[rgba(255,255,255,0.4)]"
       />
       <input
         type="text"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         placeholder="Поиск по каталогу..."
-        className="w-full rounded-xl border border-(--border) bg-(--card-bg) py-3 pl-12 pr-10 text-sm text-(--text-primary) placeholder-(--text-muted) transition-colors focus:border-(--text-secondary) focus:outline-none"
+        className="w-full rounded-xl border border-[rgba(255,255,255,0.1)] bg-[rgba(255,255,255,0.05)] py-4 pl-12 pr-10 text-sm text-[rgba(255,255,255,0.9)] placeholder-[rgba(255,255,255,0.4)] transition-colors focus:border-[rgba(255,255,255,0.3)] focus:outline-none"
       />
       {query && (
         <button
           onClick={clearSearch}
-          className="absolute right-4 top-1/2 -translate-y-1/2 text-(--text-muted) hover:text-(--text-primary)"
+          className="absolute right-4 top-1/2 -translate-y-1/2 text-[rgba(255,255,255,0.4)] hover:text-[rgba(255,255,255,0.9)]"
         >
-          <X size={16} />
+          <X size={18} />
         </button>
       )}
     </div>

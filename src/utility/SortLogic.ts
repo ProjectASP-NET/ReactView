@@ -9,11 +9,15 @@ export function SortLogic(products: Product[], sortType: string): Product[] {
       case "expensive":
         return b.price - a.price;
       case "new":
-        return Number(b.id) - Number(a.id)
+        return Number(b.id) - Number(a.id);
         case "old":
-         return Number(a.id) - Number(b.id)
+         return Number(a.id) - Number(b.id);
+      case "mliked":
+        return b.LikeCount - a.LikeCount;
+         case "lliked":
+        return a.LikeCount - b.LikeCount;
       default:
-        return Number(b.id) - Number(a.id)
+        return Number(b.id) - Number(a.id);
     }
   });
 }
