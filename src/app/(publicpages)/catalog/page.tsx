@@ -4,6 +4,7 @@ import { useSearchParams } from "next/navigation";
 import { ProductCard } from "@/components/Product/ProductCard";
 import { Sort } from "@/components/Filters/Sort";
 import { Filter } from "@/components/Filters/Filter";
+import { SearchInput } from "@/components/Filters/SearchInput";
 import { SortLogic } from "@/utility/SortLogic";
 import { MOCK_PRODUCTS } from "@/types/Products";
 import { Suspense } from "react";
@@ -13,11 +14,21 @@ function CatalogContent() {
   const searchParams = useSearchParams();
   const sortQuery = searchParams.get("sort") || "new";
   const filterQuery = searchParams.get("filter") || "all";
+  const searchQuery = searchParams.get("search") || "";
 
-  const filteredProducts =
+  let filteredProducts =
     filterQuery === "all"
       ? MOCK_PRODUCTS
       : MOCK_PRODUCTS.filter((p) => p.type === filterQuery);
+
+  if (searchQuery.length >= 2) {
+    const q = searchQuery.toLowerCase();
+    filteredProducts = filteredProducts.filter(
+      (p) =>
+        p.name.toLowerCase().includes(q) ||
+        (p.brand?.toLowerCase().includes(q) ?? false)
+    );
+  }
 
   const sortedProducts = SortLogic(filteredProducts, sortQuery);
 
@@ -34,7 +45,7 @@ function CatalogContent() {
       {sortedProducts.length === 0 && (
         <div className="flex flex-col items-center justify-center py-20 text-(--text-muted)">
           <p className="text-xl font-bold">Товары не найдены</p>
-          <p className="text-sm">Попробуйте изменить параметры фильтрации</p>
+          <p className="text-sm">Попробуйте изменить параметры поиска или фильтрации</p>
         </div>
       )}
     </>
@@ -67,9 +78,12 @@ export default function Catalog() {
             Премиальные жидкости и девайсы для истинных ценителей.
           </p>
         </div>
-        <Suspense fallback={<div className="h-10 w-32 animate-pulse rounded-xl bg-(--card-bg)" />}>
-          <Sort />
-        </Suspense>
+        <div className="flex flex-col gap-4 md:flex-row">
+          <SearchInput />
+          <Suspense fallback={<div className="h-10 w-32 animate-pulse rounded-xl bg-(--card-bg)" />}>
+            <Sort />
+          </Suspense>
+        </div>
       </div>
       <Suspense fallback={<CatalogLoading />}>
         <CatalogContent />
