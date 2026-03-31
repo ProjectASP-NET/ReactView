@@ -27,7 +27,7 @@ export default function HomePage() {
           </p>
           <div className="mt-8 flex flex-col gap-4 sm:flex-row">
             <Link
-              href="/catalog"
+              href={PAGES.CATALOG}
               className="group relative overflow-hidden rounded-full bg-white px-8 py-4 text-sm font-bold tracking-wider text-black transition-transform hover:scale-105 active:scale-95"
             >
               <span className="relative z-10">ОТКРЫТЬ КАТАЛОГ</span>

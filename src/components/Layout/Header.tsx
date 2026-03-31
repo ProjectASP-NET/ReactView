@@ -3,12 +3,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Navigation } from "./Navigation";
+import { PAGES } from "@/config/pages.config";
 
 export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-(--border) bg-(--header-bg) backdrop-blur-lg transition-all duration-300">
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-8">
-        <Link href="/" className="group flex items-center gap-3 transition-transform hover:scale-105 active:scale-95">
+        <Link href={PAGES.HOME} className="group flex items-center gap-3 transition-transform hover:scale-105 active:scale-95">
           <div className="relative flex h-12 w-12 items-center justify-center overflow-hidden rounded-xl bg-(--card-bg) p-2 ring-1 ring-(--border) transition-all group-hover:ring-(--text-secondary)">
             <Image
               src="/logo1.png"

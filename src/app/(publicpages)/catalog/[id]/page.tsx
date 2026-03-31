@@ -6,6 +6,7 @@ import { ProductRadarModal } from "@/components/Modal/ProductRadarModal";
 import { ProductPageActions } from "@/components/Product/ProductPageActions";
 import { notFound } from "next/navigation";
 import { ProductCard } from "@/components/Product/ProductCard";
+import { PAGES } from "@/config/pages.config";
 
 interface ProductPageProps {
   params: Promise<{ id: string }>;
@@ -39,7 +40,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
   return (
     <main className="mx-auto max-w-7xl px-6 py-24 lg:px-8">
       <nav className="mb-8 flex items-center gap-2 text-sm text-(--text-muted)">
-        <Link href="/catalog" className="hover:text-(--text-primary) transition-colors">
+        <Link href={PAGES.CATALOG} className="hover:text-(--text-primary) transition-colors">
           Каталог
         </Link>
         <span>/</span>

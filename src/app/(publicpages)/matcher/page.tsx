@@ -178,7 +178,7 @@ export default function MatcherPage() {
             {items.map((product) => (
               <div
                 key={product.id}
-                className="relative flex-shrink-0 w-48 rounded-2xl border border-(--border) bg-(--card-bg) p-4"
+                className="relative shrink-0 w-48 rounded-2xl border border-(--border) bg-(--card-bg) p-4"
               >
                 <button
                   onClick={() => removeFromCompare(product.id)}
@@ -205,7 +205,7 @@ export default function MatcherPage() {
             {Array.from({ length: 4 - items.length }).map((_, idx) => (
               <div
                 key={`empty-${idx}`}
-                className="flex-shrink-0 w-48 rounded-2xl border border-dashed border-(--border) bg-(--card-bg)/50 p-4 flex items-center justify-center"
+                className="shrink-0 w-48 rounded-2xl border border-dashed border-(--border) bg-(--card-bg)/50 p-4 flex items-center justify-center"
               >
                 <p className="text-sm text-(--text-muted)">Пусто</p>
               </div>
