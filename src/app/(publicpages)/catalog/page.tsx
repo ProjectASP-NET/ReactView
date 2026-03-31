@@ -47,7 +47,7 @@ function CatalogContent() {
 
   return (
     <div 
-      className={`min-h-[calc(100vh-200px)] rounded-3xl p-6 transition-all duration-500`}
+      className={`min-h-calc(100vh-200px) rounded-3xl p-6 transition-all duration-500`}
       style={{ background: getCatalogBg() }}
     >
       <div className="mb-8">
@@ -83,28 +83,41 @@ function CatalogLoading() {
 
 export default function Catalog() {
   return (
-     <FadeIn>
-    <main className="mx-auto max-w-7xl px-6 py-24 lg:px-8">
-      <div className="mb-12 flex flex-col gap-6 border-b border-(--border) pb-8 md:flex-row md:items-end md:justify-between">
-        <div>
-          <h1 className="text-4xl font-black tracking-tight sm:text-5xl">
-            НАШ <span className="text-(--text-muted)">КАТАЛОГ</span>
-          </h1>
-          <p className="mt-4 text-lg text-(--text-secondary)">
-            Премиальные жидкости и девайсы для истинных ценителей.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 md:flex-row">
-          <SearchInput />
-          <Suspense fallback={<div className="h-10 w-32 animate-pulse rounded-xl bg-(--card-bg)" />}>
-            <Sort />
+    <FadeIn>
+      <main className="relative min-h-screen overflow-hidden">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover min-h-125"
+        >
+          <source src="/CatalogBG.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-black/60" />
+        
+        <div className="relative z-10 mx-auto max-w-7xl px-6 py-24 lg:px-8">
+          <div className="mb-12 flex flex-col gap-6 border-b border-(--border) pb-8 md:flex-row md:items-end md:justify-between">
+            <div>
+              <h1 className="text-4xl font-black tracking-tight sm:text-5xl">
+                НАШ <span className="text-(--text-muted)">КАТАЛОГ</span>
+              </h1>
+              <p className="mt-4 text-lg text-(--text-secondary)">
+                Премиальные жидкости и девайсы для истинных ценителей.
+              </p>
+            </div>
+            <div className="flex flex-col gap-4 md:flex-row">
+              <SearchInput />
+              <Suspense fallback={<div className="h-10 w-32 animate-pulse rounded-xl bg-(--card-bg)" />}>
+                <Sort />
+              </Suspense>
+            </div>
+          </div>
+          <Suspense fallback={<CatalogLoading />}>
+            <CatalogContent />
           </Suspense>
         </div>
-      </div>
-      <Suspense fallback={<CatalogLoading />}>
-        <CatalogContent />
-      </Suspense>
-    </main>
-      </FadeIn>
+      </main>
+    </FadeIn>
   );
 }
