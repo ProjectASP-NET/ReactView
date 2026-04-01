@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import FadeIn from '@/components/UI/FadeIn'
 import FeaturedProducts from '@/components/Product/HitProducts';
+import NewProducts from '@/components/Product/NewProducts';
 import { PAGES } from '@/config/pages.config';
 
 export default function HomePage() {
@@ -60,6 +61,7 @@ export default function HomePage() {
         </div>
       </section>
     <FeaturedProducts />
+    <NewProducts />
     </main>
     </FadeIn>
   );
