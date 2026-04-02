@@ -6,4 +6,5 @@ export const PAGES = {
     ABOUT: "/about",
 
     getProduct: (id: string) => `/catalog/${id}`,
+    getCatalog: (sort?: string) => sort ? `/catalog?sort=${sort}` : "/catalog",
 };

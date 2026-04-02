@@ -22,7 +22,7 @@ export default function FeaturedProducts() {
             </h2>
             <p className="mt-4 text-(--text-secondary)">Выбор наших клиентов на этой неделе</p>
           </div>
-          <Link href={PAGES.CATALOG} className="hidden text-sm font-bold tracking-widest hover:text-(--text-secondary) sm:block transition-colors">
+          <Link href={PAGES.getCatalog("mliked")} className="hidden text-sm font-bold tracking-widest hover:text-(--text-secondary) sm:block transition-colors">
             СМОТРЕТЬ ВСЕ →
           </Link>
         </div>

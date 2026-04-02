@@ -1,8 +1,10 @@
 "use client";
 
 import useEmblaCarousel from "embla-carousel-react";
+import Link from "next/link";
 import { ProductCard } from "./ProductCard";
 import { MOCK_PRODUCTS } from "../../types/Products";
+import { PAGES } from "@/config/pages.config";
 export default function NewProducts() {
   const [emblaRef] = useEmblaCarousel({ dragFree: true });
   const NewItems = [...MOCK_PRODUCTS]
@@ -18,6 +20,9 @@ export default function NewProducts() {
             </h2>
             <p className="mt-4 text-(--text-secondary)">Новые поступления в нашем каталоге</p>
           </div>
+          <Link href={PAGES.getCatalog("new")} className="hidden text-sm font-bold tracking-widest hover:text-(--text-secondary) sm:block transition-colors">
+            СМОТРЕТЬ ВСЕ →
+          </Link>
         </div>
         <div className="overflow-hidden" ref={emblaRef}>
           <div className="flex gap-6">
