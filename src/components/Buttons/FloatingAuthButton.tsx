@@ -12,7 +12,7 @@ interface MenuItem {
 }
 
 const menuItems: MenuItem[] = [
-  { icon: LogIn, label: "Вход / Регистрация", href: "#" },
+  { icon: LogIn, label: "Вход / Регистрация", href: "/auth" },
   { icon: Star, label: "Избранное", href: "/favorites" },
   { icon: Heart, label: "Мои лайки", href: "/likes" },
   { icon: LogOut, label: "Выйти", href: "#" },
