@@ -34,18 +34,21 @@ export function FloatingAuthButton() {
   return (
     <div ref={menuRef} className="fixed bottom-6 right-6 z-90">
       {isOpen && (
-        <div className="absolute bottom-16 right-0 mb-2 w-48 overflow-hidden rounded-xl border border-(--border) bg-(--card-bg) shadow-lg animate-in fade-in slide-in-from-bottom-2 duration-200">
-          {menuItems.map((item, index) => (
-            <Link
-              key={index}
-              href={item.href}
-              onClick={() => setIsOpen(false)}
-              className="flex items-center gap-3 px-4 py-3 text-sm text-(--text-secondary) transition-colors hover:bg-(--background) hover:text-(--text-primary)"
-            >
-              <item.icon size={18} />
-              <span>{item.label}</span>
-            </Link>
-          ))}
+        <div className="absolute bottom-16 right-0 mb-2 w-48 overflow-hidden rounded-xl border border-(--border) bg-(--card-bg) shadow-lg">
+          <div className="animate-in fade-in slide-in-from-bottom-4 duration-300">
+            {menuItems.map((item, index) => (
+              <Link
+                key={index}
+                href={item.href}
+                onClick={() => setIsOpen(false)}
+                className="flex items-center gap-3 px-4 py-3 text-sm text-(--text-secondary) transition-all duration-200 hover:bg-(--background) hover:text-(--text-primary) hover:pl-5"
+                style={{ animationDelay: `${index * 50}ms` }}
+              >
+                <item.icon size={18} />
+                <span>{item.label}</span>
+              </Link>
+            ))}
+          </div>
         </div>
       )}
       <button
