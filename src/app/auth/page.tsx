@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
+import { PAGES } from "@/config/pages.config";
 import { SignInForm } from "../../services/SignInForm";
 import { SignUpForm } from "../../services/SignUpForm";
 import { Sparkles, Droplets, ArrowRight } from "lucide-react";
@@ -29,6 +31,7 @@ export default function AuthPage() {
           <div className="flex gap-2 mb-6">
             <button
               onClick={() => setIsLogin(true)}
+              aria-pressed={isLogin}
               className={`flex-1 py-2 rounded-lg transition-colors ${
                 isLogin
                   ? "bg-(--text-primary) text-(--background)"
@@ -69,7 +72,7 @@ export default function AuthPage() {
 
       <div className="hidden md:flex md:w-1/2 relative overflow-hidden">
         <AnimatePresence mode="wait">
-          <motion.div
+            <motion.div
             key={isLogin ? "login-image" : "register-image"}
             initial={{ opacity: 0, scale: 1.1 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -126,17 +129,16 @@ export default function AuthPage() {
                 <span className="text-sm">Быстрая доставка</span>
               </motion.div>
 
-              <motion.button
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.7 }}
-                className="mt-8 flex items-center gap-2 px-6 py-3 rounded-full bg-(--background) text-(--accent) font-medium hover:gap-4 transition-all"
+              <Link
+                href={PAGES.CATALOG}
+                className="mt-8 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-(--background) text-(--accent) font-medium hover:gap-4 transition-all"
+                aria-label="Перейти в каталог"
               >
                 <span>Перейти в каталог</span>
                 <ArrowRight size={18} />
-              </motion.button>
+              </Link>
             </div>
-
+            
             <div className="absolute bottom-0 left-0 right-0 h-32 bg-linear-to-t from-(--background)/10 to-transparent" />
             <div className="absolute top-0 left-0 right-0 h-32 bg-linear-to-b from-(--background)/10 to-transparent" />
           </motion.div>
