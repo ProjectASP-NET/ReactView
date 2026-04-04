@@ -28,7 +28,7 @@ export default function AuthPage() {
   };
 
   return (
-    <div className="flex min-h-screen w-full relative bg-gradient-to-br from-[var(--primary)] via-[var(--accent)] to-[var(--secondary)]">
+    <div className="flex min-h-screen w-full relative bg-linear-to-br from-(--primary) via-(--accent) to-(--secondary)">
       <div className="pointer-events-none absolute inset-0 opacity-20">
         <div className="w-full h-full bg-[url('/auth-texture.svg')] bg-repeat opacity-100" />
       </div>
@@ -93,6 +93,7 @@ export default function AuthPage() {
                     sizes="(max-width: 768px) 100vw, 50vw"
                     className="object-cover"
                     priority={false}
+                    loading="eager"
                   />
                   <div className="absolute inset-0 flex flex-col items-center justify-center p-12 text-center">
                     <div className="w-24 h-24 rounded-3xl bg-(--background)/20 backdrop-blur-sm flex items-center justify-center mb-6">

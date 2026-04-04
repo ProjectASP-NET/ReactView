@@ -12,9 +12,9 @@
   --border: rgba(255, 255, 255, 0.1);
   --header-bg: rgba(0, 0, 0, 0.4);
   --section-bg: #0a0a0a;
-  --primary: #e1cbd7;
-  --accent: #c38eb4;
-  --secondary: #26425a;
+  --primary: #601e42;
+  --accent: #1a3d3a;
+  --secondary: #2c5375;
   
   --catalog-gradient: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
   --catalog-gradient-liquid: linear-gradient(135deg, #1a0a1a 0%, #2d1b4e 50%, #1a0a1a 100%);
@@ -36,7 +36,7 @@
   --section-bg: #e5e5e5;
 }
 
-@theme {
+:root {
   --color-vape-neon: #00ffcc;
   --color-vape-dark: #121212;
   --color-vape-purple: #8b5cf6;
