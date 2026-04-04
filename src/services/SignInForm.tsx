@@ -2,12 +2,17 @@
 
 import { useState } from "react";
 import { Mail, Lock, Eye, EyeOff } from "lucide-react";
+import React from "react";
 
 interface SignInFormProps {
   onSubmit: (data: { email: string; password: string }) => void;
 }
 
-export function SignInForm({ onSubmit }: SignInFormProps) {
+interface SignInFormPropsExt extends SignInFormProps {
+  autoFocus?: boolean;
+}
+
+export function SignInForm({ onSubmit, autoFocus }: SignInFormPropsExt) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -17,6 +22,12 @@ export function SignInForm({ onSubmit }: SignInFormProps) {
     e.preventDefault();
     onSubmit({ email, password });
   };
+  const emailRef = React.useRef<HTMLInputElement | null>(null);
+  React.useEffect(() => {
+    if (autoFocus && emailRef.current) {
+      emailRef.current.focus();
+    }
+  }, [autoFocus]);
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-5 w-full">
@@ -30,6 +41,7 @@ export function SignInForm({ onSubmit }: SignInFormProps) {
         <div className="relative">
           <Mail className="absolute left-3 top-1/2 -translate-y-1/2 text-(--text-secondary)" size={18} />
           <input
+            ref={emailRef}
             type="email"
             placeholder="example@mail.ru"
             value={email}
@@ -81,13 +93,6 @@ export function SignInForm({ onSubmit }: SignInFormProps) {
       >
         Войти
       </button>
-
-      <p className="text-center text-sm text-(--text-secondary)">
-        Нет аккаунта?{" "}
-        <span className="text-(--accent) cursor-pointer hover:underline">
-          Зарегистрироваться
-        </span>
-      </p>
     </form>
   );
 }

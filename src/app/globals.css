@@ -12,6 +12,9 @@
   --border: rgba(255, 255, 255, 0.1);
   --header-bg: rgba(0, 0, 0, 0.4);
   --section-bg: #0a0a0a;
+  --primary: #e1cbd7;
+  --accent: #c38eb4;
+  --secondary: #26425a;
   
   --catalog-gradient: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
   --catalog-gradient-liquid: linear-gradient(135deg, #1a0a1a 0%, #2d1b4e 50%, #1a0a1a 100%);

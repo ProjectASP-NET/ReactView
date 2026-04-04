@@ -2,12 +2,17 @@
 
 import { useState } from "react";
 import { User, Mail, Lock, Eye, EyeOff, Check, X } from "lucide-react";
+import React from "react";
 
 interface SignUpFormProps {
   onSubmit: (data: { name: string; email: string; password: string; passwordConfirm: string }) => void;
 }
 
-export function SignUpForm({ onSubmit }: SignUpFormProps) {
+interface SignUpFormPropsExt extends SignUpFormProps {
+  autoFocus?: boolean;
+}
+
+export function SignUpForm({ onSubmit, autoFocus }: SignUpFormPropsExt) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -28,6 +33,11 @@ export function SignUpForm({ onSubmit }: SignUpFormProps) {
     onSubmit({ name, email, password, passwordConfirm });
   };
 
+  const nameRef = React.useRef<HTMLInputElement | null>(null);
+  React.useEffect(() => {
+    if (autoFocus && nameRef.current) nameRef.current.focus();
+  }, [autoFocus]);
+
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-5 w-full">
       <div className="text-center mb-2">
@@ -40,6 +50,7 @@ export function SignUpForm({ onSubmit }: SignUpFormProps) {
         <div className="relative">
           <User className="absolute left-3 top-1/2 -translate-y-1/2 text-(--text-secondary)" size={18} />
           <input
+            ref={nameRef}
             type="text"
             placeholder="Ваше имя"
             value={name}
