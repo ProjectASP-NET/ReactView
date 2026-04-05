@@ -3,12 +3,9 @@
 import { useState } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import Image from "next/image";
-import Link from "next/link";
-import { PAGES } from "@/config/pages.config";
 import { SignInForm } from "../../services/SignInForm";
 import { SignUpForm } from "../../services/SignUpForm";
 import { AuthSwitcher } from "@/components/Auth/AuthSwitcher";
-import { Sparkles, Droplets, ArrowRight } from "lucide-react";
 
 export default function AuthPage() {
   const [isLogin, setIsLogin] = useState(true);
@@ -58,13 +55,12 @@ export default function AuthPage() {
                   </div>
                   <div className="hidden md:block relative w-full h-full rounded-2xl overflow-hidden">
                     <Image
-                      src="/auth-right.png"
-                      alt="auth right"
+                      src="/login.png"
+                      alt="login"
                       fill
                       sizes="(max-width: 768px) 100vw, 50vw"
                       className="object-cover"
                       priority={false}
-                      loading="eager"
                     />
                   </div>
                 </>
@@ -87,25 +83,14 @@ export default function AuthPage() {
               {isLogin ? (
                 <div className="relative w-full h-full rounded-3xl overflow-hidden">
                   <Image
-                    src="/auth-left.png"
-                    alt="auth left"
+                    src="/reg.png"
+                    alt="reg"
                     fill
                     sizes="(max-width: 768px) 100vw, 50vw"
                     className="object-cover"
                     priority={false}
                     loading="eager"
                   />
-                  <div className="absolute inset-0 flex flex-col items-center justify-center p-12 text-center">
-                    <div className="w-24 h-24 rounded-3xl bg-(--background)/20 backdrop-blur-sm flex items-center justify-center mb-6">
-                      <Droplets size={48} className="text-(--background)" />
-                    </div>
-                    <h2 className="text-4xl font-bold text-(--background) mb-4">С возвращением!</h2>
-                    <p className="text-lg text-(--background)/80 mb-8 max-w-md">Войдите в свой аккаунт, чтобы получить доступ к эксклюзивным предложениям и истории заказов</p>
-                    <Link href={PAGES.CATALOG} className="mt-8 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-(--background) text-(--accent) font-medium hover:gap-4 transition-all" aria-label="Перейти в каталог">
-                      <span>Перейти в каталог</span>
-                      <ArrowRight size={18} />
-                    </Link>
-                  </div>
                 </div>
               ) : (
                 <SignUpForm onSubmit={handleRegister} autoFocus={!isLogin} />
