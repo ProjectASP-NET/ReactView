@@ -9,6 +9,21 @@ import { SortLogic } from "@/utility/SortLogic";
 import { MOCK_PRODUCTS } from "@/types/Products";
 import { Suspense } from "react";
 import FadeIn from "@/components/UI/FadeIn";
+import { ErrorBoundary } from "@/components/UI/ErrorBoundary";
+
+function CatalogErrorFallback() {
+  return (
+    <div className="flex flex-col items-center justify-center py-20">
+      <h2 className="text-2xl font-bold text-error mb-4">Ошибка загрузки каталога</h2>
+      <button
+        onClick={() => window.location.reload()}
+        className="btn btn-primary"
+      >
+        Обновить
+      </button>
+    </div>
+  );
+}
 
 function CatalogContent() {
   const searchParams = useSearchParams();
@@ -118,7 +133,9 @@ export default function Catalog() {
             </div>
           </div>
           <Suspense fallback={<CatalogLoading />}>
-            <CatalogContent />
+            <ErrorBoundary fallback={<CatalogErrorFallback />}>
+              <CatalogContent />
+            </ErrorBoundary>
           </Suspense>
         </div>
       </main>

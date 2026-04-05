@@ -6,18 +6,36 @@ import { ThemeProvider } from "@/context/ThemeContext";
 import { CompareProvider } from "@/context/CompareContext";
 import { LikeandFavProvider } from "@/context/LikeandFavContext";
 import { FloatingAuthButton } from "@/components/Buttons/FloatingAuthButton";
+import { ErrorBoundary } from "@/components/UI/ErrorBoundary";
+
+function ErrorFallback() {
+  return (
+    <div className="flex flex-col items-center justify-center min-h-[50vh] p-8">
+      <h2 className="text-2xl font-bold text-error mb-4">Что-то пошло не так</h2>
+      <p className="text-base-content/70 mb-4">Попробуйте обновить страницу</p>
+      <button
+        onClick={() => window.location.reload()}
+        className="btn btn-primary"
+      >
+        Обновить
+      </button>
+    </div>
+  );
+}
 
 export function ClientProviders({ children }: { children: ReactNode }) {
   return (
-    <ThemeProvider>
-      <CartProvider>
-        <CompareProvider>
-          <LikeandFavProvider>
-            {children}
-            <FloatingAuthButton />
-          </LikeandFavProvider>
-        </CompareProvider>
-      </CartProvider>
-    </ThemeProvider>
+    <ErrorBoundary fallback={<ErrorFallback />}>
+      <ThemeProvider>
+        <CartProvider>
+          <CompareProvider>
+            <LikeandFavProvider>
+              {children}
+              <FloatingAuthButton />
+            </LikeandFavProvider>
+          </CompareProvider>
+        </CartProvider>
+      </ThemeProvider>
+    </ErrorBoundary>
   );
 }
