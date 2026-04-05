@@ -1,4 +1,5 @@
 "use client";
+import { useTranslations } from 'next-intl';
 import { ShoppingCart } from "lucide-react";
 import { useState } from "react";
 import { useCart } from "@/context/CartContext";
@@ -10,6 +11,7 @@ interface AddtoCartProps {
 }
 
 export function AddtoCart({ productID, inStock }: AddtoCartProps) {
+  const t = useTranslations('Product');
   const [isAdded, setIsAdded] = useState(false);
   const { addToCart } = useCart();
 
@@ -28,7 +30,7 @@ export function AddtoCart({ productID, inStock }: AddtoCartProps) {
         disabled
         className="mt-4 w-full rounded-xl bg-(--card-bg) py-3 text-sm font-bold text-(--text-muted) cursor-not-allowed border border-(--border)"
       >
-        НЕТ В НАЛИЧИИ
+        {t('outOfStock')}
       </button>
     );
   }
@@ -41,7 +43,7 @@ export function AddtoCart({ productID, inStock }: AddtoCartProps) {
       }`}
     >
       <ShoppingCart size={18} />
-      {isAdded ? "ДОБАВЛЕНО" : "В КОРЗИНУ"}
+      {isAdded ? t('added') : t('addToCart')}
     </button>
   );
 }

@@ -1,10 +1,11 @@
 "use client";
-
+import { useTranslations } from 'next-intl';
 import { Search, X } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
 export function SearchInput() {
+  const t = useTranslations('Catalog');
   const router = useRouter();
   const searchParams = useSearchParams();
   const [query, setQuery] = useState(searchParams.get("search") || "");
@@ -40,7 +41,7 @@ export function SearchInput() {
         type="text"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        placeholder="Поиск по каталогу..."
+        placeholder={t('search')}
         className="w-full rounded-xl border border-[rgba(255,255,255,0.1)] bg-[rgba(255,255,255,0.05)] py-4 pl-12 pr-10 text-sm text-[rgba(255,255,255,0.9)] placeholder-[rgba(255,255,255,0.4)] transition-colors focus:border-[rgba(255,255,255,0.3)] focus:outline-none"
       />
       {query && (

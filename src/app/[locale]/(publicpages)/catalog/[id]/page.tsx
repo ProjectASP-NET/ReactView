@@ -1,3 +1,4 @@
+import { getTranslations } from 'next-intl/server';
 import Image from "next/image";
 import Link from "next/link";
 import { MOCK_PRODUCTS } from "@/types/Products";
@@ -13,6 +14,8 @@ interface ProductPageProps {
 }
 
 export default async function ProductPage({ params }: ProductPageProps) {
+  const t = await getTranslations('Product');
+  const tCatalog = await getTranslations('Catalog');
   const { id } = await params;
   const product = MOCK_PRODUCTS.find((p) => p.id === id);
 
@@ -27,11 +30,11 @@ export default async function ProductPage({ params }: ProductPageProps) {
   const getTypeLabel = (type: string) => {
     switch (type) {
       case "liquid":
-        return "Жидкость";
+        return t('liquid');
       case "vape":
-        return "Девайс";
+        return t('vape');
       case "consumables":
-        return "Расходник";
+        return t('consumables');
       default:
         return type;
     }
@@ -41,7 +44,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
     <main className="mx-auto max-w-7xl px-6 py-24 lg:px-8">
       <nav className="mb-8 flex items-center gap-2 text-sm text-(--text-muted)">
         <Link href={PAGES.CATALOG} className="hover:text-(--text-primary) transition-colors">
-          Каталог
+          {tCatalog('catalog')}
         </Link>
         <span>/</span>
         <span className="text-(--text-secondary)">{product.name}</span>
@@ -75,7 +78,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
               <span className="text-xl font-light text-(--text-muted)">MDL</span>
             </div>
 
-            <div className="mb-8 rounded-2xl border border-(--border) bg-(--card-bg) p-6">
+              <div className="mb-8 rounded-2xl border border-(--border) bg-(--card-bg) p-6">
               <div className="grid grid-cols-2 gap-4 text-sm">
                 <div>
                   <p className="text-(--text-muted)">Тип</p>
@@ -83,19 +86,19 @@ export default async function ProductPage({ params }: ProductPageProps) {
                 </div>
                 {"volume" in product && (
                   <div>
-                    <p className="text-(--text-muted)">Объём</p>
+                    <p className="text-(--text-muted)">{t('volume')}</p>
                     <p className="font-bold text-(--text-primary)">{product.volume} мл</p>
                   </div>
                 )}
                 {"nicotine" in product && (
                   <div>
-                    <p className="text-(--text-muted)">Никотин</p>
+                    <p className="text-(--text-muted)">{t('nicotine')}</p>
                     <p className="font-bold text-(--text-primary)">{product.nicotine} мг</p>
                   </div>
                 )}
                 {"flavor" in product && (
                   <div>
-                    <p className="text-(--text-muted)">Вкусы</p>
+                    <p className="text-(--text-muted)">{t('flavor')}</p>
                     <p className="font-bold text-(--text-primary)">
                       {product.flavor.join(", ")}
                     </p>
@@ -103,7 +106,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
                 )}
                 {"batteryCapacity" in product && (
                   <div>
-                    <p className="text-(--text-muted)">Ёмкость батареи</p>
+                    <p className="text-(--text-muted)">{t('batteryCapacity')}</p>
                     <p className="font-bold text-(--text-primary)">
                       {product.batteryCapacity} mAh
                     </p>
@@ -111,20 +114,20 @@ export default async function ProductPage({ params }: ProductPageProps) {
                 )}
                 {"maxPower" in product && (
                   <div>
-                    <p className="text-(--text-muted)">Макс. мощность</p>
+                    <p className="text-(--text-muted)">{t('maxPower')}</p>
                     <p className="font-bold text-(--text-primary)">{product.maxPower} Вт</p>
                   </div>
                 )}
                 {"color" in product && (
                   <div>
-                    <p className="text-(--text-muted)">Цвет</p>
+                    <p className="text-(--text-muted)">{t('color')}</p>
                     <p className="font-bold text-(--text-primary)">{product.color}</p>
                   </div>
                 )}
                 <div>
-                  <p className="text-(--text-muted)">Наличие</p>
+                  <p className="text-(--text-muted)">{t('inStock')}</p>
                   <p className={`font-bold ${product.InStock ? "text-green-500" : "text-red-500"}`}>
-                    {product.InStock ? "В наличии" : "Нет в наличии"}
+                    {product.InStock ? t('inStock') : t('outOfStock')}
                   </p>
                 </div>
               </div>

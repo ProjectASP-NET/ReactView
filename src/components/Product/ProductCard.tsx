@@ -1,4 +1,5 @@
 'use client'
+import { useTranslations } from 'next-intl';
 import Link from "next/link";
 import Image from "next/image";
 import { Scale, Heart, Star } from "lucide-react";
@@ -12,6 +13,7 @@ interface CardProps{
     product : Product;
 }
 export function ProductCard({product} : CardProps) {
+    const t = useTranslations('Product');
     const productURL = PAGES.getProduct(product.id);
     const { toggleCompare, isInCompare } = useCompare();
     const { toggleLike, toggleFavorite, isLiked, isFavorite } = useLikeandFav();
@@ -30,7 +32,7 @@ export function ProductCard({product} : CardProps) {
           priority={Number(product.id) < 4}
         />
         <span className="absolute left-3 top-3 rounded-full bg-black/60 px-3 py-1 text-[10px] font-bold tracking-widest text-white backdrop-blur-md uppercase">
-          {product.type === "liquid" ? "Жидкость" : product.type === "vape" ? "Девайс" : "Расходник"}
+          {product.type === "liquid" ? t('liquid') : product.type === "vape" ? t('vape') : t('consumables')}
         </span>
         <div className="absolute right-3 bottom-3 flex gap-2 opacity-0 -translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
           <button
@@ -93,7 +95,7 @@ export function ProductCard({product} : CardProps) {
           }`}
         >
           <Scale size={16} />
-          {isAdded ? "В сравнении" : "Сравнить"}
+          {isAdded ? t('inCompare') : t('compare')}
         </button>
     </div>        
     </div>

@@ -1,22 +1,23 @@
 "use client";
-
+import { useTranslations } from 'next-intl';
 import { useRouter, useSearchParams } from "next/navigation";
 import { ChevronDown } from "lucide-react";
 import { Listbox, Transition } from "@headlessui/react";
 
-const SORT_OPTIONS = [
-  { value: "new", label: "Сначала новые" },
-  { value: "old", label: "Сначала старые" },
-  { value: "cheap", label: "Сначала дешевые" },
-  { value: "expensive", label: "Сначала дорогие" },
-  { value: "mliked", label: "Сначала популярные" },
-  { value: "lliked", label: "Сначала непопулярные" },
-];
-
 export function Sort() {
+  const t = useTranslations('Sort');
   const router = useRouter();
   const searchParams = useSearchParams();
   const currentSort = searchParams.get("sort") || "new";
+
+  const SORT_OPTIONS = [
+    { value: "new", label: t('new') },
+    { value: "old", label: t('old') },
+    { value: "cheap", label: t('cheap') },
+    { value: "expensive", label: t('expensive') },
+    { value: "mliked", label: t('popular') },
+    { value: "lliked", label: t('unpopular') },
+  ];
 
   const currentOption = SORT_OPTIONS.find((opt) => opt.value === currentSort) || SORT_OPTIONS[0];
 

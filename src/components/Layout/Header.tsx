@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Navigation } from "./Navigation";
 import { PAGES } from "@/config/pages.config";
+import { LanguageSwitcher } from "../UI/LanguageSwitcher";
 
 export function Header() {
   return (
@@ -24,7 +25,10 @@ export function Header() {
             D&D <span className="font-bold">Liquid</span>
           </span>
         </Link>
-        <Navigation />
+        <div className="flex items-center gap-4">
+          <LanguageSwitcher />
+          <Navigation />
+        </div>
       </div>
     </header>
   );

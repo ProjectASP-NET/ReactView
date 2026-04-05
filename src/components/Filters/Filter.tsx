@@ -1,17 +1,19 @@
 "use client";
+import { useTranslations } from 'next-intl';
 import { useRouter, useSearchParams } from "next/navigation";
 
-const FILTERS = [
-  { value: "all", label: "Все" },
-  { value: "liquid", label: "Жидкости" },
-  { value: "vape", label: "Девайсы" },
-  { value: "consumables", label: "Расходники" },
-];
-
 export function Filter() {
+  const t = useTranslations('Filter');
   const router = useRouter();
   const searchParams = useSearchParams();
   const currentFilter = searchParams.get("filter") || "all";
+
+  const FILTERS = [
+    { value: "all", label: t('all') },
+    { value: "liquid", label: t('liquid') },
+    { value: "vape", label: t('vape') },
+    { value: "consumables", label: t('consumables') },
+  ];
 
   const handleFilterChange = (value: string) => {
     const params = new URLSearchParams(searchParams.toString());

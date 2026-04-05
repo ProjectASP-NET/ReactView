@@ -1,9 +1,10 @@
-import { getMessages, getLocale } from 'next-intl/server';
+import { getMessages } from 'next-intl/server';
 import { NextIntlClientProvider } from 'next-intl';
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
-import { ClientProviders } from "./ClientProviders";
+import "../globals.css";
+import { ClientProviders } from "@/app/ClientProviders";
+import { routing } from '@/i18n/routing';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,21 +24,24 @@ export const metadata: Metadata = {
   description: "D&DLiquid",
 };
 
-export default async function RootLayout({
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
+
+export default async function LocaleLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const locale = await getLocale();
   const messages = await getMessages();
 
   return (
-    <html lang={locale ?? 'ru'} suppressHydrationWarning>
+    <html lang="ru" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} min-h-full flex flex-col antialiased`}
         suppressHydrationWarning
       >
-        <NextIntlClientProvider messages={messages} locale={locale}>
+        <NextIntlClientProvider messages={messages}>
           <ClientProviders>{children}</ClientProviders>
         </NextIntlClientProvider>
       </body>

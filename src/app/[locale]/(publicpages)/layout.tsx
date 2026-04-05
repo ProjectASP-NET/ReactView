@@ -1,5 +1,5 @@
 import type { PropsWithChildren} from "react";
-import { Header } from "../../components/Layout/Header";
+import { Header } from "@/components/Layout/Header";
 import AgeModal from "@/components/Modal/AgeModal";
 import { Metadata } from "next";
 import { Footer } from "@/components/Layout/Footer";
