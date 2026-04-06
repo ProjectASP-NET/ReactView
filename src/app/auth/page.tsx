@@ -34,7 +34,7 @@ export default function AuthPage() {
       </div>
       <div className="flex w-full md:w-1/2 items-stretch justify-center p-6 md:p-12 h-full md:h-screen">
         <div className="w-full h-full flex flex-col justify-center">
-          <div className="mb-6 block md:hidden px-4">
+          <div className="mb-6 block md:hidden px-4"> 
             <AuthSwitcher isLogin={isLogin} setIsLogin={setIsLogin} />
           </div>
           <AnimatePresence mode="wait">

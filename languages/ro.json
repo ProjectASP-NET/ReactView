@@ -1,0 +1,365 @@
+{
+  "common": {
+    "brandName": "D&D Liquid",
+    "brandNameShort": "D&D",
+    "brandNameSubtitle": "Liquid",
+    "currency": "MDL",
+    "unit": {
+      "ml": "ml",
+      "mg": "mg",
+      "mAh": "mAh",
+      "watt": "W"
+    }
+  },
+  "nav": {
+    "home": "Principală",
+    "catalog": "Catalog"
+  },
+  "footer": {
+    "copyright": "© {year} D&D Liquid. Toate drepturile rezervate.",
+    "ageRestriction": "Vânzarea minorilor este interzisă (18+)"
+  },
+  "home": {
+    "hero": {
+      "badge": "Livrare rapidă în Chișinău",
+      "titleLine1": "ARTA",
+      "titleLine2": "VAPORULUI BOGAT",
+      "description": "D&D Liquid este lichide premium și dispozitive de top pentru cei care nu acceptă compromisuri în gust.",
+      "ctaCatalog": "DESCHIDE CATALOGUL",
+      "ctaAbout": "DESPRE BRAND"
+    },
+    "whyUs": {
+      "title": "DE CE D&D LIQUID?",
+      "original": {
+        "title": "ORIGINAL",
+        "description": "Doar produse certificate de la branduri mondiale."
+      },
+      "taste": {
+        "title": "GUST",
+        "description": "Sute de mixuri unice, de la clasic la exotic."
+      },
+      "quality": {
+        "title": "CALITATE",
+        "description": "Control atent la fiecare etapă de producție."
+      }
+    },
+    "newProducts": {
+      "title": "Noutăți",
+      "subtitle": "Ultimele sosiri în catalogul nostru",
+      "viewAll": "VEZI TOATE →"
+    },
+    "featuredProducts": {
+      "title": "PRODUSE TOP",
+      "subtitle": "Alegerea clienților noștri săptămâna aceasta",
+      "viewAll": "VEZI TOATE →"
+    }
+  },
+  "catalog": {
+    "title": "CATALOGUL NOSTRU",
+    "subtitle": "Lichide premium și dispozitive pentru adevărații cunoscători.",
+    "filter": {
+      "all": "Toate",
+      "liquids": "Lichide",
+      "devices": "Dispozitive",
+      "consumables": "Consumabile"
+    },
+    "sort": {
+      "label": "SORTEAZĂ:",
+      "newest": "Cele mai noi",
+      "oldest": "Cele mai vechi",
+      "cheapest": "Cel mai ieftin",
+      "expensive": "Cel mai scump",
+      "popular": "Cele mai populare",
+      "unpopular": "Cele mai nepopulare"
+    },
+    "search": {
+      "placeholder": "Caută în catalog..."
+    },
+    "empty": {
+      "title": "Nu s-au găsit produse",
+      "description": "Încercați să modificați parametrii de căutare sau filtrare"
+    },
+    "error": {
+      "title": "Eroare la încărcarea catalogului",
+      "reloadButton": "Reîmprospătează"
+    }
+  },
+  "product": {
+    "type": {
+      "liquid": "Lichid",
+      "device": "Dispozitiv",
+      "consumable": "Consumabil"
+    },
+    "outOfStock": "NU ESTE ÎN STOC",
+    "addToCart": "ÎN COȘ",
+    "addedToCart": "ADĂUGAT",
+    "compare": {
+      "button": "Compară",
+      "added": "În comparație"
+    },
+    "favorite": {
+      "add": "La favorite",
+      "added": "La favorite"
+    },
+    "quickView": "Vizualizare rapidă",
+    "spec": {
+      "type": "Tip",
+      "volume": "Volum",
+      "nicotine": "Nicotina",
+      "flavors": "Arome",
+      "batteryCapacity": "Capacitate baterie",
+      "maxPower": "Putere max",
+      "color": "Culoare",
+      "availability": "Disponibilitate",
+      "iceLevel": "Tărie"
+    },
+    "availability": {
+      "inStock": "În stoc",
+      "outOfStock": "Nu este în stoc"
+    },
+    "radar": {
+      "title": "Diagrama Calității",
+      "characteristics": "Caracteristicile produsului",
+      "nicotine": "Nicotina",
+      "volume": "Volum",
+      "flavors": "Arome",
+      "iceLevel": "Rece",
+      "battery": "Baterie",
+      "power": "Putere",
+      "tank": "Rezervor",
+      "resistance": "Rezistență"
+    },
+    "iceLevel": {
+      "none": "Nimic",
+      "light": "Ușor",
+      "medium": "Mediu",
+      "strong": "Puternic",
+      "veryStrong": "Foarte puternic"
+    },
+    "breadcrumb": {
+      "catalog": "Catalog"
+    },
+    "related": {
+      "title": "Produse similare"
+    }
+  },
+  "ageVerification": {
+    "title": "Aveți 18 ani?",
+    "description": "Accesul la site-ul D&D Liquid este permis doar majorilor. Produsele conțin nicotină, care creează dependență.",
+    "accessDenied": "Ne pare rău, accesul la site este interzis.",
+    "confirm": "DA, AM 18 ANI",
+    "decline": "NU, AM SUB 18 ANI"
+  },
+  "cart": {
+    "title": "Coș",
+    "empty": {
+      "title": "Coșul este gol",
+      "description": "Adăugați produse din catalog",
+      "goToCatalog": "MERGI LA CATALOG"
+    },
+    "itemCount": "({count} produse)",
+    "clear": "Golește coșul",
+    "delivery": {
+      "freeThreshold": "Livrare gratuită de la {threshold} MDL",
+      "remaining": "Mai rămân {amount} MDL pentru livrare gratuită",
+      "activated": "✓ Livrare gratuită deja activată!"
+    },
+    "summary": {
+      "title": "Total",
+      "items": "Produse ({count})",
+      "delivery": "Livrare",
+      "free": "Gratuit",
+      "deliveryCost": "100 MDL",
+      "total": "De plată"
+    },
+    "checkout": "PLASEAZĂ COMANDA",
+    "paymentMethod": "Plată la primire"
+  },
+  "about": {
+    "badge": "Despre companie",
+    "title": "D&D Liquid",
+    "description": "Partenerul dumneavoastră de încredere în lumea vapingului din 2019. Oferim doar produse de calitate de la branduri verificate la prețuri accesibile.",
+    "stats": {
+      "yearsOnMarket": "Ani pe piață",
+      "satisfiedCustomers": "Clienți mulțumiți",
+      "productsInStock": "Produse în stoc",
+      "positiveReviews": "Recenzii pozitive"
+    },
+    "mission": {
+      "title": "Misiunea noastră",
+      "description1": "Credem că vapingul nu este doar o alternativă la fumat, ci o întreagă cultură. Scopul nostru este să facem produsele de calitate accesibile pentru toată lumea care dorește să treacă la un mod mai sigur de consum de nicotină sau pur și simplu să se bucure de arome noi.",
+      "description2": "Nu vindem doar lichide și dispozitive — construim o comunitate de oameni cu aceleași valori care apreciază calitatea, stilul și abordarea responsabilă față de sănătatea lor."
+    },
+    "features": {
+      "title": "De ce să ne alegi",
+      "originalProducts": {
+        "title": "Produse originale",
+        "description": "Lucrăm direct cu producătorii și distribuitorii oficiali. Fără falsuri."
+      },
+      "fastDelivery": {
+        "title": "Livrare rapidă",
+        "description": "Expediem în aceeași zi. Livrare în Chișinău în 1-2 ore, în Moldova în 1-3 zile."
+      },
+      "qualityGuarantee": {
+        "title": "Garanție de calitate",
+        "description": "Returnare produs în termen de 14 zile dacă produsul nu a fost potrivit sau a fost defect."
+      },
+      "bestBrands": {
+        "title": "Cele mai bune branduri",
+        "description": "Vaporesso, Smok, GeekVape, Voopoo, Aspire și alte branduri mondiale de top."
+      },
+      "support247": {
+        "title": "Suport 24/7",
+        "description": "Răspundem la întrebări pe Telegram, Instagram și prin telefon în fiecare zi."
+      },
+      "discounts": {
+        "title": "Reduceri și bonusuri",
+        "description": "Program de loialitate, promoții regulate și oferte speciale pentru clienții fideli."
+      }
+    },
+    "timeline": {
+      "title": "Călătoria noastră",
+      "2019": {
+        "title": "Fondare",
+        "description": "Am deschis primul punct de vânzare în centrul Chișinăului cu o gamă de 50 de produse."
+      },
+      "2020": {
+        "title": "Magazin online",
+        "description": "Am lansat magazinul online și am început livrările în toată Moldova."
+      },
+      "2021": {
+        "title": "Extinderea sortimentului",
+        "description": "Am extins catalogul la peste 300 de produse, am deschis depozit și punct de ridicare."
+      },
+      "2022": {
+        "title": "Parteneriat",
+        "description": "Status de distribuitor oficial Vaporesso și GeekVape în Moldova."
+      },
+      "2023": {
+        "title": "Reconstrucție",
+        "description": "Am actualizat brandingul, am lansat programul de loialitate și aplicația mobilă."
+      },
+      "2024": {
+        "title": "Leadership",
+        "description": "Constat în top 3 magazine de vaping din Moldova conform recenziilor clienților."
+      }
+    },
+    "contact": {
+      "title": "Contactați-ne",
+      "description": "Aveți întrebări? Suntem mereu bucuroși să ajutăm! Scrieți-ne pe rețelele sociale sau sunați — vom răspunde într-o oră.",
+      "call": "Sună",
+      "telegram": "Telegram"
+    }
+  },
+  "matcher": {
+    "title": "COMPARARE PRODUSE",
+    "subtitle": "Selectați până la 4 produse de același tip pentru comparare",
+    "clearAll": "Șterge tot",
+    "filter": {
+      "all": "Toate",
+      "liquids": "Lichide",
+      "devices": "Dispozitive",
+      "consumables": "Consumabile"
+    },
+    "search": {
+      "placeholder": "Caută după nume sau brand..."
+    },
+    "selected": {
+      "title": "Produse selectate ({count}/4)",
+      "empty": "Gol"
+    },
+    "addProducts": {
+      "title": "Adaugă produse"
+    },
+    "empty": {
+      "title": "Selectați produse pentru comparare",
+      "description": "Adăugați produse din catalog sau căutare de mai sus",
+      "goToCatalog": "Mergi la catalog"
+    },
+    "comparison": {
+      "title": "Comparare caracteristici",
+      "spec": "Caracteristică",
+      "general": "General",
+      "liquidSpecs": "Caracteristici lichid",
+      "deviceSpecs": "Caracteristici dispozitiv",
+      "specs": "Caracteristici"
+    },
+    "spec": {
+      "price": "Preț",
+      "brand": "Brand",
+      "availability": "Disponibilitate",
+      "no": "Nu",
+      "tankCapacity": "Capacitate rezervor",
+      "resistance": "Rezistență"
+    }
+  },
+  "auth": {
+    "sidePanel": {
+      "welcomeBack": "Bine ați revenit!",
+      "joinUs": "Alătură-te!",
+      "loginDescription": "Conectați-vă la cont pentru a accesa oferte exclusive și istoricul comenzilor",
+      "registerDescription": "Creați un cont și descoperiți lumea lichidelor de calitate pentru țigări electronice",
+      "premiumQuality": "Calitate premium",
+      "thousandFlavors": "Peste 1000 de arome",
+      "fastDelivery": "Livrare rapidă",
+      "goToCatalog": "Mergi la catalog"
+    },
+    "switcher": {
+      "login": "Intră",
+      "register": "Înregistrare"
+    },
+    "signIn": {
+      "title": "Bine ați revenit",
+      "subtitle": "Ne bucurăm să vă vedem din nou",
+      "emailLabel": "Email",
+      "passwordLabel": "Parolă",
+      "rememberMe": "Ține-mă minte",
+      "forgotPassword": "Ați uitat parola?",
+      "submit": "Intră"
+    },
+    "signUp": {
+      "title": "Creează cont",
+      "subtitle": "Alătură-te nouă",
+      "nameLabel": "Nume",
+      "namePlaceholder": "Numele tău",
+      "emailLabel": "Email",
+      "passwordLabel": "Parolă",
+      "passwordRequirements": "Cerințe pentru parolă:",
+      "passwordReq": {
+        "length": "Minim 8 caractere",
+        "uppercase": "Literă mare",
+        "lowercase": "Literă mică",
+        "number": "Cifră"
+      },
+      "confirmPasswordLabel": "Confirmă parola",
+      "passwordMismatch": "Parolele nu se potrivesc",
+      "termsAgreement": "Sunt de acord cu termenii și politica de confidențialitate",
+      "termsLink": "termenii",
+      "privacyLink": "politica de confidențialitate",
+      "submit": "Înregistrează-te",
+      "hasAccount": "Aveți deja cont?",
+      "loginLink": "Intră"
+    },
+    "floating": {
+      "login": "Intră / Înregistrează-te",
+      "favorites": "Favorite",
+      "likes": "Aprecierile mele",
+      "logout": "Ieși"
+    }
+  },
+  "notFound": {
+    "code": "404",
+    "message": "Pagina nu a fost găsită",
+    "goHome": "ACASĂ"
+  },
+  "context": {
+    "error": {
+      "cartProvider": "useCart must be used within a CartProvider",
+      "favoriteProvider": "useLikeandFav must be used within a LikeandFavProvider",
+      "compareProvider": "useCompare must be used within a CompareProvider"
+    },
+    "favorite": {
+      "added": "Adăugat la favorite: {productName}"
+    }
+  }
+}
