@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import { PAGES } from '@/config/pages.config';
 
 export default function NotFound() {
   return (
@@ -12,7 +11,7 @@ export default function NotFound() {
           Страница не найдена
         </p>
         <Link
-          href={PAGES.HOME}
+          href="/"
           className="group relative overflow-hidden rounded-full bg-white px-8 py-4 text-sm font-bold tracking-wider text-black transition-transform hover:scale-105 active:scale-95"
         >
           НА ГЛАВНУЮ

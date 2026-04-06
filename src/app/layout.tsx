@@ -32,7 +32,11 @@ export default async function RootLayout({
   const messages = await getMessages();
 
   return (
+<<<<<<< Updated upstream
     <html lang={locale ?? 'ru'} suppressHydrationWarning>
+=======
+    <html suppressHydrationWarning>
+>>>>>>> Stashed changes
       <body
         className={`${geistSans.variable} ${geistMono.variable} min-h-full flex flex-col antialiased`}
         suppressHydrationWarning
