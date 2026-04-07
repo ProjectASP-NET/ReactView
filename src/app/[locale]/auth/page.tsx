@@ -1,16 +1,19 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { PAGES } from "@/config/pages.config";
-import { SignInForm } from "../../services/SignInForm";
-import { SignUpForm } from "../../services/SignUpForm";
+import { SignInForm } from "@/services/SignInForm";
+import { SignUpForm } from "@/services/SignUpForm";
 import { AuthSwitcher } from "@/components/Auth/AuthSwitcher";
-import { Sparkles, Droplets, ArrowRight } from "lucide-react";
+import { LanguageSwitcher } from "@/components/UI/LanguageSwitcher";
+import { Droplets, ArrowRight } from "lucide-react";
 
 export default function AuthPage() {
+  const t = useTranslations("Auth");
   const [isLogin, setIsLogin] = useState(true);
   const reduce = useReducedMotion();
 
@@ -32,13 +35,19 @@ export default function AuthPage() {
       <div className="pointer-events-none absolute inset-0 opacity-20">
         <div className="w-full h-full bg-[url('/auth-texture.svg')] bg-repeat opacity-100" />
       </div>
-      <div className="hidden md:block absolute top-6 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-md px-4">
+      <div className="hidden md:block absolute top-6 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-md px-4 flex flex-col gap-4">
         <AuthSwitcher isLogin={isLogin} setIsLogin={setIsLogin} />
+        <div className="flex justify-center">
+          <LanguageSwitcher />
+        </div>
       </div>
       <div className="flex w-full md:w-1/2 items-stretch justify-center p-6 md:p-12 h-full md:h-screen">
         <div className="w-full h-full flex flex-col justify-center">
-          <div className="mb-6 block md:hidden px-4">
+          <div className="mb-6 block md:hidden flex flex-col gap-4 px-4">
             <AuthSwitcher isLogin={isLogin} setIsLogin={setIsLogin} />
+            <div className="flex justify-center">
+              <LanguageSwitcher />
+            </div>
           </div>
           <AnimatePresence mode="wait">
             <motion.div
@@ -99,10 +108,10 @@ export default function AuthPage() {
                     <div className="w-24 h-24 rounded-3xl bg-(--background)/20 backdrop-blur-sm flex items-center justify-center mb-6">
                       <Droplets size={48} className="text-(--background)" />
                     </div>
-                    <h2 className="text-4xl font-bold text-(--background) mb-4">С возвращением!</h2>
-                    <p className="text-lg text-(--background)/80 mb-8 max-w-md">Войдите в свой аккаунт, чтобы получить доступ к эксклюзивным предложениям и истории заказов</p>
-                    <Link href={PAGES.CATALOG} className="mt-8 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-(--background) text-(--accent) font-medium hover:gap-4 transition-all" aria-label="Перейти в каталог">
-                      <span>Перейти в каталог</span>
+                    <h2 className="text-4xl font-bold text-(--background) mb-4">{t("welcomeBack")}</h2>
+                    <p className="text-lg text-(--background)/80 mb-8 max-w-md">{t("loginDesc")}</p>
+                    <Link href={PAGES.CATALOG} className="mt-8 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-(--background) text-(--accent) font-medium hover:gap-4 transition-all" aria-label={t("goToCatalog")}>
+                      <span>{t("goToCatalog")}</span>
                       <ArrowRight size={18} />
                     </Link>
                   </div>

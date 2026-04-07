@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { useTranslations } from "next-intl";
 
 interface Props {
   isLogin: boolean;
@@ -8,6 +9,8 @@ interface Props {
 }
 
 export function AuthSwitcher({ isLogin, setIsLogin }: Props) {
+  const t = useTranslations("Auth");
+
   return (
     <div className="mx-auto max-w-md px-1">
       <div className="bg-(--card-bg)/80 backdrop-blur-sm shadow-md rounded-xl p-1">
@@ -21,7 +24,7 @@ export function AuthSwitcher({ isLogin, setIsLogin }: Props) {
                 : "bg-transparent text-(--text-secondary) border border-(--border)"
             }`}
           >
-            Вход
+            {t("loginTab")}
           </button>
           <button
             onClick={() => setIsLogin(false)}
@@ -31,7 +34,7 @@ export function AuthSwitcher({ isLogin, setIsLogin }: Props) {
                 : "bg-transparent text-(--text-secondary) border border-(--border)"
             }`}
           >
-            Регистрация
+            {t("registerTab")}
           </button>
         </div>
       </div>

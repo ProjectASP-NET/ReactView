@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { useTranslations } from "next-intl";
 import { motion, useReducedMotion } from "framer-motion";
 import Link from "next/link";
 import { PAGES } from "@/config/pages.config";
@@ -11,6 +12,7 @@ interface Props {
 }
 
 export function AuthSidePanel({ isLogin }: Props) {
+  const t = useTranslations("Auth");
   const shouldReduce = useReducedMotion();
 
   const motionProps = shouldReduce
@@ -47,7 +49,7 @@ export function AuthSidePanel({ isLogin }: Props) {
             transition={motionProps?.transition ?? { duration: 0.5, delay: 0.4 }}
             className="text-4xl font-bold text-(--background) mb-4"
           >
-            {isLogin ? "С возвращением!" : "Присоединяйся!"}
+            {isLogin ? t("welcomeBack") : t("joinUs")}
           </motion.h2>
 
           <motion.p
@@ -56,9 +58,7 @@ export function AuthSidePanel({ isLogin }: Props) {
             transition={motionProps?.transition ?? { duration: 0.5, delay: 0.5 }}
             className="text-lg text-(--background)/80 mb-8 max-w-md"
           >
-            {isLogin
-              ? "Войдите в свой аккаунт, чтобы получить доступ к эксклюзивным предложениям и истории заказов"
-              : "Создайте аккаунт и откройте для себя мир качественных жидкостей для вейпов"}
+            {isLogin ? t("loginDesc") : t("registerDesc")}
           </motion.p>
 
           <motion.div
@@ -68,19 +68,19 @@ export function AuthSidePanel({ isLogin }: Props) {
             className="flex items-center gap-2 text-(--background)/60"
           >
             <Sparkles size={16} />
-            <span className="text-sm">Премиальное качество</span>
+            <span className="text-sm">{t("premiumQuality")}</span>
             <span className="mx-2">•</span>
-            <span className="text-sm">Более 1000 вкусов</span>
+            <span className="text-sm">{t("thousandFlavors")}</span>
             <span className="mx-2">•</span>
-            <span className="text-sm">Быстрая доставка</span>
+            <span className="text-sm">{t("fastDelivery")}</span>
           </motion.div>
 
           <Link
             href={PAGES.CATALOG}
             className="mt-8 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-(--background) text-(--accent) font-medium hover:gap-4 transition-all"
-            aria-label="Перейти в каталог"
+            aria-label={t("goToCatalog")}
           >
-            <span>Перейти в каталог</span>
+            <span>{t("goToCatalog")}</span>
             <ArrowRight size={18} />
           </Link>
         </div>

@@ -81,19 +81,19 @@ export default async function ProductPage({ params }: ProductPageProps) {
               <div className="mb-8 rounded-2xl border border-(--border) bg-(--card-bg) p-6">
               <div className="grid grid-cols-2 gap-4 text-sm">
                 <div>
-                  <p className="text-(--text-muted)">Тип</p>
+                  <p className="text-(--text-muted)">{t('type')}</p>
                   <p className="font-bold text-(--text-primary)">{getTypeLabel(product.type)}</p>
                 </div>
                 {"volume" in product && (
                   <div>
                     <p className="text-(--text-muted)">{t('volume')}</p>
-                    <p className="font-bold text-(--text-primary)">{product.volume} мл</p>
+                    <p className="font-bold text-(--text-primary)">{product.volume} {t('volume').toLowerCase()}</p>
                   </div>
                 )}
                 {"nicotine" in product && (
                   <div>
                     <p className="text-(--text-muted)">{t('nicotine')}</p>
-                    <p className="font-bold text-(--text-primary)">{product.nicotine} мг</p>
+                    <p className="font-bold text-(--text-primary)">{product.nicotine} {t('nicotine').toLowerCase()}</p>
                   </div>
                 )}
                 {"flavor" in product && (
@@ -115,7 +115,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
                 {"maxPower" in product && (
                   <div>
                     <p className="text-(--text-muted)">{t('maxPower')}</p>
-                    <p className="font-bold text-(--text-primary)">{product.maxPower} Вт</p>
+                    <p className="font-bold text-(--text-primary)">{product.maxPower} {t('maxPower').toLowerCase()}</p>
                   </div>
                 )}
                 {"color" in product && (
@@ -148,7 +148,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
       {relatedProducts.length > 0 && (
         <section className="mt-24">
           <h2 className="mb-8 text-2xl font-bold text-(--text-secondary)">
-            Похожие товары
+            {t('similarProducts')}
           </h2>
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {relatedProducts.map((p) => (

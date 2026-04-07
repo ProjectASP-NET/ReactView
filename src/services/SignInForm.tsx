@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { Mail, Lock, Eye, EyeOff } from "lucide-react";
 import React from "react";
 
@@ -13,6 +14,7 @@ interface SignInFormPropsExt extends SignInFormProps {
 }
 
 export function SignInForm({ onSubmit, autoFocus }: SignInFormPropsExt) {
+  const t = useTranslations("Auth");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -32,18 +34,18 @@ export function SignInForm({ onSubmit, autoFocus }: SignInFormPropsExt) {
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-5 w-full">
       <div className="text-center mb-2">
-        <h2 className="text-2xl font-bold text-(--text-primary)">С возвращением</h2>
-        <p className="text-(--text-secondary) text-sm mt-1">Рады видеть вас снова</p>
+        <h2 className="text-2xl font-bold text-(--text-primary)">{t("welcomeBack")}</h2>
+        <p className="text-(--text-secondary) text-sm mt-1">{t("welcomeSubtitle")}</p>
       </div>
 
       <div className="flex flex-col gap-1">
-        <label className="text-sm text-(--text-secondary)">Email</label>
+        <label className="text-sm text-(--text-secondary)">{t("email")}</label>
         <div className="relative">
           <Mail className="absolute left-3 top-1/2 -translate-y-1/2 text-(--text-secondary)" size={18} />
           <input
             ref={emailRef}
             type="email"
-            placeholder="example@mail.ru"
+            placeholder={t("emailPlaceholder")}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             className="w-full pl-10 pr-4 py-3 rounded-lg bg-(--background) border border-(--border) text-(--text-primary) placeholder:text-(--text-secondary)/50 focus:outline-none focus:border-(--accent) transition-colors"
@@ -53,12 +55,12 @@ export function SignInForm({ onSubmit, autoFocus }: SignInFormPropsExt) {
       </div>
 
       <div className="flex flex-col gap-1">
-        <label className="text-sm text-(--text-secondary)">Пароль</label>
+        <label className="text-sm text-(--text-secondary)">{t("password")}</label>
         <div className="relative">
           <Lock className="absolute left-3 top-1/2 -translate-y-1/2 text-(--text-secondary)" size={18} />
           <input
             type={showPassword ? "text" : "password"}
-            placeholder="••••••••"
+            placeholder={t("passwordPlaceholder")}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             className="w-full pl-10 pr-12 py-3 rounded-lg bg-(--background) border border-(--border) text-(--text-primary) placeholder:text-(--text-secondary)/50 focus:outline-none focus:border-(--accent) transition-colors"
@@ -82,16 +84,16 @@ export function SignInForm({ onSubmit, autoFocus }: SignInFormPropsExt) {
             onChange={(e) => setRememberMe(e.target.checked)}
             className="w-4 h-4 rounded border-(--border) bg-(--background) accent-(--accent)"
           />
-          <span className="text-(--text-secondary)">Запомнить меня</span>
+          <span className="text-(--text-secondary)">{t("rememberMe")}</span>
         </label>
-        <a href="#" className="text-(--accent) hover:underline">Забыли пароль?</a>
+        <a href="#" className="text-(--accent) hover:underline">{t("forgotPassword")}</a>
       </div>
 
       <button
         type="submit"
         className="w-full py-3 rounded-lg bg-(--accent) text-(--background) font-semibold hover:opacity-90 transition-opacity"
       >
-        Войти
+        {t("submitLogin")}
       </button>
     </form>
   );

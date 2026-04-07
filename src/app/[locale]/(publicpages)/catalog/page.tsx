@@ -1,6 +1,7 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { ProductCard } from "@/components/Product/ProductCard";
 import { Sort } from "@/components/Filters/Sort";
 import { Filter } from "@/components/Filters/Filter";
@@ -12,20 +13,22 @@ import FadeIn from "@/components/UI/FadeIn";
 import { ErrorBoundary } from "@/components/UI/ErrorBoundary";
 
 function CatalogErrorFallback() {
+  const t = useTranslations("Catalog");
   return (
     <div className="flex flex-col items-center justify-center py-20">
-      <h2 className="text-2xl font-bold text-error mb-4">Ошибка загрузки каталога</h2>
+      <h2 className="text-2xl font-bold text-error mb-4">{t("errorLoading")}</h2>
       <button
         onClick={() => window.location.reload()}
         className="btn btn-primary"
       >
-        Обновить
+        {t("refresh")}
       </button>
     </div>
   );
 }
 
 function CatalogContent() {
+  const t = useTranslations("Catalog");
   const searchParams = useSearchParams();
   const sortQuery = searchParams.get("sort") || "new";
   const filterQuery = searchParams.get("filter") || "all";
@@ -77,8 +80,8 @@ function CatalogContent() {
       </div>
       {sortedProducts.length === 0 && (
         <div className="flex flex-col items-center justify-center py-20 text-(--text-muted)">
-          <p className="text-xl font-bold">Товары не найдены</p>
-          <p className="text-sm">Попробуйте изменить параметры поиска или фильтрации</p>
+          <p className="text-xl font-bold">{t("productsNotFound")}</p>
+          <p className="text-sm">{t("tryChangeParams")}</p>
         </div>
       )}
     </div>
@@ -99,6 +102,7 @@ function CatalogLoading() {
 }
 
 export default function Catalog() {
+  const t = useTranslations("Catalog");
   return (
     <FadeIn>
       <main className="relative min-h-screen overflow-hidden">
@@ -117,10 +121,11 @@ export default function Catalog() {
           <div className="mb-12 flex flex-col gap-6 border-b border-(--border) pb-8 md:flex-row md:items-end md:justify-between">
             <div>
               <h1 className="text-4xl font-black tracking-tight sm:text-5xl">
-                НАШ <span className="text-(--text-muted)">КАТАЛОГ</span>
+                {t("title").split(" ")[0]}{" "}
+                <span className="text-(--text-muted)">{t("title").split(" ")[1]}</span>
               </h1>
               <p className="mt-4 text-lg text-(--text-secondary)">
-                Премиальные жидкости и девайсы для истинных ценителей.
+                {t("subtitle")}
               </p>
             </div>
             <div className="flex flex-col gap-4 md:flex-row">

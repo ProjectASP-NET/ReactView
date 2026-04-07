@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { Product } from "@/types/Mockdata";
 import { useEffect } from "react";
@@ -14,6 +15,7 @@ interface ProductModalProps {
 }
 
 export function ProductModal({ product, isOpen, onClose }: ProductModalProps) {
+  const t = useTranslations("Product");
   const { toggleLike, toggleFavorite, isLiked, isFavorite } = useLikeandFav();
   const liked = isLiked(product.id);
   const favorited = isFavorite(product.id);
@@ -40,6 +42,19 @@ export function ProductModal({ product, isOpen, onClose }: ProductModalProps) {
   }, [isOpen, onClose]);
 
   if (!isOpen) return null;
+
+  const getTypeLabel = (type: string) => {
+    switch (type) {
+      case "liquid":
+        return t("liquid");
+      case "vape":
+        return t("vape");
+      case "consumables":
+        return t("consumables");
+      default:
+        return type;
+    }
+  };
 
   return (
     <div
@@ -69,7 +84,7 @@ export function ProductModal({ product, isOpen, onClose }: ProductModalProps) {
               className="object-contain p-4"
             />
             <span className="absolute left-3 top-3 sm:left-4 sm:top-4 rounded-full bg-black/60 px-2 py-1 sm:px-3 sm:py-1 text-[8px] sm:text-[10px] font-bold tracking-widest text-white backdrop-blur-md uppercase">
-              {product.type === "liquid" ? "Жидкость" : product.type === "vape" ? "Девайс" : "Расходник"}
+              {getTypeLabel(product.type)}
             </span>
           </div>
 
@@ -102,7 +117,7 @@ export function ProductModal({ product, isOpen, onClose }: ProductModalProps) {
                   }`}
                 >
                   <Heart size={16} fill={liked ? "currentColor" : "none"} />
-                  <span>{product.LikeCount + (liked ? 1 : 0)}</span>
+                  <span>{product.LikeCount}</span>
                 </button>
                 <button
                   onClick={() => toggleFavorite(product)}
@@ -113,7 +128,7 @@ export function ProductModal({ product, isOpen, onClose }: ProductModalProps) {
                   }`}
                 >
                   <Star size={16} fill={favorited ? "currentColor" : "none"} />
-                  {favorited ? "В избранном" : "В избранное"}
+                  <span>{favorited ? t("inFavorite") : t("addToFavorite")}</span>
                 </button>
               </div>
             </div>

@@ -1,10 +1,12 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { Product } from "@/types/Mockdata";
 import { ProductModal } from "../Modal/ProductModal";
 
 export function QuickViewButton({ product }: { product: Product }) {
+  const t = useTranslations("Product");
   const [isOpen, setIsOpen] = useState(false);
   return (
     <div>
@@ -15,7 +17,7 @@ export function QuickViewButton({ product }: { product: Product }) {
         }}
         className="mt-3 w-full rounded-xl border border-(--border) bg-transparent py-2.5 text-xs font-bold uppercase tracking-widest text-(--text-secondary) transition-colors hover:bg-(--card-hover) hover:text-(--text-primary)"
       >
-        Быстрый просмотр
+        {t("quickView")}
       </button>
 
       <ProductModal 

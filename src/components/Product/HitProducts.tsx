@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import useEmblaCarousel from "embla-carousel-react";
 import Link from "next/link";
 import { ProductCard } from "./ProductCard";
@@ -7,6 +8,7 @@ import { MOCK_PRODUCTS } from "../../types/Products";
 import { PAGES } from "@/config/pages.config";
 
 export default function FeaturedProducts() {
+  const t = useTranslations("Home");
   const [emblaRef] = useEmblaCarousel({ dragFree: true });
   const featuredItems = [...MOCK_PRODUCTS]
   .sort((a,b) =>b.LikeCount - a.LikeCount) 
@@ -18,12 +20,13 @@ export default function FeaturedProducts() {
         <div className="mb-12 flex items-end justify-between">
           <div>
             <h2 className="text-3xl font-black tracking-tight sm:text-5xl">
-              ТОВАРЫ <span className="text-(--text-muted)">ДНЯ</span>
+              {t("hitProducts").split(" ")[0]}{" "}
+              <span className="text-(--text-muted)">{t("hitProducts").split(" ")[1]}</span>
             </h2>
-            <p className="mt-4 text-(--text-secondary)">Выбор наших клиентов на этой неделе</p>
+            <p className="mt-4 text-(--text-secondary)">{t("hitProductsDesc")}</p>
           </div>
           <Link href={PAGES.getCatalog("mliked")} className="hidden text-sm font-bold tracking-widest hover:text-(--text-secondary) sm:block transition-colors">
-            СМОТРЕТЬ ВСЕ →
+            {t("viewAll")}
           </Link>
         </div>
         <div className="overflow-hidden" ref={emblaRef}>

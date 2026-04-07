@@ -1,91 +1,93 @@
+import { getTranslations } from 'next-intl/server';
 import { Droplets, Award, Truck, Shield, Clock, Heart } from "lucide-react";
 
-const STATS = [
-  { value: "5+", label: "Лет на рынке" },
-  { value: "10000+", label: "Довольных клиентов" },
-  { value: "500+", label: "Товаров в наличии" },
-  { value: "98%", label: "Положительных отзывов" },
-];
+export default async function AboutUs() {
+  const t = await getTranslations('About');
 
-const FEATURES = [
-  {
-    icon: Droplets,
-    title: "Оригинальная продукция",
-    description: "Работаем напрямую с производителями и официальными дистрибьюторами. Никаких подделок.",
-  },
-  {
-    icon: Truck,
-    title: "Быстрая доставка",
-    description: "Отправляем в день заказа. Доставка по Кишиневу за 1-2 часа, по Молдове за 1-3 дня.",
-  },
-  {
-    icon: Shield,
-    title: "Гарантия качества",
-    description: "Возврат товара в течение 14 дней, если товар не подошёл или оказался бракованным.",
-  },
-  {
-    icon: Award,
-    title: "Лучшие бренды",
-    description: "Vaporesso, Smok, GeekVape, Voopoo, Aspire и другие ведущие мировые бренды.",
-  },
-  {
-    icon: Clock,
-    title: "Поддержка 24/7",
-    description: "Отвечаем на вопросы в Telegram, Instagram и по телефону каждый день.",
-  },
-  {
-    icon: Heart,
-    title: "Скидки и бонусы",
-    description: "Программа лояльности, регулярные акции и специальные предложения для постоянных клиентов.",
-  },
-];
+  const STATS = [
+    { value: "5+", label: t('years') },
+    { value: "10000+", label: t('clients') },
+    { value: "500+", label: t('products') },
+    { value: "98%", label: t('reviews') },
+  ];
 
-const TIMELINE = [
-  {
-    year: "2019",
-    title: "Основание",
-    description: "Открыли первую точку продаж в центре Кишинева с ассортиментом из 50 товаров.",
-  },
-  {
-    year: "2020",
-    title: "Онлайн-магазин",
-    description: "Запустили интернет-магазин и начали доставку по всей Молдове.",
-  },
-  {
-    year: "2021",
-    title: "Расширение ассортимента",
-    description: "Увеличили каталог до 300+ товаров, открыли склад и пункт самовывоза.",
-  },
-  {
-    year: "2022",
-    title: "Партнёрство",
-    description: "Статус официального дистрибьютора Vaporesso и GeekVape в Молдове.",
-  },
-  {
-    year: "2023",
-    title: "Реконструкция",
-    description: "Обновили брендинг, запустили программу лояльности и мобильное приложение.",
-  },
-  {
-    year: "2024",
-    title: "Лидерство",
-    description: "Стабильно входим в топ-3 вейп-магазинов Молдовы по отзывам покупателей.",
-  },
-];
+  const FEATURES = [
+    {
+      icon: Droplets,
+      title: t('originalProducts'),
+      description: t('originalDesc'),
+    },
+    {
+      icon: Truck,
+      title: t('fastDeliveryTitle'),
+      description: t('fastDeliveryDesc'),
+    },
+    {
+      icon: Shield,
+      title: t('qualityGuarantee'),
+      description: t('qualityDesc'),
+    },
+    {
+      icon: Award,
+      title: t('bestBrands'),
+      description: "Vaporesso, Smok, GeekVape, Voopoo, Aspire и другие ведущие мировые бренды.",
+    },
+    {
+      icon: Clock,
+      title: t('support'),
+      description: t('supportDesc'),
+    },
+    {
+      icon: Heart,
+      title: t('discounts'),
+      description: t('discountsDesc'),
+    },
+  ];
 
-export default function AboutUs() {
+  const TIMELINE = [
+    {
+      year: "2019",
+      title: t('founded'),
+      description: t('foundedDesc'),
+    },
+    {
+      year: "2020",
+      title: t('onlineStore'),
+      description: t('onlineStoreDesc'),
+    },
+    {
+      year: "2021",
+      title: t('expansion'),
+      description: t('expansionDesc'),
+    },
+    {
+      year: "2022",
+      title: t('partnership'),
+      description: t('partnershipDesc'),
+    },
+    {
+      year: "2023",
+      title: t('reconstruction'),
+      description: t('reconstructionDesc'),
+    },
+    {
+      year: "2024",
+      title: t('leadership'),
+      description: t('leadershipDesc'),
+    },
+  ];
+
   return (
     <main className="mx-auto max-w-7xl px-6 py-24 lg:px-8">
       <div className="text-center mb-20">
         <span className="inline-block rounded-full bg-(--text-secondary)/10 px-4 py-2 text-sm font-medium text-(--text-secondary) mb-6">
-          О компании
+          {t('title')}
         </span>
         <h1 className="text-4xl font-black tracking-tight sm:text-5xl lg:text-6xl mb-6">
           D&D <span className="text-(--text-secondary)">Liquid</span>
         </h1>
         <p className="mx-auto max-w-2xl text-lg text-(--text-secondary)">
-          Ваш надёжный партнёр в мире вейпинга с 2019 года. Мы предлагаем только 
-          качественную продукцию от проверенных брендов по доступным ценам.
+          {t('description')}
         </p>
       </div>
 
@@ -107,23 +109,19 @@ export default function AboutUs() {
         <div className="relative rounded-3xl border border-(--border) bg-(--card-bg) overflow-hidden">
           <div className="absolute inset-0 bg-linear-to-br from-(--text-secondary)/5 to-transparent" />
           <div className="relative p-8 lg:p-12">
-            <h2 className="text-2xl font-bold mb-6">Наша миссия</h2>
+            <h2 className="text-2xl font-bold mb-6">{t('missionTitle')}</h2>
             <p className="text-lg text-(--text-secondary) mb-6">
-              Мы верим, что вейпинг — это не просто альтернатива курению, а целая культура. 
-              Наша цель — сделать качественные продукты доступными каждому, кто хочет 
-              перейти на более безопасный способ потребления никотина или просто насладиться 
-              новыми вкусами.
+              {t('missionText1')}
             </p>
             <p className="text-lg text-(--text-secondary)">
-              Мы не просто продаём жидкости и девайсы — мы строим сообщество единомышленников, 
-              которые ценят качество, стиль и ответственный подход к своему здоровью.
+              {t('missionText2')}
             </p>
           </div>
         </div>
       </section>
 
       <section className="mb-20">
-        <h2 className="text-2xl font-bold mb-8 text-center">Почему выбирают нас</h2>
+        <h2 className="text-2xl font-bold mb-8 text-center">{t('whyChooseTitle')}</h2>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {FEATURES.map((feature) => (
             <div
@@ -144,7 +142,7 @@ export default function AboutUs() {
       </section>
 
       <section className="mb-20">
-        <h2 className="text-2xl font-bold mb-8 text-center">Наш путь</h2>
+        <h2 className="text-2xl font-bold mb-8 text-center">{t('journeyTitle')}</h2>
         <div className="relative">
           <div className="absolute left-4 top-0 bottom-0 w-px bg-(--border) lg:left-1/2 lg:-translate-x-px" />
           <div className="space-y-8">
@@ -173,17 +171,16 @@ export default function AboutUs() {
       </section>
 
       <section className="text-center">
-        <h2 className="text-2xl font-bold mb-4">Свяжитесь с нами</h2>
+        <h2 className="text-2xl font-bold mb-4">{t('contactTitle')}</h2>
         <p className="text-(--text-secondary) mb-8 max-w-xl mx-auto">
-          Есть вопросы? Мы всегда рады помочь! Напишите нам в социальных сетях 
-          или позвоните — ответим в течение часа.
+          {t('contactText')}
         </p>
         <div className="flex flex-wrap items-center justify-center gap-4">
           <a
             href="tel:+37300000000"
             className="rounded-xl bg-(--text-primary) px-6 py-3 font-bold text-(--background) transition-colors hover:bg-(--text-secondary)"
           >
-            Позвонить
+            {t('call')}
           </a>
           <a
             href="https://t.me/ddliqiud"

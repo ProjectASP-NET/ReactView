@@ -9,13 +9,13 @@ export default function NotFound() {
           404
         </h1>
         <p className="text-xl font-light text-(--text-secondary)">
-          Страница не найдена
+          Page not found
         </p>
         <Link
           href={PAGES.HOME}
           className="group relative overflow-hidden rounded-full bg-white px-8 py-4 text-sm font-bold tracking-wider text-black transition-transform hover:scale-105 active:scale-95"
         >
-          НА ГЛАВНУЮ
+          GO TO HOME
         </Link>
       </div>
     </main>

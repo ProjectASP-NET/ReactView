@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { Product, ILiquid, IVape } from "@/types/Mockdata";
 
 interface Props {
@@ -17,14 +18,6 @@ interface MetricItem {
 
 const normalize = (value: number, max: number) =>
   Math.min(100, (value / max) * 100);
-
-const iceLabels: Record<number, string> = {
-  0: "Нет",
-  25: "Лёгкий",
-  50: "Средний",
-  75: "Сильный",
-  100: "Очень сильный",
-};
 
 function getPolygonPoints(
   metrics: { value: number }[],
@@ -67,6 +60,8 @@ function smoothPath(points: { x: number; y: number }[]): string {
 }
 
 export function ProductRadar({ product }: Props) {
+  const t = useTranslations("Product");
+  const tRadar = useTranslations("Radar");
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   
   if (product.type === "consumables") return null;
@@ -77,16 +72,16 @@ export function ProductRadar({ product }: Props) {
 
   const metrics: MetricItem[] = isLiquid
     ? [
-        { label: "Никотин", value: normalize(liquid.nicotine, 50), rawValue: liquid.nicotine, unit: "мг" },
-        { label: "Объём", value: normalize(liquid.volume, 100), rawValue: liquid.volume, unit: "мл" },
-        { label: "Вкусы", value: normalize(liquid.flavor.length, 5), rawValue: liquid.flavor.length },
-        { label: "Холодок", value: liquid.Icelevel, rawValue: liquid.Icelevel },
+        { label: tRadar("nicotine"), value: normalize(liquid.nicotine, 50), rawValue: liquid.nicotine, unit: tRadar("mg") },
+        { label: tRadar("volume"), value: normalize(liquid.volume, 100), rawValue: liquid.volume, unit: tRadar("ml") },
+        { label: tRadar("flavors"), value: normalize(liquid.flavor.length, 5), rawValue: liquid.flavor.length },
+        { label: tRadar("ice"), value: liquid.Icelevel, rawValue: liquid.Icelevel },
       ]
     : [
-        { label: "Батарея", value: normalize(vape.batteryCapacity, 5000), rawValue: vape.batteryCapacity, unit: "mAh" },
-        { label: "Мощность", value: normalize(vape.maxPower, 200), rawValue: vape.maxPower, unit: "Вт" },
-        { label: "Бак", value: normalize(vape.TankCapacity, 10), rawValue: vape.TankCapacity, unit: "мл" },
-        { label: "Сопр.", value: normalize(2 - vape.CoilResistence, 1.6), rawValue: vape.CoilResistence, unit: "Ω" },
+        { label: tRadar("battery"), value: normalize(vape.batteryCapacity, 5000), rawValue: vape.batteryCapacity, unit: tRadar("mah") },
+        { label: tRadar("power"), value: normalize(vape.maxPower, 200), rawValue: vape.maxPower, unit: tRadar("watts") },
+        { label: tRadar("tank"), value: normalize(vape.TankCapacity, 10), rawValue: vape.TankCapacity, unit: tRadar("ml") },
+        { label: tRadar("resistance"), value: normalize(2 - vape.CoilResistence, 1.6), rawValue: vape.CoilResistence, unit: tRadar("ohm") },
       ];
 
   const size = 280;
@@ -257,8 +252,8 @@ export function ProductRadar({ product }: Props) {
               textAnchor="middle"
               className="fill-green-500 text-sm font-bold"
             >
-              {isLiquid && metrics[hoveredIndex].label === "Холодок"
-                ? iceLabels[metrics[hoveredIndex].rawValue as keyof typeof iceLabels]
+              {isLiquid && metrics[hoveredIndex].label === tRadar("ice")
+                ? tRadar(`ice_${metrics[hoveredIndex].rawValue}`)
                 : `${metrics[hoveredIndex].rawValue}${metrics[hoveredIndex].unit ? ` ${metrics[hoveredIndex].unit}` : ""}`}
             </text>
           </motion.g>
@@ -277,8 +272,8 @@ export function ProductRadar({ product }: Props) {
           >
             <span className="text-(--text-muted)">{m.label}</span>
             <span className={`font-medium transition-colors ${hoveredIndex === i ? "text-green-500" : "text-(--text-primary)"}`}>
-              {isLiquid && m.label === "Холодок"
-                ? iceLabels[m.rawValue as keyof typeof iceLabels]
+              {isLiquid && m.label === tRadar("ice")
+                ? tRadar(`ice_${m.rawValue}`)
                 : `${Math.round(m.value)}%`}
             </span>
           </div>

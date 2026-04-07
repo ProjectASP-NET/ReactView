@@ -1,9 +1,11 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 
 export default function AgeModal() {
+  const t = useTranslations("Common");
   const [showModal, setShowModal] = useState<boolean | "declined">(false);
   const [mounted, setMounted] = useState(false);
 
@@ -43,15 +45,14 @@ export default function AgeModal() {
           </div>
 
           <h2 className="mb-2 text-3xl font-black tracking-tight text-(--text-primary) uppercase">
-            Вам есть 18 лет?
+            {t("ageVerifyTitle")}
           </h2>
           <p className="mb-8 text-sm font-light leading-relaxed text-(--text-secondary)">
-            Доступ к сайту <b>D&D Liquid</b> разрешен только совершеннолетним. 
-            Продукция содержит никотин, который вызывает привыкание.
+            {t("ageVerifyDesc")}
           </p>
           {showModal === "declined" && (
             <p className="mb-6 text-sm font-bold text-red-500 animate-pulse">
-              Извините, доступ на сайт закрыт.
+              {t("ageVerifyDenied")}
             </p>
           )}
 
@@ -60,13 +61,13 @@ export default function AgeModal() {
               onClick={handleConfirm}
               className="w-full rounded-xl bg-(--text-primary) py-4 text-sm font-bold tracking-wider text-(--background) transition-transform hover:scale-[1.02] active:scale-95"
             >
-              ДА, МНЕ ЕСТЬ 18
+              {t("ageVerifyYes")}
             </button>
             <button
               onClick={handleDecline}
               className="w-full rounded-xl border border-(--border) bg-(--card-bg) py-4 text-sm font-bold tracking-wider text-(--text-primary) transition-colors hover:bg-(--card-hover) active:scale-95"
             >
-              НЕТ, МНЕ МЕНЬШЕ 18
+              {t("ageVerifyNo")}
             </button>
           </div>
         </div>

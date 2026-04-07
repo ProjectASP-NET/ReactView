@@ -1,8 +1,12 @@
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
 import { MENU } from "../../types/menu.data";
 
 export function Footer() {
+  const t = useTranslations("Common");
+  const currentYear = new Date().getFullYear();
+  
   return (
     <footer className="w-full border-t border-(--border) bg-(--section-bg) pt-16 pb-8 mt-auto">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -37,10 +41,10 @@ export function Footer() {
         <div className="mt-8 flex flex-col items-center justify-between gap-4 text-center sm:flex-row sm:text-left">   
           <div className="flex flex-col gap-2">
             <p className="text-xs text-(--text-muted)">
-              © {new Date().getFullYear()} D&D Liquid. Все права защищены.
+              © {currentYear} D&D Liquid. {t("rights")}
             </p>
             <p className="text-[10px] font-bold tracking-widest text-red-500/80 uppercase">
-              Продажа несовершеннолетним запрещена (18+)
+              {t("ageNotice")}
             </p>
           </div>
 

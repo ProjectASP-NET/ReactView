@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { Heart, Star } from "lucide-react";
 import { Product } from "@/types/Mockdata";
 import { useLikeandFav } from "@/context/LikeandFavContext";
@@ -9,6 +10,7 @@ interface ProductPageActionsProps {
 }
 
 export function ProductPageActions({ product }: ProductPageActionsProps) {
+  const t = useTranslations("Product");
   const { toggleLike, toggleFavorite, isLiked, isFavorite } = useLikeandFav();
   const liked = isLiked(product.id);
   const favorited = isFavorite(product.id);
@@ -24,7 +26,7 @@ export function ProductPageActions({ product }: ProductPageActionsProps) {
         }`}
       >
         <Heart size={18} fill={liked ? "currentColor" : "none"} />
-        <span>{product.LikeCount + (liked ? 1 : 0)}</span>
+        <span>{product.LikeCount}</span>
       </button>
       <button
         onClick={() => toggleFavorite(product)}
@@ -35,7 +37,7 @@ export function ProductPageActions({ product }: ProductPageActionsProps) {
         }`}
       >
         <Star size={18} fill={favorited ? "currentColor" : "none"} />
-        {favorited ? "В избранном" : "В избранное"}
+        <span>{favorited ? t("inFavorite") : t("addToFavorite")}</span>
       </button>
     </div>
   );

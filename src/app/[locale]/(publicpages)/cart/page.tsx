@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
@@ -11,6 +12,7 @@ import { PAGES } from "@/config/pages.config";
 const FREE_DELIVERY_THRESHOLD = 300;
 
 export default function CartPage() {
+  const t = useTranslations("Cart");
   const { items, updateQuantity, removeFromCart, totalPrice, clearCart } =
     useCart();
   const [removingItems, setRemovingItems] = useState<Set<string>>(new Set());
@@ -33,22 +35,22 @@ export default function CartPage() {
   if (items.length === 0) {
     return (
       <main className="mx-auto max-w-7xl px-6 py-24 lg:px-8">
-        <h1 className="mb-8 text-4xl font-black text-(--text-primary)">Корзина</h1>
+        <h1 className="mb-8 text-4xl font-black text-(--text-primary)">{t("title")}</h1>
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           className="flex flex-col items-center justify-center py-20 rounded-3xl border border-(--border) bg-(--card-bg)"
         >
-          <p className="text-xl font-bold text-(--text-secondary)">Корзина пуста</p>
+          <p className="text-xl font-bold text-(--text-secondary)">{t("empty")}</p>
           <p className="mt-2 text-(--text-muted)">
-            Добавьте товары из каталога
+            {t("addProducts")}
           </p>
           <Link
             href={PAGES.CATALOG}
             className="mt-6 rounded-full bg-(--text-primary) px-8 py-3 text-sm font-bold text-(--background) transition-transform hover:scale-105 active:scale-95"
           >
-            ПЕРЕЙТИ В КАТАЛОГ
+            {t("continueShopping")}
           </Link>
         </motion.div>
       </main>
@@ -61,14 +63,14 @@ export default function CartPage() {
     <main className="mx-auto max-w-7xl px-6 py-24 lg:px-8">
       <div className="mb-8 flex items-center justify-between">
         <h1 className="text-4xl font-black text-(--text-primary)">
-          Корзина{" "}
-          <span className="text-(--text-muted)">({totalItems} товаров)</span>
+          {t("title")}{" "}
+          <span className="text-(--text-muted)">({totalItems} {t("items")})</span>
         </h1>
         <button
           onClick={clearCart}
           className="text-sm font-medium text-(--text-muted) hover:text-red-500 transition-colors"
         >
-          Очистить корзину
+          {t("clearCart")}
         </button>
       </div>
 
@@ -80,7 +82,7 @@ export default function CartPage() {
         >
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-(--text-secondary)">
-              Бесплатная доставка от {FREE_DELIVERY_THRESHOLD} MDL
+              {t("freeDeliveryTitle")}
             </span>
             <span className="text-sm font-bold text-(--text-primary)">
               {Math.round(freeDeliveryProgress)}%
@@ -95,7 +97,7 @@ export default function CartPage() {
             />
           </div>
           <p className="mt-2 text-xs text-(--text-muted)">
-            Осталось <span className="font-bold text-green-400">{remainingForFreeDelivery} MDL</span> до бесплатной доставки
+            {t("remaining").replace("{amount}", String(remainingForFreeDelivery))}
           </p>
         </motion.div>
       )}
@@ -107,7 +109,7 @@ export default function CartPage() {
           className="mb-6 rounded-xl border border-green-500/30 bg-green-500/10 p-4"
         >
           <p className="text-sm font-bold text-green-400">
-            ✓ Бесплатная доставка уже активирована!
+            {t("freeDeliveryActivated")}
           </p>
         </motion.div>
       )}
@@ -192,32 +194,32 @@ export default function CartPage() {
 
         <div className="rounded-2xl border border-(--border) bg-(--card-bg) p-6 h-fit sticky top-24">
           <h2 className="mb-4 text-xl font-bold text-(--text-primary)">
-            Итого
+            {t("total")}
           </h2>
           <div className="space-y-3 border-b border-(--border) pb-4">
             <div className="flex justify-between text-sm text-(--text-secondary)">
-              <span>Товары ({totalItems})</span>
+              <span>{t("products")} ({totalItems})</span>
               <span>{totalPrice} MDL</span>
             </div>
             <div className="flex justify-between text-sm text-(--text-secondary)">
-              <span>Доставка</span>
+              <span>{t("delivery")}</span>
               <span className={remainingForFreeDelivery === 0 ? "text-green-500" : "text-(--text-muted)"}>
-                {remainingForFreeDelivery === 0 ? "Бесплатно" : "100 MDL"}
+                {remainingForFreeDelivery === 0 ? t("freeDelivery") : "100 MDL"}
               </span>
             </div>
           </div>
           <div className="flex justify-between py-4">
-            <span className="text-lg font-bold text-(--text-primary)">К оплате</span>
+            <span className="text-lg font-bold text-(--text-primary)">{t("totalToPay")}</span>
             <span className="text-2xl font-black text-(--text-primary)">
               {remainingForFreeDelivery === 0 ? totalPrice : totalPrice + 100}{" "}
               <span className="text-sm font-light">MDL</span>
             </span>
           </div>
           <button className="w-full rounded-xl bg-(--text-primary) py-4 text-sm font-bold text-(--background) transition-transform hover:scale-[1.02] active:scale-[0.98]">
-            ОФОРМИТЬ ЗАКАЗ
+            {t("checkout")}
           </button>
           <p className="mt-3 text-center text-xs text-(--text-muted)">
-            Оплата при получении
+            {t("paymentOnReceipt")}
           </p>
         </div>
       </div>

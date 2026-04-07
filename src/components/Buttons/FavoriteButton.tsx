@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { Star } from "lucide-react";
 import { Product } from "@/types/Mockdata";
 import { useLikeandFav } from "@/context/LikeandFavContext";
@@ -10,6 +11,7 @@ interface FavoriteButtonProps {
 }
 
 export function FavoriteButton({ product, size = "md" }: FavoriteButtonProps) {
+  const t = useTranslations("Product");
   const { toggleFavorite, isFavorite } = useLikeandFav();
   const favorited = isFavorite(product.id);
 
@@ -26,7 +28,7 @@ export function FavoriteButton({ product, size = "md" }: FavoriteButtonProps) {
       } ${padding}`}
     >
       <Star size={iconSize} fill={favorited ? "currentColor" : "none"} />
-      <span>{favorited ? "В избранном" : "В избранное"}</span>
+      <span>{favorited ? t("inFavorite") : t("addToFavorite")}</span>
     </button>
   );
 }

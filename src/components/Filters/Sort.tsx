@@ -29,7 +29,7 @@ export function Sort() {
 
   return (
     <div className="flex items-center gap-3 rounded-full border border-(--border) bg-[rgba(255,255,255,0.05)] px-4 py-2 text-sm font-bold text-[rgba(255,255,255,0.6)]">
-      <span className="text-xs font-medium uppercase tracking-widest text-[rgba(255,255,255,0.4)]">СОРТИРОВКА:</span>
+      <span className="text-xs font-medium uppercase tracking-widest text-[rgba(255,255,255,0.4)]">{t('label')}</span>
       <Listbox value={currentOption} onChange={handleSortChange}>
         <div className="relative">
           <Listbox.Button className="relative flex items-center gap-2 cursor-pointer rounded-lg py-1 pl-2 pr-8 text-left text-sm font-bold text-[rgba(255,255,255,0.9)] outline-none">

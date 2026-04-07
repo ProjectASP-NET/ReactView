@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { useCompare } from "@/context/CompareContext";
 import { MOCK_PRODUCTS } from "@/types/Products";
 import { Product } from "@/types/Mockdata";
@@ -10,10 +11,10 @@ import Link from "next/link";
 import { PAGES } from "@/config/pages.config";
 
 const TYPE_FILTERS = [
-  { value: "all", label: "Все" },
-  { value: "liquid", label: "Жидкости" },
-  { value: "vape", label: "Девайсы" },
-  { value: "consumables", label: "Расходники" },
+  { value: "all", label: "filterAll" },
+  { value: "liquid", label: "filterLiquid" },
+  { value: "vape", label: "filterVape" },
+  { value: "consumables", label: "filterConsumables" },
 ];
 
 interface FieldConfig {
@@ -24,27 +25,29 @@ interface FieldConfig {
 }
 
 const COMMON_FIELDS: FieldConfig[] = [
-  { key: "price", label: "Цена", suffix: "MDL", format: (v) => String(v) },
-  { key: "brand", label: "Бренд", format: (v) => String(v) || "—" },
-  { key: "InStock", label: "Наличие", format: (v) => v ? "В наличии" : "Нет" },
+  { key: "price", label: "price", suffix: "MDL", format: (v) => String(v) },
+  { key: "brand", label: "brand", format: (v) => String(v) || "—" },
+  { key: "InStock", label: "inStock", format: (v) => v ? "inStock" : "notInStock" },
 ];
 
 const LIQUID_FIELDS: FieldConfig[] = [
-  { key: "volume", label: "Объём", suffix: "мл", format: (v) => String(v) },
-  { key: "nicotine", label: "Никотин", suffix: "мг", format: (v) => String(v) },
-  { key: "Icelevel", label: "Крепость", suffix: "%", format: (v) => String(v) },
-  { key: "flavor", label: "Вкусы", format: (v) => Array.isArray(v) ? v.join(", ") : "—" },
+  { key: "volume", label: "volume", suffix: "ml", format: (v) => String(v) },
+  { key: "nicotine", label: "nicotine", suffix: "mg", format: (v) => String(v) },
+  { key: "Icelevel", label: "iceLevel", suffix: "%", format: (v) => String(v) },
+  { key: "flavor", label: "flavor", format: (v) => Array.isArray(v) ? v.join(", ") : "—" },
 ];
 
 const VAPE_FIELDS: FieldConfig[] = [
-  { key: "batteryCapacity", label: "Ёмкость батареи", suffix: "mAh", format: (v) => String(v) },
-  { key: "maxPower", label: "Макс. мощность", suffix: "Вт", format: (v) => String(v) },
-  { key: "TankCapacity", label: "Объём бака", suffix: "мл", format: (v) => String(v) },
-  { key: "CoilResistence", label: "Сопротивление", suffix: "Ω", format: (v) => String(v) },
-  { key: "color", label: "Цвет", format: (v) => String(v) || "—" },
+  { key: "batteryCapacity", label: "batteryCapacity", suffix: "mAh", format: (v) => String(v) },
+  { key: "maxPower", label: "maxPower", suffix: "W", format: (v) => String(v) },
+  { key: "TankCapacity", label: "tankCapacity", suffix: "ml", format: (v) => String(v) },
+  { key: "CoilResistence", label: "coilResistance", suffix: "Ω", format: (v) => String(v) },
+  { key: "color", label: "color", format: (v) => String(v) || "—" },
 ];
 
 export default function MatcherPage() {
+  const t = useTranslations("Compare");
+  const tProduct = useTranslations("Product");
   const { items, removeFromCompare, clearCompare, toggleCompare } = useCompare();
   const [searchQuery, setSearchQuery] = useState("");
   const [typeFilter, setTypeFilter] = useState("all");
@@ -111,9 +114,9 @@ export default function MatcherPage() {
   };
 
   const getSpecificFieldsLabel = () => {
-    if (currentType === "liquid") return "Характеристики жидкости";
-    if (currentType === "vape") return "Характеристики девайса";
-    return "Характеристики";
+    if (currentType === "liquid") return tProduct("liquidFeatures");
+    if (currentType === "vape") return tProduct("vapeFeatures");
+    return tProduct("specs");
   };
 
   return (
@@ -121,10 +124,11 @@ export default function MatcherPage() {
       <div className="mb-12 flex flex-col gap-6 border-b border-(--border) pb-8 md:flex-row md:items-end md:justify-between">
         <div>
           <h1 className="text-4xl font-black tracking-tight sm:text-5xl">
-            СРАВНЕНИЕ <span className="text-(--text-muted)">ТОВАРОВ</span>
+            {t("title").split(" ")[0]}{" "}
+            <span className="text-(--text-muted)">{t("title").split(" ")[1]}</span>
           </h1>
           <p className="mt-4 text-lg text-(--text-secondary)">
-            Выберите до 4 товаров одного типа для сравнения
+            {t("selectUpTo4")}
           </p>
         </div>
         {items.length > 0 && (
@@ -133,7 +137,7 @@ export default function MatcherPage() {
             className="flex items-center gap-2 rounded-xl border border-red-500/50 bg-red-500/10 px-4 py-2 text-sm font-medium text-red-500 transition-colors hover:bg-red-500/20"
           >
             <Trash2 size={16} />
-            Очистить всё
+            {t("clearAll")}
           </button>
         )}
       </div>
@@ -146,7 +150,7 @@ export default function MatcherPage() {
           />
           <input
             type="text"
-            placeholder="Поиск по названию или бренду..."
+            placeholder={t("searchPlaceholder")}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="h-12 w-full rounded-xl border border-(--border) bg-(--card-bg) pl-11 pr-4 text-sm outline-none transition-colors focus:border-(--text-secondary)"
@@ -163,7 +167,7 @@ export default function MatcherPage() {
                   : "bg-(--card-bg) text-(--text-secondary) border border-(--border) hover:border-(--text-secondary)"
               }`}
             >
-              {filter.label}
+              {t(filter.label)}
             </button>
           ))}
         </div>
@@ -172,7 +176,7 @@ export default function MatcherPage() {
       {items.length > 0 && (
         <section className="mb-12">
           <h2 className="mb-4 text-lg font-bold text-(--text-secondary)">
-            Выбранные товары ({items.length}/4)
+            {t("selectedProducts")} ({items.length}/4)
           </h2>
           <div className="flex gap-4 overflow-x-auto pb-4">
             {items.map((product) => (
@@ -207,7 +211,7 @@ export default function MatcherPage() {
                 key={`empty-${idx}`}
                 className="shrink-0 w-48 rounded-2xl border border-dashed border-(--border) bg-(--card-bg)/50 p-4 flex items-center justify-center"
               >
-                <p className="text-sm text-(--text-muted)">Пусто</p>
+                <p className="text-sm text-(--text-muted)">{t("empty")}</p>
               </div>
             ))}
           </div>
@@ -217,7 +221,7 @@ export default function MatcherPage() {
       {availableProducts.length > 0 && (
         <section className="mb-12">
           <h2 className="mb-4 text-lg font-bold text-(--text-secondary)">
-            Добавить товары
+            {t("addProducts")}
           </h2>
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
             {availableProducts.slice(0, 12).map((product) => (
@@ -253,16 +257,16 @@ export default function MatcherPage() {
       {items.length === 0 && (
         <div className="flex flex-col items-center justify-center py-20 rounded-3xl border border-dashed border-(--border)">
           <p className="text-xl font-bold text-(--text-secondary)">
-            Выберите товары для сравнения
+            {t("chooseProducts")}
           </p>
           <p className="mt-2 text-sm text-(--text-muted)">
-            Добавьте товары из каталога или поиска выше
+            {t("addFromCatalog")}
           </p>
           <Link
             href={PAGES.CATALOG}
             className="mt-6 rounded-xl bg-(--text-primary) px-6 py-3 text-sm font-bold text-(--background) transition-colors hover:bg-(--text-secondary)"
           >
-            Перейти в каталог
+            {t("goToCatalog")}
           </Link>
         </div>
       )}
@@ -270,14 +274,14 @@ export default function MatcherPage() {
       {items.length >= 2 && (
         <section>
           <h2 className="mb-6 text-xl font-bold text-(--text-secondary)">
-            Сравнение характеристик
+            {t("comparisonTitle")}
           </h2>
           <div className="overflow-x-auto rounded-2xl border border-(--border)">
             <table className="w-full">
               <thead>
                 <tr className="border-b border-(--border) bg-(--card-bg)">
                   <th className="py-4 pr-4 text-left text-sm font-bold text-(--text-muted) w-40">
-                    Характеристика
+                    {t("characteristic")}
                   </th>
                   {items.map((item) => (
                     <th
@@ -312,7 +316,7 @@ export default function MatcherPage() {
                       ) : (
                         <ChevronDown size={16} />
                       )}
-                      Основное
+                      {t("main")}
                     </button>
                   </td>
                 </tr>

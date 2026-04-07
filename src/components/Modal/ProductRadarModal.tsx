@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, BarChart3 } from "lucide-react";
 import { useState, useEffect } from "react";
@@ -11,6 +12,7 @@ interface Props {
 }
 
 export function ProductRadarModal({ product }: Props) {
+  const t = useTranslations("Product");
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
@@ -39,7 +41,7 @@ export function ProductRadarModal({ product }: Props) {
         className="flex items-center justify-center gap-2 rounded-xl bg-(--card-bg) px-4 py-3 text-sm font-medium text-(--text-secondary) transition-colors hover:bg-(--card-hover) border border-(--border)"
       >
         <BarChart3 size={18} className="text-green-500" />
-        Диаграмма Качеств
+        {t("qualityChart")}
       </button>
 
       <AnimatePresence>
@@ -63,7 +65,7 @@ export function ProductRadarModal({ product }: Props) {
               <div className="rounded-3xl border border-(--border) bg-(--section-bg) p-6 sm:p-8 shadow-2xl">
                 <div className="mb-6 flex items-center justify-between">
                   <h3 className="text-lg sm:text-xl font-bold text-(--text-primary)">
-                    Характеристики товара
+                    {t("productSpecs")}
                   </h3>
                   <button
                     onClick={() => setIsOpen(false)}

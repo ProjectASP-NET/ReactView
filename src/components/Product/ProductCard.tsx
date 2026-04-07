@@ -47,7 +47,7 @@ export function ProductCard({product} : CardProps) {
             }`}
           >
             <Heart size={18} fill={liked ? "currentColor" : "none"} />
-            <span className="text-sm font-bold">{product.LikeCount + (liked ? 1 : 0)}</span>
+            <span className="text-sm font-bold">{product.LikeCount}</span>
           </button>
           <button
             onClick={(e) => {

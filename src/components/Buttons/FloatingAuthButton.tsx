@@ -1,22 +1,16 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
+import { useTranslations } from "next-intl";
 import { motion, AnimatePresence } from "framer-motion";
 import { User, LogIn, LogOut, Star, Heart } from "lucide-react";
 import Link from "next/link";
 
 interface MenuItem {
   icon: React.ComponentType<{ size?: number }>;
-  label: string;
+  labelKey: string;
   href: string;
 }
-
-const menuItems: MenuItem[] = [
-  { icon: LogIn, label: "Вход / Регистрация", href: "/auth" },
-  { icon: Star, label: "Избранное", href: "/favorites" },
-  { icon: Heart, label: "Мои лайки", href: "/likes" },
-  { icon: LogOut, label: "Выйти", href: "#" },
-];
 
 const menuVariants = {
   hidden: { opacity: 0, scale: 0.9, y: 10 },
@@ -44,8 +38,16 @@ const itemVariants = {
 };
 
 export function FloatingAuthButton() {
+  const t = useTranslations("Common");
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+
+  const menuItems: MenuItem[] = [
+    { icon: LogIn, labelKey: "login", href: "/auth" },
+    { icon: Star, labelKey: "favorites", href: "/favorites" },
+    { icon: Heart, labelKey: "likes", href: "/likes" },
+    { icon: LogOut, labelKey: "logout", href: "#" },
+  ];
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -80,7 +82,7 @@ export function FloatingAuthButton() {
                   className="flex items-center gap-3 px-4 py-3 text-sm text-(--text-secondary) transition-colors hover:bg-(--background) hover:text-(--text-primary)"
                 >
                   <item.icon size={18} />
-                  <span>{item.label}</span>
+                  <span>{t(item.labelKey)}</span>
                 </Link>
               </motion.div>
             ))}
