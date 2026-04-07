@@ -1,7 +1,6 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { Link, usePathname } from "@/i18n/navigation";
 import { MENU } from "../../types/menu.data";
 import { CartIcon } from "../Icons/CartIcon";
 import { ThemeToggle } from "../UI/ThemeToggle";

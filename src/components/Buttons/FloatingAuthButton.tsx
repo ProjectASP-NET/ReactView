@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { User, LogIn, LogOut, Star, Heart } from "lucide-react";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 
 interface MenuItem {
   icon: React.ComponentType<{ size?: number }>;

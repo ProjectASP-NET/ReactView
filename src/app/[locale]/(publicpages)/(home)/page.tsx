@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import { Link } from '@/i18n/navigation';
 import FadeIn from '@/components/UI/FadeIn'
 import FeaturedProducts from '@/components/Product/HitProducts';
 import NewProducts from '@/components/Product/NewProducts';

@@ -1,5 +1,5 @@
 'use client'
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import Image from "next/image";
 import { Scale, Heart, Star } from "lucide-react";
 import { PAGES } from "@/config/pages.config";

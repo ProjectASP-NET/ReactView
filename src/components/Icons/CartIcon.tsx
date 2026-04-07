@@ -1,7 +1,7 @@
 "use client";
 
 import { ShoppingCart } from "lucide-react";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { useCart } from "@/context/CartContext";
 import { PAGES } from "@/config/pages.config";
 

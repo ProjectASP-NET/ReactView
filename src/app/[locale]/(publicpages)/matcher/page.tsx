@@ -6,7 +6,7 @@ import { MOCK_PRODUCTS } from "@/types/Products";
 import { Product } from "@/types/Mockdata";
 import { X, Search, Trash2, ChevronDown, ChevronUp } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { PAGES } from "@/config/pages.config";
 
 const TYPE_FILTERS = [

@@ -1,7 +1,7 @@
 "use client";
 
 import useEmblaCarousel from "embla-carousel-react";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { ProductCard } from "./ProductCard";
 import { MOCK_PRODUCTS } from "../../types/Products";
 import { PAGES } from "@/config/pages.config";

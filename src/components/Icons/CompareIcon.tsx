@@ -1,7 +1,7 @@
 "use client";
 
 import { Scale } from "lucide-react";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { useCompare } from "@/context/CompareContext";
 import { PAGES } from "@/config/pages.config";
 

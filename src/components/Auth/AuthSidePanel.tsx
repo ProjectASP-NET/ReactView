@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { PAGES } from "@/config/pages.config";
 import { Sparkles, Droplets, ArrowRight } from "lucide-react";
 
