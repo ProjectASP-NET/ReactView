@@ -1,0 +1,371 @@
+{
+  "common": {
+    "brandName": "D&D Liquid",
+    "brandNameShort": "D&D",
+    "brandNameSubtitle": "Liquid",
+    "currency": "MDL",
+    "localeSwitcher": {
+      "label": "Language",
+      "en": "English",
+      "ru": "Русский",
+      "ro": "Română"
+    },
+    "unit": {
+      "ml": "ml",
+      "mg": "mg",
+      "mAh": "mAh",
+      "watt": "W"
+    }
+  },
+  "nav": {
+    "home": "Home",
+    "catalog": "Catalog"
+  },
+  "footer": {
+    "copyright": "© {year} D&D Liquid. All rights reserved.",
+    "ageRestriction": "Sale to minors is prohibited (18+)"
+  },
+  "home": {
+    "hero": {
+      "badge": "Fast delivery in Chisinau",
+      "titleLine1": "THE ART",
+      "titleLine2": "OF THICK VAPOR",
+      "description": "D&D Liquid is premium liquids and top devices for those who refuse compromises in taste.",
+      "ctaCatalog": "OPEN CATALOG",
+      "ctaAbout": "ABOUT BRAND"
+    },
+    "whyUs": {
+      "title": "WHY D&D LIQUID?",
+      "original": {
+        "title": "ORIGINAL",
+        "description": "Only certified products from world brands."
+      },
+      "taste": {
+        "title": "TASTE",
+        "description": "Hundreds of unique mixes from classic to exotic."
+      },
+      "quality": {
+        "title": "QUALITY",
+        "description": "Careful control at every stage of production."
+      }
+    },
+    "newProducts": {
+      "title": "New Arrivals",
+      "subtitle": "Latest additions to our catalog",
+      "viewAll": "VIEW ALL →"
+    },
+    "featuredProducts": {
+      "title": "TOP PRODUCTS",
+      "subtitle": "Our customers' choice this week",
+      "viewAll": "VIEW ALL →"
+    }
+  },
+  "catalog": {
+    "title": "OUR CATALOG",
+    "subtitle": "Premium liquids and devices for true connoisseurs.",
+    "filter": {
+      "all": "All",
+      "liquids": "Liquids",
+      "devices": "Devices",
+      "consumables": "Consumables"
+    },
+    "sort": {
+      "label": "SORT:",
+      "newest": "Newest first",
+      "oldest": "Oldest first",
+      "cheapest": "Cheapest first",
+      "expensive": "Most expensive first",
+      "popular": "Most popular first",
+      "unpopular": "Least popular first"
+    },
+    "search": {
+      "placeholder": "Search catalog..."
+    },
+    "empty": {
+      "title": "No products found",
+      "description": "Try changing your search or filter parameters"
+    },
+    "error": {
+      "title": "Catalog loading error",
+      "reloadButton": "Refresh"
+    }
+  },
+  "product": {
+    "type": {
+      "liquid": "Liquid",
+      "device": "Device",
+      "consumable": "Consumable"
+    },
+    "outOfStock": "OUT OF STOCK",
+    "addToCart": "ADD TO CART",
+    "addedToCart": "ADDED",
+    "compare": {
+      "button": "Compare",
+      "added": "In comparison"
+    },
+    "favorite": {
+      "add": "Add to favorites",
+      "added": "In favorites"
+    },
+    "quickView": "Quick view",
+    "spec": {
+      "type": "Type",
+      "volume": "Volume",
+      "nicotine": "Nicotine",
+      "flavors": "Flavors",
+      "batteryCapacity": "Battery capacity",
+      "maxPower": "Max power",
+      "color": "Color",
+      "availability": "Availability",
+      "iceLevel": "Strength"
+    },
+    "availability": {
+      "inStock": "In stock",
+      "outOfStock": "Out of stock"
+    },
+    "radar": {
+      "title": "Quality Chart",
+      "characteristics": "Product characteristics",
+      "nicotine": "Nicotine",
+      "volume": "Volume",
+      "flavors": "Flavors",
+      "iceLevel": "Ice",
+      "battery": "Battery",
+      "power": "Power",
+      "tank": "Tank",
+      "resistance": "Resistance"
+    },
+    "iceLevel": {
+      "none": "None",
+      "light": "Light",
+      "medium": "Medium",
+      "strong": "Strong",
+      "veryStrong": "Very strong"
+    },
+    "breadcrumb": {
+      "catalog": "Catalog"
+    },
+    "related": {
+      "title": "Similar products"
+    }
+  },
+  "ageVerification": {
+    "title": "Are you 18 or older?",
+    "description": "Access to D&D Liquid website is only allowed for adults. Products contain nicotine, which is addictive.",
+    "accessDenied": "Sorry, access to the site is denied.",
+    "confirm": "YES, I AM 18",
+    "decline": "NO, I AM UNDER 18"
+  },
+  "cart": {
+    "title": "Cart",
+    "empty": {
+      "title": "Cart is empty",
+      "description": "Add products from the catalog",
+      "goToCatalog": "GO TO CATALOG"
+    },
+    "itemCount": "({count} items)",
+    "clear": "Clear cart",
+    "delivery": {
+      "freeThreshold": "Free delivery from {threshold} MDL",
+      "remaining": "{amount} MDL remaining for free delivery",
+      "activated": "✓ Free delivery already activated!"
+    },
+    "summary": {
+      "title": "Total",
+      "items": "Items ({count})",
+      "delivery": "Delivery",
+      "free": "Free",
+      "deliveryCost": "100 MDL",
+      "total": "Total"
+    },
+    "checkout": "CHECKOUT",
+    "paymentMethod": "Payment upon receipt"
+  },
+  "about": {
+    "badge": "About company",
+    "title": "D&D Liquid",
+    "description": "Your reliable partner in the vaping world since 2019. We offer only quality products from verified brands at affordable prices.",
+    "stats": {
+      "yearsOnMarket": "Years on market",
+      "satisfiedCustomers": "Satisfied customers",
+      "productsInStock": "Products in stock",
+      "positiveReviews": "Positive reviews"
+    },
+    "mission": {
+      "title": "Our mission",
+      "description1": "We believe that vaping is not just an alternative to smoking, but a whole culture. Our goal is to make quality products accessible to everyone who wants to switch to a safer way of nicotine consumption or simply enjoy new flavors.",
+      "description2": "We don't just sell liquids and devices — we build a community of like-minded people who value quality, style, and a responsible approach to their health."
+    },
+    "features": {
+      "title": "Why choose us",
+      "originalProducts": {
+        "title": "Original products",
+        "description": "We work directly with manufacturers and official distributors. No fakes."
+      },
+      "fastDelivery": {
+        "title": "Fast delivery",
+        "description": "We ship the same day. Delivery in Chisinau in 1-2 hours, across Moldova in 1-3 days."
+      },
+      "qualityGuarantee": {
+        "title": "Quality guarantee",
+        "description": "Product return within 14 days if the product didn't fit or was defective."
+      },
+      "bestBrands": {
+        "title": "Best brands",
+        "description": "Vaporesso, Smok, GeekVape, Voopoo, Aspire and other leading world brands."
+      },
+      "support247": {
+        "title": "Support 24/7",
+        "description": "We answer questions on Telegram, Instagram and by phone every day."
+      },
+      "discounts": {
+        "title": "Discounts and bonuses",
+        "description": "Loyalty program, regular promotions and special offers for regular customers."
+      }
+    },
+    "timeline": {
+      "title": "Our journey",
+      "2019": {
+        "title": "Foundation",
+        "description": "Opened the first sales point in the center of Chisinau with a range of 50 products."
+      },
+      "2020": {
+        "title": "Online store",
+        "description": "Launched the online store and started delivery across Moldova."
+      },
+      "2021": {
+        "title": "Range expansion",
+        "description": "Expanded catalog to 300+ products, opened warehouse and pickup point."
+      },
+      "2022": {
+        "title": "Partnership",
+        "description": "Status of official distributor of Vaporesso and GeekVape in Moldova."
+      },
+      "2023": {
+        "title": "Reconstruction",
+        "description": "Updated branding, launched loyalty program and mobile app."
+      },
+      "2024": {
+        "title": "Leadership",
+        "description": "Consistently ranked in top 3 vape stores in Moldova by customer reviews."
+      }
+    },
+    "contact": {
+      "title": "Contact us",
+      "description": "Have questions? We're always happy to help! Write to us on social networks or call — we'll respond within an hour.",
+      "call": "Call",
+      "telegram": "Telegram"
+    }
+  },
+  "matcher": {
+    "title": "PRODUCT COMPARISON",
+    "subtitle": "Select up to 4 products of the same type for comparison",
+    "clearAll": "Clear all",
+    "filter": {
+      "all": "All",
+      "liquids": "Liquids",
+      "devices": "Devices",
+      "consumables": "Consumables"
+    },
+    "search": {
+      "placeholder": "Search by name or brand..."
+    },
+    "selected": {
+      "title": "Selected products ({count}/4)",
+      "empty": "Empty"
+    },
+    "addProducts": {
+      "title": "Add products"
+    },
+    "empty": {
+      "title": "Select products to compare",
+      "description": "Add products from catalog or search above",
+      "goToCatalog": "Go to catalog"
+    },
+    "comparison": {
+      "title": "Comparison of characteristics",
+      "spec": "Characteristic",
+      "general": "General",
+      "liquidSpecs": "Liquid characteristics",
+      "deviceSpecs": "Device characteristics",
+      "specs": "Characteristics"
+    },
+    "spec": {
+      "price": "Price",
+      "brand": "Brand",
+      "availability": "Availability",
+      "no": "No",
+      "tankCapacity": "Tank capacity",
+      "resistance": "Resistance"
+    }
+  },
+  "auth": {
+    "sidePanel": {
+      "welcomeBack": "Welcome back!",
+      "joinUs": "Join us!",
+      "loginDescription": "Log in to your account to access exclusive offers and order history",
+      "registerDescription": "Create an account and discover the world of quality vape liquids",
+      "premiumQuality": "Premium quality",
+      "thousandFlavors": "Over 1000 flavors",
+      "fastDelivery": "Fast delivery",
+      "goToCatalog": "Go to catalog"
+    },
+    "switcher": {
+      "login": "Login",
+      "register": "Register"
+    },
+    "signIn": {
+      "title": "Welcome back",
+      "subtitle": "Glad to see you again",
+      "emailLabel": "Email",
+      "passwordLabel": "Password",
+      "rememberMe": "Remember me",
+      "forgotPassword": "Forgot password?",
+      "submit": "Login"
+    },
+    "signUp": {
+      "title": "Create account",
+      "subtitle": "Join us",
+      "nameLabel": "Name",
+      "namePlaceholder": "Your name",
+      "emailLabel": "Email",
+      "passwordLabel": "Password",
+      "passwordRequirements": "Password requirements:",
+      "passwordReq": {
+        "length": "At least 8 characters",
+        "uppercase": "Uppercase letter",
+        "lowercase": "Lowercase letter",
+        "number": "Number"
+      },
+      "confirmPasswordLabel": "Confirm password",
+      "passwordMismatch": "Passwords do not match",
+      "termsAgreement": "I agree to the terms and privacy policy",
+      "termsLink": "terms",
+      "privacyLink": "privacy policy",
+      "submit": "Register",
+      "hasAccount": "Already have an account?",
+      "loginLink": "Login"
+    },
+    "floating": {
+      "login": "Login / Register",
+      "favorites": "Favorites",
+      "likes": "My likes",
+      "logout": "Logout"
+    }
+  },
+  "notFound": {
+    "code": "404",
+    "message": "Page not found",
+    "goHome": "GO HOME"
+  },
+  "context": {
+    "error": {
+      "cartProvider": "useCart must be used within a CartProvider",
+      "favoriteProvider": "useLikeandFav must be used within a LikeandFavProvider",
+      "compareProvider": "useCompare must be used within a CompareProvider"
+    },
+    "favorite": {
+      "added": "Added to favorites: {productName}"
+    }
+  }
+}
