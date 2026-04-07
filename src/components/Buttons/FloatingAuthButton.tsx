@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { User, LogIn, LogOut, Star, Heart } from "lucide-react";
 import { Link } from "@/i18n/navigation";
+import { PAGES } from "@/config/pages.config";
 
 interface MenuItem {
   icon: React.ComponentType<{ size?: number }>;
@@ -12,9 +13,9 @@ interface MenuItem {
 }
 
 const menuItems: MenuItem[] = [
-  { icon: LogIn, label: "Вход / Регистрация", href: "/auth" },
-  { icon: Star, label: "Избранное", href: "/favorites" },
-  { icon: Heart, label: "Мои лайки", href: "/likes" },
+  { icon: LogIn, label: "Вход / Регистрация", href: PAGES.AUTH },
+  { icon: Star, label: "Избранное", href: PAGES.FAVORITES },
+  { icon: Heart, label: "Мои лайки", href: PAGES.LIKES },
   { icon: LogOut, label: "Выйти", href: "#" },
 ];
 

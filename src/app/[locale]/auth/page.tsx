@@ -3,8 +3,8 @@
 import { useState } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import Image from "next/image";
-import { SignInForm } from "../../services/SignInForm";
-import { SignUpForm } from "../../services/SignUpForm";
+import { SignInForm } from "@/services/SignInForm";
+import { SignUpForm } from "@/services/SignUpForm";
 import { AuthSwitcher } from "@/components/Auth/AuthSwitcher";
 
 export default function AuthPage() {
