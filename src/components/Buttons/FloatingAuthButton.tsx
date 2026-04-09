@@ -18,7 +18,7 @@ const loggedInMenuItems: MenuItem[] = [
   { icon: User, label: "Профиль", href: PAGES.USERPROFILE },
   { icon: Star, label: "Избранное", href: PAGES.FAVORITES },
   { icon: Heart, label: "Мои лайки", href: PAGES.LIKES },
-  { icon: LogOut, label: "Выйти", href: "#", onClick: "logout" },
+  { icon: LogOut, label: "Выйти", href: "#", },
 ];
 
 const loggedOutMenuItems: MenuItem[] = [
@@ -58,7 +58,7 @@ export function FloatingAuthButton() {
   const menuItems = isLoggedIn ? loggedInMenuItems : loggedOutMenuItems;
 
   const handleItemClick = (item: MenuItem) => {
-    if (item.onClick === "logout") {
+    if (item.href === "#") {
       logout();
     }
     setIsOpen(false);

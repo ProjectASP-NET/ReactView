@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useUser } from "@/context/UserContext";
 import { ProductCard } from "@/components/Product/ProductCard";
 import { useLikeandFav } from "@/context/LikeandFavContext";
@@ -15,6 +15,13 @@ const MOCK_ORDERS = [
   { id: "1236", date: "05.03.2024", total: 800, status: "processing", items: 1 },
 ];
 
+const DEFAULT_USER = {
+  name: "Алексей",
+  email: "alex@example.com",
+  phone: "+373 00 000 000",
+  address: "Кишинев, ул. Пушкина 10",
+};
+
 const getStatusLabel = (status: string) => {
   switch (status) {
     case "delivered":
@@ -28,18 +35,17 @@ const getStatusLabel = (status: string) => {
   }
 };
 
-const DEFAULT_USER = {
-  name: "Алексей",
-  email: "alex@example.com",
-  phone: "+373 00 000 000",
-  address: "Кишинев, ул. Пушкина 10",
-};
-
 export default function UserProfilePage() {
   const { user, updateUser, logout, login, isLoggedIn } = useUser();
   const { favorites, likedProducts } = useLikeandFav();
   const [isEditing, setIsEditing] = useState(false);
-  const [formData, setFormData] = useState(user || DEFAULT_USER);
+  const [formData, setFormData] = useState(DEFAULT_USER);
+
+  useEffect(() => {
+    if (user) {
+      setFormData(user);
+    }
+  }, [user]);
 
   const handleSave = () => {
     if (!isLoggedIn) {
