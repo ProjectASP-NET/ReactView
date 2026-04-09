@@ -4,18 +4,25 @@ import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { User, LogIn, LogOut, Star, Heart } from "lucide-react";
 import Link from "next/link";
+import { useUser } from "@/context/UserContext";
+import { PAGES } from "@/config/pages.config";
 
 interface MenuItem {
   icon: React.ComponentType<{ size?: number }>;
   label: string;
   href: string;
+  onClick?: () => void;
 }
 
-const menuItems: MenuItem[] = [
-  { icon: LogIn, label: "Вход / Регистрация", href: "/auth" },
-  { icon: Star, label: "Избранное", href: "/favorites" },
-  { icon: Heart, label: "Мои лайки", href: "/likes" },
-  { icon: LogOut, label: "Выйти", href: "#" },
+const loggedInMenuItems: MenuItem[] = [
+  { icon: User, label: "Профиль", href: PAGES.USERPROFILE },
+  { icon: Star, label: "Избранное", href: PAGES.FAVORITES },
+  { icon: Heart, label: "Мои лайки", href: PAGES.LIKES },
+  { icon: LogOut, label: "Выйти", href: "#", onClick: "logout" },
+];
+
+const loggedOutMenuItems: MenuItem[] = [
+  { icon: LogIn, label: "Вход / Регистрация", href: PAGES.AUTH },
 ];
 
 const menuVariants = {
@@ -46,6 +53,16 @@ const itemVariants = {
 export function FloatingAuthButton() {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+  const { isLoggedIn, logout } = useUser();
+
+  const menuItems = isLoggedIn ? loggedInMenuItems : loggedOutMenuItems;
+
+  const handleItemClick = (item: MenuItem) => {
+    if (item.onClick === "logout") {
+      logout();
+    }
+    setIsOpen(false);
+  };
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -76,7 +93,7 @@ export function FloatingAuthButton() {
               >
                 <Link
                   href={item.href}
-                  onClick={() => setIsOpen(false)}
+                  onClick={() => handleItemClick(item)}
                   className="flex items-center gap-3 px-4 py-3 text-sm text-(--text-secondary) transition-colors hover:bg-(--background) hover:text-(--text-primary)"
                 >
                   <item.icon size={18} />
