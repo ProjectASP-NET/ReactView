@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { PAGES } from "@/config/pages.config";
+import { ThemeToggle } from "@/components/UI/ThemeToggle";
 import { SignInForm } from "../../services/SignInForm";
 import { SignUpForm } from "../../services/SignUpForm";
 
@@ -91,6 +92,10 @@ export default function AuthPage() {
       >
         ← На главную
       </Link>
+
+      <div className="absolute top-6 right-6 z-50">
+        <ThemeToggle />
+      </div>
     </div>
   );
 }
