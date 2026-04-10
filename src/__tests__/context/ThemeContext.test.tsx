@@ -10,6 +10,15 @@ describe('ThemeContext', () => {
   beforeEach(() => {
     localStorage.clear()
     vi.resetModules()
+    Object.defineProperty(window, 'matchMedia', {
+      writable: true,
+      value: vi.fn().mockImplementation(query => ({
+        matches: query === '(prefers-color-scheme: light)',
+        media: query,
+        addEventListener: vi.fn(),
+        removeEventListener: vi.fn(),
+      })),
+    })
   })
 
   afterEach(() => {

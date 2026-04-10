@@ -15,12 +15,19 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setTheme] = useState<Theme>("dark");
   const [mounted, setMounted] = useState(false);
 
+  const getInitialTheme = (): Theme => {
+    const saved = localStorage.getItem("theme") as Theme | null;
+    if (saved) return saved;
+
+    if (typeof window !== "undefined" && window.matchMedia) {
+      return window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+    }
+    return "dark";
+  };
+
   useEffect(() => {
     setMounted(true);
-    const saved = localStorage.getItem("theme") as Theme | null;
-    if (saved) {
-      setTheme(saved);
-    }
+    setTheme(getInitialTheme());
   }, []);
 
   useEffect(() => {
@@ -28,6 +35,20 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
       document.documentElement.setAttribute("data-theme", theme);
     }
   }, [theme, mounted]);
+
+  useEffect(() => {
+    if (typeof window === "undefined" || !window.matchMedia) return;
+
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    const handleChange = (e: MediaQueryListEvent) => {
+      if (!localStorage.getItem("theme")) {
+        setTheme(e.matches ? "dark" : "light");
+      }
+    };
+
+    mediaQuery.addEventListener("change", handleChange);
+    return () => mediaQuery.removeEventListener("change", handleChange);
+  }, [mounted]);
 
   const toggleTheme = () => {
     const newTheme = theme === "dark" ? "light" : "dark";
