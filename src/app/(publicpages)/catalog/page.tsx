@@ -115,7 +115,7 @@ export default function Catalog() {
         
         <div className="relative z-10 mx-auto max-w-7xl px-6 py-24 lg:px-8">
           <div className="mb-12 flex flex-col gap-6 border-b border-(--border) pb-8 md:flex-row md:items-end md:justify-between">
-            <div>
+            <div className="rounded-2xl border border-(--border) bg-(--card-bg)/80 backdrop-blur-sm px-6 py-4">
               <h1 className="text-4xl font-black tracking-tight sm:text-5xl">
                 НАШ <span className="text-(--text-muted)">КАТАЛОГ</span>
               </h1>
