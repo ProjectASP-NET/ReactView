@@ -1,14 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
-import Image from "next/image";
+import { motion, useReducedMotion } from "framer-motion";
 import Link from "next/link";
 import { PAGES } from "@/config/pages.config";
 import { SignInForm } from "../../services/SignInForm";
 import { SignUpForm } from "../../services/SignUpForm";
-import { AuthSwitcher } from "@/components/Auth/AuthSwitcher";
-import { Sparkles, Droplets, ArrowRight } from "lucide-react";
 
 export default function AuthPage() {
   const [isLogin, setIsLogin] = useState(true);
@@ -28,92 +25,77 @@ export default function AuthPage() {
   };
 
   return (
-    <div className="flex min-h-screen w-full relative bg-linear-to-br from-(--primary) via-(--accent) to-(--secondary)">
-      <div className="pointer-events-none absolute inset-0 opacity-20">
-        <div className="w-full h-full bg-[url('/auth-texture.svg')] bg-repeat opacity-100" />
-      </div>
-      <div className="hidden md:block absolute top-6 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-md px-4">
-        <AuthSwitcher isLogin={isLogin} setIsLogin={setIsLogin} />
-      </div>
-      <div className="flex w-full md:w-1/2 items-stretch justify-center p-6 md:p-12 h-full md:h-screen">
-        <div className="w-full h-full flex flex-col justify-center">
-          <div className="mb-6 block md:hidden px-4">
-            <AuthSwitcher isLogin={isLogin} setIsLogin={setIsLogin} />
-          </div>
-          <AnimatePresence mode="wait">
-            <motion.div
-              className="h-full flex items-center justify-center"
-              key={isLogin ? "left-login" : "left-image"}
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -30 }}
-              transition={reduce ? { duration: 0 } : { duration: 0.35 }}
-            >
-              {isLogin ? (
-                <SignInForm onSubmit={handleLogin} autoFocus={isLogin} />
-              ) : (
-                <>
-                  <div className="w-full block md:hidden">
-                    <SignUpForm onSubmit={handleRegister} autoFocus={!isLogin} />
-                  </div>
-                  <div className="hidden md:block relative w-full h-full rounded-2xl overflow-hidden">
-                    <Image
-                      src="/auth-right.png"
-                      alt="auth right"
-                      fill
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                      className="object-cover"
-                      priority={false}
-                      loading="eager"
-                    />
-                  </div>
-                </>
-              )}
-            </motion.div>
-          </AnimatePresence>
+    <div className="flex min-h-screen w-full relative items-center justify-center bg-(--background) p-4">
+      <div className="relative w-full max-w-[850px] h-[550px] bg-(--card-bg) rounded-3xl shadow-2xl overflow-hidden flex border border-(--border)">
+        {/* Нижний слой: Формы */}
+        
+        {/* Форма Входа (слева) - показывается когда панель справа (isLogin=true) */}
+        <div className={`absolute top-0 left-0 w-1/2 h-full flex flex-col items-center justify-center px-12 transition-opacity duration-500 ${isLogin ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+          <SignInForm onSubmit={handleLogin} autoFocus={isLogin} />
         </div>
-      </div>
-      <div className="hidden md:flex md:w-1/2 items-stretch justify-center p-6 md:p-12 h-full md:h-screen">
-        <div className="w-full h-full flex flex-col justify-center">
-          <AnimatePresence mode="wait">
-            <motion.div
-              className="h-full flex items-center justify-center"
-              key={isLogin ? "right-image" : "right-register"}
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: 30 }}
-              transition={reduce ? { duration: 0 } : { duration: 0.35 }}
-            >
-              {isLogin ? (
-                <div className="relative w-full h-full rounded-3xl overflow-hidden">
-                  <Image
-                    src="/auth-left.png"
-                    alt="auth left"
-                    fill
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    className="object-cover"
-                    priority={false}
-                    loading="eager"
-                  />
-                  <div className="absolute inset-0 flex flex-col items-center justify-center p-12 text-center">
-                    <div className="w-24 h-24 rounded-3xl bg-(--background)/20 backdrop-blur-sm flex items-center justify-center mb-6">
-                      <Droplets size={48} className="text-(--background)" />
-                    </div>
-                    <h2 className="text-4xl font-bold text-(--background) mb-4">С возвращением!</h2>
-                    <p className="text-lg text-(--background)/80 mb-8 max-w-md">Войдите в свой аккаунт, чтобы получить доступ к эксклюзивным предложениям и истории заказов</p>
-                    <Link href={PAGES.CATALOG} className="mt-8 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-(--background) text-(--accent) font-medium hover:gap-4 transition-all" aria-label="Перейти в каталог">
-                      <span>Перейти в каталог</span>
-                      <ArrowRight size={18} />
-                    </Link>
-                  </div>
-                </div>
-              ) : (
-                <SignUpForm onSubmit={handleRegister} autoFocus={!isLogin} />
-              )}
-            </motion.div>
-          </AnimatePresence>
+
+        {/* Форма Регистрации (справа) - показывается когда панель слева (isLogin=false) */}
+        <div className={`absolute top-0 right-0 w-1/2 h-full flex flex-col items-center justify-center px-12 transition-opacity duration-500 ${isLogin ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
+          <SignUpForm onSubmit={handleRegister} />
         </div>
+
+        {/* Верхний слой: Плавающая панель с анимацией */}
+        <motion.div
+          className={`absolute top-0 left-0 w-1/2 h-full z-10 bg-gradient-to-br from-(--primary) to-(--secondary) flex flex-col items-center justify-center px-12 text-center ${
+            isLogin ? 'rounded-l-[100px]' : 'rounded-r-[100px]'
+          }`}
+          animate={{
+            x: isLogin ? '100%' : '0%',
+            borderRadius: isLogin ? '36px 0 0 36px' : '0 36px 36px 0',
+          }}
+          transition={{
+            type: "spring",
+            stiffness: 100,
+            damping: 20,
+            mass: 1,
+          }}
+        >
+          {isLogin ? (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3 }}
+            >
+              <h2 className="text-4xl font-bold mb-4 text-white">Привет, друг!</h2>
+              <p className="mb-8 text-white/80">Введите свои личные данные и начните путешествие с нами</p>
+              <button
+                onClick={() => setIsLogin(false)}
+                className="px-10 py-3 border-2 border-white rounded-xl font-bold hover:bg-white hover:text-(--primary) transition-all text-white"
+              >
+                Регистрация
+              </button>
+            </motion.div>
+          ) : (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3 }}
+            >
+              <h2 className="text-4xl font-bold mb-4 text-white">С возвращением!</h2>
+              <p className="mb-8 text-white/80">Чтобы оставаться на связи с нами, пожалуйста, войдите под своей учетной записью</p>
+              <button
+                onClick={() => setIsLogin(true)}
+                className="px-10 py-3 border-2 border-white rounded-xl font-bold hover:bg-white hover:text-(--primary) transition-all text-white"
+              >
+                Войти
+              </button>
+            </motion.div>
+          )}
+        </motion.div>
       </div>
+
+      {/* Ссылка на главную */}
+      <Link 
+        href={PAGES.CATALOG} 
+        className="absolute top-6 left-6 text-(--text-secondary) hover:text-(--text-primary) transition-colors"
+      >
+        ← На главную
+      </Link>
     </div>
   );
 }
