@@ -20,28 +20,29 @@ interface FieldConfig {
   key: string;
   label: string;
   suffix?: string;
-  format: (v: unknown) => string;
+  format: (v: unknown) => number | string;
+  bestValue?: "min" | "max" | "none";
 }
 
 const COMMON_FIELDS: FieldConfig[] = [
-  { key: "price", label: "Цена", suffix: "MDL", format: (v) => String(v) },
-  { key: "brand", label: "Бренд", format: (v) => String(v) || "—" },
-  { key: "InStock", label: "Наличие", format: (v) => v ? "В наличии" : "Нет" },
+  { key: "price", label: "Цена", suffix: "MDL", format: (v) => Number(v), bestValue: "min" },
+  { key: "brand", label: "Бренд", format: (v) => String(v) || "—", bestValue: "none" },
+  { key: "InStock", label: "Наличие", format: (v) => v ? "В наличии" : "Нет", bestValue: "max" },
 ];
 
 const LIQUID_FIELDS: FieldConfig[] = [
-  { key: "volume", label: "Объём", suffix: "мл", format: (v) => String(v) },
-  { key: "nicotine", label: "Никотин", suffix: "мг", format: (v) => String(v) },
-  { key: "Icelevel", label: "Крепость", suffix: "%", format: (v) => String(v) },
-  { key: "flavor", label: "Вкусы", format: (v) => Array.isArray(v) ? v.join(", ") : "—" },
+  { key: "volume", label: "Объём", suffix: "мл", format: (v) => Number(v), bestValue: "max" },
+  { key: "nicotine", label: "Никотин", suffix: "мг", format: (v) => Number(v), bestValue: "max" },
+  { key: "Icelevel", label: "Крепость", suffix: "%", format: (v) => Number(v), bestValue: "max" },
+  { key: "flavor", label: "Вкусы", format: (v) => Array.isArray(v) ? v.join(", ") : "—", bestValue: "none" },
 ];
 
 const VAPE_FIELDS: FieldConfig[] = [
-  { key: "batteryCapacity", label: "Ёмкость батареи", suffix: "mAh", format: (v) => String(v) },
-  { key: "maxPower", label: "Макс. мощность", suffix: "Вт", format: (v) => String(v) },
-  { key: "TankCapacity", label: "Объём бака", suffix: "мл", format: (v) => String(v) },
-  { key: "CoilResistence", label: "Сопротивление", suffix: "Ω", format: (v) => String(v) },
-  { key: "color", label: "Цвет", format: (v) => String(v) || "—" },
+  { key: "batteryCapacity", label: "Ёмкость батареи", suffix: "mAh", format: (v) => Number(v), bestValue: "max" },
+  { key: "maxPower", label: "Макс. мощность", suffix: "Вт", format: (v) => Number(v), bestValue: "max" },
+  { key: "TankCapacity", label: "Объём бака", suffix: "мл", format: (v) => Number(v), bestValue: "max" },
+  { key: "CoilResistence", label: "Сопротивление", suffix: "Ω", format: (v) => Number(v), bestValue: "none" },
+  { key: "color", label: "Цвет", format: (v) => String(v) || "—", bestValue: "none" },
 ];
 
 export default function MatcherPage() {
@@ -78,6 +79,20 @@ export default function MatcherPage() {
     const uniqueValues = new Set(values);
     const hasDifference = uniqueValues.size > 1;
 
+    let bestIndex = -1;
+    if (hasDifference && field.bestValue && field.bestValue !== "none") {
+      const numericValues = values.map(v => {
+        const num = Number(v);
+        return isNaN(num) ? -Infinity : num;
+      });
+      
+      if (field.bestValue === "max") {
+        bestIndex = numericValues.indexOf(Math.max(...numericValues));
+      } else if (field.bestValue === "min") {
+        bestIndex = numericValues.indexOf(Math.min(...numericValues));
+      }
+    }
+
     return (
       <tr key={fieldKey} className="border-b border-(--border)">
         <td className="py-3 pr-4 text-sm font-medium text-(--text-secondary)">
@@ -87,7 +102,11 @@ export default function MatcherPage() {
           <td
             key={item.id}
             className={`py-3 px-4 text-center text-sm ${
-              hasDifference ? "bg-amber-500/10 font-medium" : ""
+              bestIndex === idx 
+                ? "bg-green-500/20 text-green-400 font-bold ring-1 ring-green-500/30" 
+                : hasDifference 
+                  ? "bg-amber-500/10 font-medium" 
+                  : ""
             }`}
           >
             {values[idx]}{field.suffix ? ` ${field.suffix}` : ""}
