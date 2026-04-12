@@ -151,17 +151,6 @@ export function SignUpForm({ onSubmit, autoFocus, onSwitchToLogin }: SignUpFormP
       >
         Зарегистрироваться
       </button>
-
-      <p className="text-center text-sm text-(--text-secondary)">
-        Уже есть аккаунт?{" "}
-        {onSwitchToLogin ? (
-          <button type="button" onClick={onSwitchToLogin} className="text-(--accent) hover:underline">
-            Войти
-          </button>
-        ) : (
-          <span className="text-(--accent)">Войти</span>
-        )}
-      </p>
     </form>
   );
 }

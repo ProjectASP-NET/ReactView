@@ -7,6 +7,7 @@ import { ThemeToggle } from "@/components/UI/ThemeToggle";
 import { SignInForm } from "../../services/SignInForm";
 import { SignUpForm } from "../../services/SignUpForm";
 import { ArrowLeft } from "lucide-react";
+import {Home} from "lucide-react"
 
 export default function AuthPage() {
   const [activeTab, setActiveTab] = useState<"login" | "register">("login");
@@ -169,14 +170,14 @@ export default function AuthPage() {
             )}
           </div>
         </div>
-
+      </div>
         <Link 
           href={PAGES.CATALOG} 
           className="absolute top-6 left-6 z-50 text-white/80 hover:text-white transition-colors"
         >
-          ← На главную
+          <Home size={20} /> 
+         <span>На главную</span> 
         </Link>
-      </div>
     </div>
   );
 }
