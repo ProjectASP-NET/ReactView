@@ -92,8 +92,7 @@ export function LikeandFavProvider({ children }: { children: ReactNode }) {
       const exists = current.find((item) => item.id === product.id);
       if (exists) {
         return current.filter((item) => item.id !== product.id);
-      }
-      console.log(`Добавлено в избранное: ${product.name}`);
+      };
       return [...current, product];
     });
   }, []);

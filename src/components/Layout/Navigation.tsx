@@ -59,7 +59,7 @@ export function Navigation() {
             className="absolute inset-0 bg-black/80"
             onClick={closeMobileMenu}
           />
-          <div className="absolute top-20 left-4 right-4 bg-[#0a0a0a] border border-(--border) rounded-2xl p-4 shadow-2xl">
+          <div className="absolute top-20 left-4 right-4 bg-(--background) border border-(--border) rounded-2xl p-4 shadow-2xl">
             <div className="flex flex-col gap-2">
               {MENU.map((item) => {
                 const isActive = pathname === item.href;
