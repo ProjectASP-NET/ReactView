@@ -39,9 +39,9 @@ export function SignUpForm({ onSubmit, autoFocus }: SignUpFormPropsExt) {
   }, [autoFocus]);
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-5 w-full">
+    <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-full max-w-sm">
       <div className="text-center mb-2">
-        <h2 className="text-2xl font-bold text-(--text-primary)">Создать аккаунт</h2>
+        <h2 className="text-xl md:text-2xl font-bold text-(--text-primary)">Создать аккаунт</h2>
         <p className="text-(--text-secondary) text-sm mt-1">Присоединяйтесь к нам</p>
       </div>
 
@@ -55,7 +55,7 @@ export function SignUpForm({ onSubmit, autoFocus }: SignUpFormPropsExt) {
             placeholder="Ваше имя"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="w-full pl-10 pr-4 py-3 rounded-lg bg-(--background) border border-(--border) text-(--text-primary) placeholder:text-(--text-secondary)/50 focus:outline-none focus:border-(--accent) transition-colors"
+            className="w-full pl-10 pr-4 py-4 rounded-xl bg-(--background) border border-(--border) text-(--text-primary) placeholder:text-(--text-secondary)/50 focus:outline-none focus:border-(--accent) transition-colors text-base"
             required
           />
         </div>
@@ -70,7 +70,7 @@ export function SignUpForm({ onSubmit, autoFocus }: SignUpFormPropsExt) {
             placeholder="example@mail.ru"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full pl-10 pr-4 py-3 rounded-lg bg-(--background) border border-(--border) text-(--text-primary) placeholder:text-(--text-secondary)/50 focus:outline-none focus:border-(--accent) transition-colors"
+            className="w-full pl-10 pr-4 py-4 rounded-xl bg-(--background) border border-(--border) text-(--text-primary) placeholder:text-(--text-secondary)/50 focus:outline-none focus:border-(--accent) transition-colors text-base"
             required
           />
         </div>
@@ -85,7 +85,7 @@ export function SignUpForm({ onSubmit, autoFocus }: SignUpFormPropsExt) {
             placeholder="••••••••"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full pl-10 pr-12 py-3 rounded-lg bg-(--background) border border-(--border) text-(--text-primary) placeholder:text-(--text-secondary)/50 focus:outline-none focus:border-(--accent) transition-colors"
+            className="w-full pl-10 pr-12 py-4 rounded-xl bg-(--background) border border-(--border) text-(--text-primary) placeholder:text-(--text-secondary)/50 focus:outline-none focus:border-(--accent) transition-colors text-base"
             required
           />
           <button
@@ -125,7 +125,7 @@ export function SignUpForm({ onSubmit, autoFocus }: SignUpFormPropsExt) {
             placeholder="••••••••"
             value={passwordConfirm}
             onChange={(e) => setPasswordConfirm(e.target.value)}
-            className="w-full pl-10 pr-4 py-3 rounded-lg bg-(--background) border border-(--border) text-(--text-primary) placeholder:text-(--text-secondary)/50 focus:outline-none focus:border-(--accent) transition-colors"
+            className="w-full pl-10 pr-4 py-4 rounded-xl bg-(--background) border border-(--border) text-(--text-primary) placeholder:text-(--text-secondary)/50 focus:outline-none focus:border-(--accent) transition-colors text-base"
             required
           />
         </div>
@@ -151,7 +151,7 @@ export function SignUpForm({ onSubmit, autoFocus }: SignUpFormPropsExt) {
       <button
         type="submit"
         disabled={!agreedToTerms}
-        className="w-full py-3 rounded-lg bg-(--accent) text-(--background) font-semibold hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
+        className="w-full py-4 rounded-xl bg-(--accent) text-(--background) font-semibold hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed text-base"
       >
         Зарегистрироваться
       </button>

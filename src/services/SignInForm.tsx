@@ -30,9 +30,9 @@ export function SignInForm({ onSubmit, autoFocus }: SignInFormPropsExt) {
   }, [autoFocus]);
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-5 w-full">
+    <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-full max-w-sm">
       <div className="text-center mb-2">
-        <h2 className="text-2xl font-bold text-(--text-primary)">С возвращением</h2>
+        <h2 className="text-xl md:text-2xl font-bold text-(--text-primary)">С возвращением</h2>
         <p className="text-(--text-secondary) text-sm mt-1">Рады видеть вас снова</p>
       </div>
 
@@ -46,7 +46,7 @@ export function SignInForm({ onSubmit, autoFocus }: SignInFormPropsExt) {
             placeholder="example@mail.ru"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full pl-10 pr-4 py-3 rounded-lg bg-(--background) border border-(--border) text-(--text-primary) placeholder:text-(--text-secondary)/50 focus:outline-none focus:border-(--accent) transition-colors"
+            className="w-full pl-10 pr-4 py-4 rounded-xl bg-(--background) border border-(--border) text-(--text-primary) placeholder:text-(--text-secondary)/50 focus:outline-none focus:border-(--accent) transition-colors text-base"
             required
           />
         </div>
@@ -61,7 +61,7 @@ export function SignInForm({ onSubmit, autoFocus }: SignInFormPropsExt) {
             placeholder="••••••••"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full pl-10 pr-12 py-3 rounded-lg bg-(--background) border border-(--border) text-(--text-primary) placeholder:text-(--text-secondary)/50 focus:outline-none focus:border-(--accent) transition-colors"
+            className="w-full pl-10 pr-12 py-4 rounded-xl bg-(--background) border border-(--border) text-(--text-primary) placeholder:text-(--text-secondary)/50 focus:outline-none focus:border-(--accent) transition-colors text-base"
             required
           />
           <button
@@ -74,7 +74,7 @@ export function SignInForm({ onSubmit, autoFocus }: SignInFormPropsExt) {
         </div>
       </div>
 
-      <div className="flex items-center justify-between text-sm">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-sm">
         <label className="flex items-center gap-2 cursor-pointer">
           <input
             type="checkbox"
@@ -89,7 +89,7 @@ export function SignInForm({ onSubmit, autoFocus }: SignInFormPropsExt) {
 
       <button
         type="submit"
-        className="w-full py-3 rounded-lg bg-(--accent) text-(--background) font-semibold hover:opacity-90 transition-opacity"
+        className="w-full py-4 rounded-xl bg-(--accent) text-(--background) font-semibold hover:opacity-90 transition-opacity text-base"
       >
         Войти
       </button>

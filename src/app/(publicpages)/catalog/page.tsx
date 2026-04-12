@@ -62,10 +62,10 @@ function CatalogContent() {
 
   return (
     <div 
-      className="min-h-[calc(100vh-200px)] rounded-3xl p-6 transition-all duration-500"
+      className="min-h-[calc(100vh-200px)] rounded-2xl md:rounded-3xl p-4 md:p-6 transition-all duration-500"
       style={{ background: getCatalogBg() }}
     >
-      <div className="mb-8">
+      <div className="mb-4 md:mb-6 overflow-x-auto">
         <Suspense fallback={<div className="flex gap-2"><div className="h-10 w-20 animate-pulse rounded-full bg-(--card-bg)" /><div className="h-10 w-20 animate-pulse rounded-full bg-(--card-bg)" /><div className="h-10 w-20 animate-pulse rounded-full bg-(--card-bg)" /><div className="h-10 w-20 animate-pulse rounded-full bg-(--card-bg)" /></div>}>
           <Filter />
         </Suspense>
@@ -107,23 +107,23 @@ export default function Catalog() {
           loop
           muted
           playsInline
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover hidden md:block"
         >
           <source src="/CatalogBG.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-black/60" />
+        <div className="absolute inset-0 bg-black/70 md:bg-black/60" />
         
-        <div className="relative z-10 mx-auto max-w-7xl px-6 py-24 lg:px-8">
-          <div className="mb-12 flex flex-col gap-6 border-b border-(--border) pb-8 md:flex-row md:items-end md:justify-between">
-            <div className="rounded-2xl border border-(--border) bg-(--card-bg)/80 backdrop-blur-sm px-6 py-4">
-              <h1 className="text-4xl font-black tracking-tight sm:text-5xl">
+        <div className="relative z-10 mx-auto max-w-7xl px-4 md:px-6 py-16 md:py-24 lg:px-8">
+          <div className="mb-6 md:mb-8 flex flex-col gap-4 md:gap-6 border-b border-(--border) pb-6 md:pb-8 md:flex-row md:items-end md:justify-between">
+            <div className="rounded-2xl border border-(--border) bg-(--card-bg)/80 backdrop-blur-sm px-4 md:px-6 py-3 md:py-4">
+              <h1 className="text-3xl md:text-4xl font-black tracking-tight sm:text-5xl">
                 НАШ <span className="text-(--text-muted)">КАТАЛОГ</span>
               </h1>
-              <p className="mt-4 text-lg text-(--text-secondary)">
+              <p className="mt-2 md:mt-4 text-base md:text-lg text-(--text-secondary)">
                 Премиальные жидкости и девайсы для истинных ценителей.
               </p>
             </div>
-            <div className="flex flex-col gap-4 md:flex-row">
+            <div className="flex flex-col gap-3 md:gap-4 md:flex-row">
               <Suspense fallback={<div className="h-10 w-full max-w-md animate-pulse rounded-xl bg-(--card-bg)" />}>
                 <SearchInput />
               </Suspense>

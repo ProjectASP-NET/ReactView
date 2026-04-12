@@ -8,8 +8,8 @@ export default function HomePage() {
   return (
     <FadeIn>
     <main className="flex min-h-screen flex-col">
-      <section className="relative flex h-screen w-full items-center justify-center bg-[url('/banner.png')] bg-cover bg-fixed bg-center bg-no-repeat">
-        <div className="absolute inset-0 bg-black/60 bg-linear-to-t from-black via-black/40 to-transparent" />
+      <section className="relative flex min-h-[60vh] md:min-h-screen w-full items-center justify-center bg-[url('/banner.png')] bg-cover bg-fixed bg-center bg-no-repeat">
+        <div className="absolute inset-0 bg-black/70 md:bg-black/60 md:bg-linear-to-t from-black via-black/40 to-transparent" />
         <div className="relative z-10 flex flex-col items-center gap-6 px-6 text-center">
           <div className="inline-flex items-center gap-2 rounded-full border border-(--border) bg-(--card-bg) px-4 py-1.5 backdrop-blur-md">
             <span className="h-2 w-2 rounded-full bg-green-500 animate-pulse" />
@@ -17,13 +17,13 @@ export default function HomePage() {
               Быстрая доставка по Кишиневу
             </span>
           </div>
-          <h1 className="max-w-4xl text-5xl font-black tracking-tighter text-white sm:text-7xl md:text-8xl">
+          <h1 className="max-w-4xl text-4xl md:text-6xl lg:text-7xl font-black tracking-tighter text-white md:text-8xl">
             ИСКУССТВО <br />
             <span className="text-transparent bg-clip-text bg-linear-to-r from-gray-200 to-gray-500">
               ГУСТОГО ПАРА
             </span>
           </h1>
-          <p className="max-w-2xl text-lg font-light text-white/70 sm:text-xl">
+          <p className="max-w-2xl text-base md:text-lg lg:text-xl font-light text-white/70">
             D&D Liquid — это премиальные жидкости и топовые девайсы для тех, кто не согласен на компромиссы во вкусе.
           </p>
           <div className="mt-8 flex flex-col gap-4 sm:flex-row">
@@ -43,11 +43,11 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-      <section className="relative z-20 flex min-h-screen flex-col items-center justify-center bg-(--section-bg) px-6 py-24 text-(--text-primary)">
-        <h2 className="mb-12 text-center text-4xl font-bold tracking-tight md:text-6xl">
+      <section className="relative z-20 flex min-h-screen flex-col items-center justify-center bg-(--section-bg) px-4 md:px-6 py-16 md:py-24 text-(--text-primary)">
+        <h2 className="mb-8 md:mb-12 text-center text-3xl md:text-4xl lg:text-6xl font-bold tracking-tight">
           ПОЧЕМУ <span className="text-(--text-muted)">D&D LIQUID?</span>
         </h2>
-        <div className="grid max-w-6xl grid-cols-1 gap-8 md:grid-cols-3">
+        <div className="grid max-w-6xl grid-cols-1 gap-6 md:gap-8 md:grid-cols-3">
           {[
             { title: "ОРИГИНАЛ", desc: "Только сертифицированная продукция от мировых брендов." },
             { title: "ВКУС", desc: "Сотни уникальных миксов от классики до экзотики." },

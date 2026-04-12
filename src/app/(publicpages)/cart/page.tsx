@@ -32,21 +32,21 @@ export default function CartPage() {
 
   if (items.length === 0) {
     return (
-      <main className="mx-auto max-w-7xl px-6 py-24 lg:px-8">
-        <h1 className="mb-8 text-4xl font-black text-(--text-primary)">Корзина</h1>
+      <main className="mx-auto max-w-7xl px-4 md:px-6 py-16 md:py-24 lg:px-8">
+        <h1 className="mb-6 md:mb-8 text-3xl md:text-4xl font-black text-(--text-primary)">Корзина</h1>
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="flex flex-col items-center justify-center py-20 rounded-3xl border border-(--border) bg-(--card-bg)"
+          className="flex flex-col items-center justify-center py-16 md:py-20 rounded-2xl md:rounded-3xl border border-(--border) bg-(--card-bg)"
         >
-          <p className="text-xl font-bold text-(--text-secondary)">Корзина пуста</p>
+          <p className="text-lg md:text-xl font-bold text-(--text-secondary)">Корзина пуста</p>
           <p className="mt-2 text-(--text-muted)">
             Добавьте товары из каталога
           </p>
           <Link
             href={PAGES.CATALOG}
-            className="mt-6 rounded-full bg-(--text-primary) px-8 py-3 text-sm font-bold text-(--background) transition-transform hover:scale-105 active:scale-95"
+            className="mt-6 rounded-full bg-(--text-primary) px-6 md:px-8 py-3 text-sm font-bold text-(--background) transition-transform hover:scale-105 active:scale-95"
           >
             ПЕРЕЙТИ В КАТАЛОГ
           </Link>
@@ -58,9 +58,9 @@ export default function CartPage() {
   const totalItems = items.reduce((sum, i) => sum + i.quantity, 0);
 
   return (
-    <main className="mx-auto max-w-7xl px-6 py-24 lg:px-8">
-      <div className="mb-8 flex items-center justify-between">
-        <h1 className="text-4xl font-black text-(--text-primary)">
+    <main className="mx-auto max-w-7xl px-4 md:px-6 py-16 md:py-24 lg:px-8">
+      <div className="mb-6 md:mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <h1 className="text-3xl md:text-4xl font-black text-(--text-primary)">
           Корзина{" "}
           <span className="text-(--text-muted)">({totalItems} товаров)</span>
         </h1>
@@ -112,8 +112,8 @@ export default function CartPage() {
         </motion.div>
       )}
 
-      <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
-        <div className="lg:col-span-2 space-y-4">
+      <div className="grid grid-cols-1 gap-6 md:gap-8 lg:grid-cols-3">
+        <div className="lg:col-span-2 space-y-3 md:space-y-4">
           <AnimatePresence mode="popLayout">
             {items.map(({ product, quantity }, index) => (
               <motion.div
@@ -127,12 +127,12 @@ export default function CartPage() {
                 exit={{ opacity: 0, x: -20, scale: 0.95 }}
                 transition={{ duration: 0.3 }}
                 layout
-                className="flex gap-4 rounded-2xl border border-(--border) bg-(--card-bg) p-4"
+                className="flex flex-col sm:flex-row gap-3 md:gap-4 rounded-xl md:rounded-2xl border border-(--border) bg-(--card-bg) p-3 md:p-4"
                 style={{ animationDelay: `${index * 50}ms` }}
               >
                 <Link
                   href={`/catalog/${product.id}`}
-                  className="relative h-24 w-24 shrink-0 overflow-hidden rounded-xl bg-black/50"
+                  className="relative h-20 w-20 sm:h-24 sm:w-24 shrink-0 overflow-hidden rounded-xl bg-black/50"
                 >
                   <Image
                     src={product.img}
@@ -153,7 +153,7 @@ export default function CartPage() {
                       {product.name}
                     </Link>
                   </div>
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between mt-2 sm:mt-0">
                     <div className="flex items-center gap-2">
                       <button
                         onClick={() => updateQuantity(product.id, quantity - 1)}
@@ -179,7 +179,7 @@ export default function CartPage() {
                     </button>
                   </div>
                 </div>
-                <div className="flex flex-col items-end justify-between">
+                <div className="flex flex-row sm:flex-col items-center sm:items-end justify-between sm:justify-start gap-2 sm:gap-0">
                   <p className="text-lg font-black text-(--text-primary)">
                     {product.price * quantity}{" "}
                     <span className="text-sm font-light text-(--text-muted)">MDL</span>
@@ -190,8 +190,8 @@ export default function CartPage() {
           </AnimatePresence>
         </div>
 
-        <div className="rounded-2xl border border-(--border) bg-(--card-bg) p-6 h-fit sticky top-24">
-          <h2 className="mb-4 text-xl font-bold text-(--text-primary)">
+        <div className="rounded-xl md:rounded-2xl border border-(--border) bg-(--card-bg) p-4 md:p-6 h-fit lg:sticky lg:top-24">
+          <h2 className="mb-3 md:mb-4 text-lg md:text-xl font-bold text-(--text-primary)">
             Итого
           </h2>
           <div className="space-y-3 border-b border-(--border) pb-4">
