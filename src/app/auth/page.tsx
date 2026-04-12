@@ -37,9 +37,11 @@ export default function AuthPage() {
 
   return (
     <div className="flex min-h-screen w-full relative items-center justify-center">
+      {/* === MOBILE BACKGROUND (< 768px) === */}
       <div className="md:hidden absolute inset-0 bg-[url('/banner.png')] bg-cover bg-center" />
       <div className="md:hidden absolute inset-0 bg-black/60" />
 
+      {/* === DESKTOP BACKGROUND (≥ 768px) === */}
       <video
         autoPlay
         loop
@@ -51,6 +53,7 @@ export default function AuthPage() {
       </video>
       <div className="hidden md:block absolute inset-0 bg-black/60" />
 
+      {/* === MOBILE HEADER (< 768px) === */}
       <div className="absolute top-4 left-4 z-50 md:hidden">
         <Link 
           href={PAGES.CATALOG} 
@@ -65,6 +68,7 @@ export default function AuthPage() {
         <ThemeToggle />
       </div>
 
+      {/* === MOBILE LAYOUT (< 768px) === */}
       <div className="md:hidden relative z-10 w-full max-w-md px-4 py-8">
         <div className="bg-(--card-bg)/95 backdrop-blur-sm rounded-2xl border border-(--border) p-6 shadow-2xl">
           <div className="text-center mb-6">
@@ -99,7 +103,7 @@ export default function AuthPage() {
             </button>
           </div>
 
-          <div className="min-h-[300px]">
+          <div className="min-h-75">
             {activeTab === "login" ? (
               <SignInForm onSubmit={handleLogin} />
             ) : (
@@ -115,6 +119,7 @@ export default function AuthPage() {
         </div>
       </div>
 
+      {/* === DESKTOP LAYOUT (≥ 768px) === */}
       <div className="hidden md:block relative z-10 w-full max-w-212.5 p-8">
         <div 
           style={{

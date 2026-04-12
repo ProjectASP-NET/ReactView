@@ -6,7 +6,6 @@ import { PAGES } from '@/config/pages.config';
 
 export default function HomePage() {
   return (
-    <FadeIn>
     <main className="flex min-h-screen flex-col">
       <section className="relative flex min-h-[60vh] md:min-h-screen w-full items-center justify-center bg-[url('/banner.png')] bg-cover bg-fixed bg-center bg-no-repeat">
         <div className="absolute inset-0 bg-black/40 md:bg-black/60 md:bg-linear-to-t from-black via-black/40 to-transparent" />
@@ -17,7 +16,7 @@ export default function HomePage() {
               Быстрая доставка по Кишиневу
             </span>
           </div>
-          <h1 className="max-w-4xl text-4xl md:text-6xl lg:text-7xl font-black tracking-tighter text-white md:text-8xl">
+          <h1 className="max-w-4xl text-4xl lg:text-7xl font-black tracking-tighter text-white md:text-8xl">
             ИСКУССТВО <br />
             <span className="text-transparent bg-clip-text bg-linear-to-r from-gray-200 to-gray-500">
               ГУСТОГО ПАРА
@@ -43,26 +42,31 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-      <section className="relative z-20 flex min-h-screen flex-col items-center justify-center bg-(--section-bg) px-4 md:px-6 py-16 md:py-24 text-(--text-primary)">
-        <h2 className="mb-8 md:mb-12 text-center text-3xl md:text-4xl lg:text-6xl font-bold tracking-tight">
-          ПОЧЕМУ <span className="text-(--text-muted)">D&D LIQUID?</span>
-        </h2>
-        <div className="grid max-w-6xl grid-cols-1 gap-6 md:gap-8 md:grid-cols-3">
-          {[
-            { title: "ОРИГИНАЛ", desc: "Только сертифицированная продукция от мировых брендов." },
-            { title: "ВКУС", desc: "Сотни уникальных миксов от классики до экзотики." },
-            { title: "КАЧЕСТВО", desc: "Тщательный контроль на каждом этапе производства." },
-          ].map((item, i) => (
-            <div key={i} className="flex flex-col gap-4 rounded-3xl border border-(--card-border) bg-(--card-bg) p-8 transition-colors hover:bg-(--card-hover)">
-              <h3 className="text-xl font-bold tracking-wider">{item.title}</h3>
-              <p className="font-light text-(--text-secondary) leading-relaxed">{item.desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-    <FeaturedProducts />
-    <NewProducts />
+      <FadeIn>
+        <section className="relative z-20 flex min-h-screen flex-col items-center justify-center bg-(--section-bg) px-4 md:px-6 py-16 md:py-24 text-(--text-primary)">
+          <h2 className="mb-8 md:mb-12 text-center text-3xl md:text-4xl lg:text-6xl font-bold tracking-tight">
+            ПОЧЕМУ <span className="text-(--text-muted)">D&D LIQUID?</span>
+          </h2>
+          <div className="grid max-w-6xl grid-cols-1 gap-6 md:gap-8 md:grid-cols-3">
+            {[
+              { title: "ОРИГИНАЛ", desc: "Только сертифицированная продукция от мировых брендов." },
+              { title: "ВКУС", desc: "Сотни уникальных миксов от классики до экзотики." },
+              { title: "КАЧЕСТВО", desc: "Тщательный контроль на каждом этапе производства." },
+            ].map((item, i) => (
+              <div key={i} className="flex flex-col gap-4 rounded-3xl border border-(--card-border) bg-(--card-bg) p-8 transition-colors hover:bg-(--card-hover)">
+                <h3 className="text-xl font-bold tracking-wider">{item.title}</h3>
+                <p className="font-light text-(--text-secondary) leading-relaxed">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      </FadeIn>
+      <FadeIn delay={0.1}>
+        <FeaturedProducts />
+      </FadeIn>
+      <FadeIn delay={0.2}>
+        <NewProducts />
+      </FadeIn>
     </main>
-    </FadeIn>
   );
 }
