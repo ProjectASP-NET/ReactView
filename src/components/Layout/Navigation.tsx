@@ -56,10 +56,10 @@ export function Navigation() {
       {isMobileMenuOpen && (
         <div className="fixed inset-0 z-50 md:hidden">
           <div 
-            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+            className="absolute inset-0 bg-black/80"
             onClick={closeMobileMenu}
           />
-          <div className="absolute top-20 left-4 right-4 bg-(--card-bg) border border-(--border) rounded-2xl p-4 shadow-2xl transition-all duration-300 ease-in-out">
+          <div className="absolute top-20 left-4 right-4 bg-[#0a0a0a] border border-(--border) rounded-2xl p-4 shadow-2xl">
             <div className="flex flex-col gap-2">
               {MENU.map((item) => {
                 const isActive = pathname === item.href;
@@ -78,7 +78,7 @@ export function Navigation() {
                   </Link>
                 );
               })}
-              <div className="flex items-center gap-2 px-4 py-3 border-t border-(--border) mt-2">
+              <div className="flex items-center gap-3 px-4 py-3 border-t border-(--border) mt-2">
                 <ThemeToggle />
                 <CompareIcon />
                 <CartIcon />

@@ -6,13 +6,14 @@ import React from "react";
 
 interface SignUpFormProps {
   onSubmit: (data: { name: string; email: string; password: string; passwordConfirm: string }) => void;
+  onSwitchToLogin?: () => void;
 }
 
 interface SignUpFormPropsExt extends SignUpFormProps {
   autoFocus?: boolean;
 }
 
-export function SignUpForm({ onSubmit, autoFocus }: SignUpFormPropsExt) {
+export function SignUpForm({ onSubmit, autoFocus, onSwitchToLogin }: SignUpFormPropsExt) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -39,12 +40,7 @@ export function SignUpForm({ onSubmit, autoFocus }: SignUpFormPropsExt) {
   }, [autoFocus]);
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-full max-w-sm">
-      <div className="text-center mb-2">
-        <h2 className="text-xl md:text-2xl font-bold text-(--text-primary)">Создать аккаунт</h2>
-        <p className="text-(--text-secondary) text-sm mt-1">Присоединяйтесь к нам</p>
-      </div>
-
+    <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-full">
       <div className="flex flex-col gap-1">
         <label className="text-sm text-(--text-secondary)">Имя</label>
         <div className="relative">
@@ -158,9 +154,13 @@ export function SignUpForm({ onSubmit, autoFocus }: SignUpFormPropsExt) {
 
       <p className="text-center text-sm text-(--text-secondary)">
         Уже есть аккаунт?{" "}
-        <span className="text-(--accent) cursor-pointer hover:underline">
-          Войти
-        </span>
+        {onSwitchToLogin ? (
+          <button type="button" onClick={onSwitchToLogin} className="text-(--accent) hover:underline">
+            Войти
+          </button>
+        ) : (
+          <span className="text-(--accent)">Войти</span>
+        )}
       </p>
     </form>
   );

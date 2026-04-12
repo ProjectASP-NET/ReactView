@@ -9,7 +9,7 @@ export default function HomePage() {
     <FadeIn>
     <main className="flex min-h-screen flex-col">
       <section className="relative flex min-h-[60vh] md:min-h-screen w-full items-center justify-center bg-[url('/banner.png')] bg-cover bg-fixed bg-center bg-no-repeat">
-        <div className="absolute inset-0 bg-black/70 md:bg-black/60 md:bg-linear-to-t from-black via-black/40 to-transparent" />
+        <div className="absolute inset-0 bg-black/40 md:bg-black/60 md:bg-linear-to-t from-black via-black/40 to-transparent" />
         <div className="relative z-10 flex flex-col items-center gap-6 px-6 text-center">
           <div className="inline-flex items-center gap-2 rounded-full border border-(--border) bg-(--card-bg) px-4 py-1.5 backdrop-blur-md">
             <span className="h-2 w-2 rounded-full bg-green-500 animate-pulse" />

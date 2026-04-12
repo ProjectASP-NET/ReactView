@@ -30,12 +30,7 @@ export function SignInForm({ onSubmit, autoFocus }: SignInFormPropsExt) {
   }, [autoFocus]);
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-full max-w-sm">
-      <div className="text-center mb-2">
-        <h2 className="text-xl md:text-2xl font-bold text-(--text-primary)">С возвращением</h2>
-        <p className="text-(--text-secondary) text-sm mt-1">Рады видеть вас снова</p>
-      </div>
-
+    <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-full">
       <div className="flex flex-col gap-1">
         <label className="text-sm text-(--text-secondary)">Email</label>
         <div className="relative">
@@ -89,7 +84,7 @@ export function SignInForm({ onSubmit, autoFocus }: SignInFormPropsExt) {
 
       <button
         type="submit"
-        className="w-full py-4 rounded-xl bg-(--accent) text-(--background) font-semibold hover:opacity-90 transition-opacity text-base"
+        className="w-full py-4 rounded-xl bg-(--accent) text-(--background) font-semibold hover:opacity-90 transition-opacity text-base mt-2"
       >
         Войти
       </button>
