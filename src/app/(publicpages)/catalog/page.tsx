@@ -107,7 +107,7 @@ export default function Catalog() {
           loop
           muted
           playsInline
-          className="absolute inset-0 w-full h-full object-cover min-h-125"
+          className="absolute inset-0 w-full h-full object-cover"
         >
           <source src="/CatalogBG.mp4" type="video/mp4" />
         </video>

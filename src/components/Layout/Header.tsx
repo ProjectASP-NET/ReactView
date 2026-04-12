@@ -16,7 +16,7 @@ export function Header() {
               alt="D&DLiquid"
               width={40}
               height={40}
-              className="h-auto w-full object-contain brightness-110 grayscale transition-all group-hover:grayscale-0"
+              className="h-auto w-full object-contain rounded-full brightness-110 grayscale transition-all group-hover:grayscale-0"
               priority
             />
           </div>

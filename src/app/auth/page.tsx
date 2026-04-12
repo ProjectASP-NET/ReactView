@@ -6,6 +6,7 @@ import { PAGES } from "@/config/pages.config";
 import { ThemeToggle } from "@/components/UI/ThemeToggle";
 import { SignInForm } from "../../services/SignInForm";
 import { SignUpForm } from "../../services/SignUpForm";
+import FadeIn from "@/components/UI/FadeIn";
 
 export default function AuthPage() {
   const [isLogin, setIsLogin] = useState(true);
@@ -34,7 +35,6 @@ export default function AuthPage() {
       >
         <source src="/Auth.mp4" type="video/mp4" />
       </video>
-
       <div className="relative z-10 w-full max-w-212.5 p-8">
         <div 
           style={{
