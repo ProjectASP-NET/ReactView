@@ -7,7 +7,7 @@ import { ThemeToggle } from "@/components/UI/ThemeToggle";
 import { SignInForm } from "../../services/SignInForm";
 import { SignUpForm } from "../../services/SignUpForm";
 import { ArrowLeft } from "lucide-react";
-import {Home} from "lucide-react"
+import { HomeLink } from "@/components/Buttons/HomeLink";
 
 export default function AuthPage() {
   const [activeTab, setActiveTab] = useState<"login" | "register">("login");
@@ -55,16 +55,6 @@ export default function AuthPage() {
       <div className="hidden md:block absolute inset-0 bg-black/60" />
 
       {/* === MOBILE HEADER (< 768px) === */}
-      <div className="absolute top-4 left-4 z-50 md:hidden">
-        <Link 
-          href={PAGES.CATALOG} 
-          className="flex items-center gap-2 text-white/80 hover:text-white transition-colors"
-        >
-          <ArrowLeft size={20} />
-          <span>Назад</span>
-        </Link>
-      </div>
-
       <div className="absolute top-4 right-4 z-50">
         <ThemeToggle />
       </div>
@@ -111,12 +101,6 @@ export default function AuthPage() {
               <SignUpForm onSubmit={handleRegister} onSwitchToLogin={() => setActiveTab("login")} />
             )}
           </div>
-        </div>
-
-        <div className="text-center mt-6">
-          <Link href={PAGES.CATALOG} className="text-sm text-(--text-secondary) hover:text-(--text-primary) transition-colors">
-            ← Вернуться на главную
-          </Link>
         </div>
       </div>
 
@@ -171,13 +155,6 @@ export default function AuthPage() {
           </div>
         </div>
       </div>
-        <Link 
-          href={PAGES.CATALOG} 
-          className="absolute top-6 left-6 z-50 text-white/80 hover:text-white transition-colors"
-        >
-          <Home size={20} /> 
-         <span>На главную</span> 
-        </Link>
     </div>
   );
 }
