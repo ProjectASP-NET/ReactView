@@ -51,7 +51,7 @@ function HeroSection() {
             initial={{ opacity: 0, backgroundPosition: '0% 50%' }}
             animate={{ opacity: 1, backgroundPosition: '100% 50%' }}
             transition={{ duration: 1, delay: 0.8 }}
-            className="text-transparent bg-clip-text bg-gradient-to-r from-gray-200 via-gray-400 to-gray-200 bg-[length:200%_auto]"
+            className="text-transparent bg-clip-text bg-linear-to-r from-gray-200 via-gray-400 to-gray-200 bg-size-[200%_auto]"
           >
             ГУСТОГО ПАРА
           </motion.span>
@@ -95,7 +95,7 @@ function HeroButton({ href, children, variant }: { href: string; children: React
       >
         <Link href={href} className={`${baseStyles} bg-white text-black block`}>
           <motion.span
-            className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-black/10 to-transparent"
+            className="absolute inset-0 -translate-x-full bg-linear-to-r from-transparent via-black/10 to-transparent"
             animate={{ x: ['0%', '200%'] }}
             transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 2, ease: 'linear' }}
           />

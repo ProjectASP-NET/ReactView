@@ -3,10 +3,14 @@
 import { motion } from 'framer-motion'
 import { ReactNode, ButtonHTMLAttributes } from 'react'
 
-interface MotionButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface MotionButtonProps {
   children: ReactNode
   variant?: 'primary' | 'secondary' | 'ghost'
   size?: 'sm' | 'md' | 'lg'
+  className?: string
+  disabled?: boolean
+  type?: 'button' | 'submit' | 'reset'
+  onClick?: () => void
 }
 
 export function MotionButton({ 
@@ -14,7 +18,9 @@ export function MotionButton({
   className = '',
   variant = 'primary',
   size = 'md',
-  ...props 
+  disabled = false,
+  type = 'button',
+  onClick 
 }: MotionButtonProps) {
   const baseStyles = 'relative overflow-hidden rounded-xl font-bold tracking-wider transition-colors'
   
@@ -32,11 +38,13 @@ export function MotionButton({
 
   return (
     <motion.button
-      whileHover={{ scale: 1.02 }}
-      whileTap={{ scale: 0.95 }}
+      whileHover={{ scale: disabled ? 1 : 1.02 }}
+      whileTap={{ scale: disabled ? 1 : 0.95 }}
       transition={{ duration: 0.15 }}
       className={`${baseStyles} ${variants[variant]} ${sizes[size]} ${className}`}
-      {...props}
+      disabled={disabled}
+      type={type}
+      onClick={onClick}
     >
       <motion.div
         className="absolute inset-0 bg-white/10 opacity-0 hover:opacity-100"
