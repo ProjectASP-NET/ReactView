@@ -20,6 +20,7 @@ export function Filter() {
     } else {
       params.set("filter", value);
     }
+    params.set("page", "1");
     router.push(`?${params.toString()}`);
   };
 

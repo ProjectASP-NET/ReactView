@@ -10,12 +10,13 @@ export function SearchInput() {
   const [query, setQuery] = useState(searchParams.get("search") || "");
 
   useEffect(() => {
+    if (!query || query.length < 2) return;
+    
     const timer = setTimeout(() => {
       const params = new URLSearchParams(searchParams.toString());
-      if (query.length >= 2) {
-        params.set("search", query);
-      } else {
-        params.delete("search");
+      params.set("search", query);
+      if (!searchParams.get("page")) {
+        params.set("page", "1");
       }
       router.push(`?${params.toString()}`, { scroll: false });
     }, 300);
@@ -27,6 +28,7 @@ export function SearchInput() {
     setQuery("");
     const params = new URLSearchParams(searchParams.toString());
     params.delete("search");
+    params.set("page", "1");
     router.push(`?${params.toString()}`, { scroll: false });
   };
 

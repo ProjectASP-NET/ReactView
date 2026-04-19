@@ -5,6 +5,7 @@ import { ProductCard } from "@/components/Product/ProductCard";
 import { Sort } from "@/components/Filters/Sort";
 import { Filter } from "@/components/Filters/Filter";
 import { SearchInput } from "@/components/Filters/SearchInput";
+import { Pagination } from "@/components/Filters/Pagination";
 import { SortLogic } from "@/utility/SortLogic";
 import { MOCK_PRODUCTS } from "@/types/Products";
 import { Suspense } from "react";
@@ -60,6 +61,12 @@ function CatalogContent() {
 
   const sortedProducts = SortLogic(filteredProducts, sortQuery);
 
+  const pageParam = searchParams.get("page");
+  const page = pageParam ? parseInt(pageParam) : 1;
+  const itemsPerPage = 20;
+  const startIndex = (page - 1) * itemsPerPage;
+  const paginatedProducts = sortedProducts.slice(startIndex, startIndex + itemsPerPage);
+
   return (
     <div 
       className="min-h-[calc(100vh-200px)] rounded-2xl md:rounded-3xl p-4 md:p-6 transition-all duration-500"
@@ -71,15 +78,17 @@ function CatalogContent() {
         </Suspense>
       </div>
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {sortedProducts.map((product) => (
+        {paginatedProducts.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
       </div>
-      {sortedProducts.length === 0 && (
+      {sortedProducts.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-20 text-(--text-muted)">
           <p className="text-xl font-bold">Товары не найдены</p>
           <p className="text-sm">Попробуйте изменить параметры поиска или фильтрации</p>
         </div>
+      ) : (
+        <Pagination totalItems={sortedProducts.length} itemsPerPage={itemsPerPage} />
       )}
     </div>
   );
