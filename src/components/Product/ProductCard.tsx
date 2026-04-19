@@ -1,26 +1,37 @@
 'use client'
-import Link from "next/link";
-import Image from "next/image";
-import { Scale, Heart, Star } from "lucide-react";
-import { PAGES } from "@/config/pages.config";
-import { AddtoCart } from "../Buttons/AddtoCartB";
-import { QuickViewButton } from "../Buttons/QuickViewButton";
-import { Product } from "@/types/Mockdata";
-import { useCompare } from "@/context/CompareContext";
-import { useLikeandFav } from "@/context/LikeandFavContext";
-interface CardProps{
-    product : Product;
+import Link from "next/link"
+import Image from "next/image"
+import { Scale, Heart, Star } from "lucide-react"
+import { PAGES } from "@/config/pages.config"
+import { AddtoCart } from "../Buttons/AddtoCartB"
+import { QuickViewButton } from "../Buttons/QuickViewButton"
+import { Product } from "@/types/Mockdata"
+import { useCompare } from "@/context/CompareContext"
+import { useLikeandFav } from "@/context/LikeandFavContext"
+import { motion } from "framer-motion"
+
+interface CardProps {
+  product: Product
+  index?: number
 }
-export function ProductCard({product} : CardProps) {
-    const productURL = PAGES.getProduct(product.id);
-    const { toggleCompare, isInCompare } = useCompare();
-    const { toggleLike, toggleFavorite, isLiked, isFavorite } = useLikeandFav();
-    const isAdded = isInCompare(product.id);
-    const liked = isLiked(product.id);
-    const favorited = isFavorite(product.id);
-    return ( 
-    <div className="group relative flex flex-col rounded-3xl border border-(--card-border) bg-(--card-bg) p-4 transition-all hover:border-(--text-secondary) hover:bg-(--card-hover)">
-      <Link href={productURL} className="block relative mb-4 aspect-square w-full overflow-hidden rounded-2xl bg-black/50 p-6 group">
+
+export function ProductCard({ product, index = 0 }: CardProps) {
+  const productURL = PAGES.getProduct(product.id)
+  const { toggleCompare, isInCompare } = useCompare()
+  const { toggleLike, toggleFavorite, isLiked, isFavorite } = useLikeandFav()
+  const isAdded = isInCompare(product.id)
+  const liked = isLiked(product.id)
+  const favorited = isFavorite(product.id)
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.4, delay: index * 0.05 }}
+      className="group relative flex flex-col rounded-3xl border border-(--card-border) bg-(--card-bg) p-4 transition-all hover:border-(--text-secondary) hover:bg-(--card-hover)"
+    >
+      <Link href={productURL} className="block relative mb-4 aspect-square w-full overflow-hidden rounded-2xl bg-black/50 p-6">
         <Image
           src={product.img}
           alt={product.name}
@@ -32,11 +43,17 @@ export function ProductCard({product} : CardProps) {
         <span className="absolute left-3 top-3 rounded-full bg-black/60 px-3 py-1 text-[10px] font-bold tracking-widest text-white backdrop-blur-md uppercase">
           {product.type === "liquid" ? "Жидкость" : product.type === "vape" ? "Девайс" : "Расходник"}
         </span>
-        <div className="absolute right-3 bottom-3 flex gap-2 opacity-0 -translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
-          <button
+        
+        <motion.div 
+          className="absolute right-3 bottom-3 flex gap-2"
+          initial={{ opacity: 0, y: 10 }}
+          whileHover={{ opacity: 1, y: 0 }}
+        >
+          <motion.button
+            whileTap={{ scale: 0.9 }}
             onClick={(e) => {
-              e.preventDefault();
-              toggleLike(product.id);
+              e.preventDefault()
+              toggleLike(product.id)
             }}
             className={`flex h-10 items-center gap-1.5 rounded-full px-3 shadow-lg transition-all ${
               liked
@@ -46,11 +63,13 @@ export function ProductCard({product} : CardProps) {
           >
             <Heart size={18} fill={liked ? "currentColor" : "none"} />
             <span className="text-sm font-bold">{product.LikeCount + (liked ? 1 : 0)}</span>
-          </button>
-          <button
+          </motion.button>
+          
+          <motion.button
+            whileTap={{ scale: 0.9 }}
             onClick={(e) => {
-              e.preventDefault();
-              toggleFavorite(product);
+              e.preventDefault()
+              toggleFavorite(product)
             }}
             className={`flex h-10 w-10 items-center justify-center rounded-full shadow-lg transition-all ${
               favorited
@@ -59,9 +78,10 @@ export function ProductCard({product} : CardProps) {
             }`}
           >
             <Star size={18} fill={favorited ? "currentColor" : "none"} />
-          </button>
-        </div>
+          </motion.button>
+        </motion.div>
       </Link>
+      
       <div className="flex flex-1 flex-col justify-between">
         <div>
           <p className="text-[10px] font-bold uppercase tracking-widest text-(--text-muted) mb-1">
@@ -76,15 +96,16 @@ export function ProductCard({product} : CardProps) {
             {product.price} <span className="text-sm font-light text-(--text-muted)">MDL</span>
           </p>
         </div>
-        <AddtoCart
-        productID={product.id}
-        inStock = {product.InStock}
-        />
+        
+        <AddtoCart productID={product.id} inStock={product.InStock} />
+        
         <QuickViewButton product={product} />
-        <button
+        
+        <motion.button
+          whileTap={{ scale: 0.95 }}
           onClick={(e) => {
-            e.preventDefault();
-            toggleCompare(product);
+            e.preventDefault()
+            toggleCompare(product)
           }}
           className={`mt-2 flex h-10 w-full items-center justify-center gap-2 rounded-xl border text-sm font-medium transition-colors ${
             isAdded
@@ -94,8 +115,8 @@ export function ProductCard({product} : CardProps) {
         >
           <Scale size={16} />
           {isAdded ? "В сравнении" : "Сравнить"}
-        </button>
-    </div>        
-    </div>
-     );
-    }
+        </motion.button>
+      </div>
+    </motion.div>
+  )
+}

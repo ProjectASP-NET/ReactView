@@ -1,26 +1,30 @@
-"use client";
-import { ShoppingCart } from "lucide-react";
-import { useState } from "react";
-import { useCart } from "@/context/CartContext";
-import { MOCK_PRODUCTS } from "@/types/Products";
+"use client"
+import { ShoppingCart } from "lucide-react"
+import { useState } from "react"
+import { useCart } from "@/context/CartContext"
+import { MOCK_PRODUCTS } from "@/types/Products"
+import { useToast } from "@/components/UI/Toast"
+import { motion, AnimatePresence } from "framer-motion"
 
 interface AddtoCartProps {
-  productID: string;
-  inStock: boolean;
+  productID: string
+  inStock: boolean
 }
 
 export function AddtoCart({ productID, inStock }: AddtoCartProps) {
-  const [isAdded, setIsAdded] = useState(false);
-  const { addToCart } = useCart();
+  const [isAdded, setIsAdded] = useState(false)
+  const { addToCart } = useCart()
+  const { showToast } = useToast()
 
   const handleAdd = () => {
-    const product = MOCK_PRODUCTS.find((p) => p.id === productID);
+    const product = MOCK_PRODUCTS.find((p) => p.id === productID)
     if (product) {
-      addToCart(product);
-      setIsAdded(true);
-      setTimeout(() => setIsAdded(false), 2000);
+      addToCart(product)
+      setIsAdded(true)
+      showToast(`${product.name} добавлен в корзину`, 'success')
+      setTimeout(() => setIsAdded(false), 2000)
     }
-  };
+  }
 
   if (!inStock) {
     return (
@@ -30,18 +34,64 @@ export function AddtoCart({ productID, inStock }: AddtoCartProps) {
       >
         НЕТ В НАЛИЧИИ
       </button>
-    );
+    )
   }
 
   return (
-    <button
+    <motion.button
       onClick={handleAdd}
-      className={`mt-4 flex w-full items-center justify-center gap-2 rounded-xl py-3 text-sm font-bold transition-all active:scale-95 ${
-        isAdded ? "bg-green-500 text-white" : "bg-(--text-primary) text-(--background) hover:scale-[1.02]"
+      whileTap={{ scale: 0.95 }}
+      className={`mt-4 flex w-full items-center justify-center gap-2 rounded-xl py-3 text-sm font-bold transition-all ${
+        isAdded 
+          ? "bg-green-500 text-white" 
+          : "bg-(--text-primary) text-(--background) hover:brightness-110"
       }`}
     >
-      <ShoppingCart size={18} />
-      {isAdded ? "ДОБАВЛЕНО" : "В КОРЗИНУ"}
-    </button>
-  );
+      <AnimatePresence mode="wait">
+        {isAdded ? (
+          <motion.span
+            key="added"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2 }}
+            className="flex items-center gap-2"
+          >
+            <motion.svg
+              initial={{ pathLength: 0 }}
+              animate={{ pathLength: 1 }}
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="3"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <motion.path
+                d="M20 6L9 17l-5-5"
+                initial={{ pathLength: 0 }}
+                animate={{ pathLength: 1 }}
+                transition={{ duration: 0.3, delay: 0.1 }}
+              />
+            </motion.svg>
+            ДОБАВЛЕНО
+          </motion.span>
+        ) : (
+          <motion.span
+            key="add"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2 }}
+            className="flex items-center gap-2"
+          >
+            <ShoppingCart size={18} />
+            В КОРЗИНУ
+          </motion.span>
+        )}
+      </AnimatePresence>
+    </motion.button>
+  )
 }

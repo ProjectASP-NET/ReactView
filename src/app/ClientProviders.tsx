@@ -8,6 +8,7 @@ import { LikeandFavProvider } from "@/context/LikeandFavContext";
 import { UserProvider } from "@/context/UserContext";
 import { FloatingAuthButton } from "@/components/Buttons/FloatingAuthButton";
 import { ErrorBoundary } from "@/components/UI/ErrorBoundary";
+import { ToastProvider } from "@/components/UI/Toast";
 
 function ErrorFallback() {
   return (
@@ -32,8 +33,10 @@ export function ClientProviders({ children }: { children: ReactNode }) {
           <CartProvider>
             <CompareProvider>
               <LikeandFavProvider>
-                {children}
-                <FloatingAuthButton />
+                <ToastProvider>
+                  {children}
+                  <FloatingAuthButton />
+                </ToastProvider>
               </LikeandFavProvider>
             </CompareProvider>
           </CartProvider>
