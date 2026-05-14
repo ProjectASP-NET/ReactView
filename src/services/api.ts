@@ -1,17 +1,47 @@
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5131/api";
+
+const getToken = (): string | null => {
+  if (typeof window === "undefined") return null;
+  return localStorage.getItem("auth_token");
+};
 
 export const apiFetch = async (endpoint: string, options: RequestInit = {}) => {
+  const token = getToken();
+
+  const headers: Record<string, string> = {
+    'Content-Type': 'application/json',
+  };
+
+  if (options.headers) {
+    Object.entries(options.headers).forEach(([key, value]) => {
+      if (typeof value === 'string') {
+        headers[key] = value;
+      }
+    });
+  }
+
+  if (token) {
+    headers['Authorization'] = `Bearer ${token}`;
+  }
+
   const response = await fetch(`${API_URL}${endpoint}`, {
     ...options,
-    headers: {
-      'Content-Type': 'application/json',
-      ...options.headers,
-    },
+    headers,
   });
+
+  if (response.status === 401) {
+    if (typeof window !== "undefined") {
+      localStorage.removeItem("auth_token");
+      localStorage.removeItem("auth_user");
+      window.location.href = "/auth";
+    }
+    throw new Error("Unauthorized");
+  }
+
   const data = await response.json();
 
   if (!response.ok || (data.errorMassage && data.errorMassage.length > 0)) {
     throw new Error(data.errorMassage?.[0] || `API Error: ${response.status}`);
   }
-  return data.data; 
+  return data.data || data;
 };

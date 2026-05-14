@@ -6,13 +6,14 @@ import React from "react";
 
 interface SignInFormProps {
   onSubmit: (data: { email: string; password: string }) => void;
+  disabled?: boolean;
 }
 
 interface SignInFormPropsExt extends SignInFormProps {
   autoFocus?: boolean;
 }
 
-export function SignInForm({ onSubmit, autoFocus }: SignInFormPropsExt) {
+export function SignInForm({ onSubmit, autoFocus, disabled }: SignInFormPropsExt) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -84,9 +85,10 @@ export function SignInForm({ onSubmit, autoFocus }: SignInFormPropsExt) {
 
       <button
         type="submit"
-        className="w-full py-4 rounded-xl bg-(--accent) text-(--background) font-semibold hover:opacity-90 transition-opacity text-base mt-2"
+        disabled={disabled}
+        className="w-full py-4 rounded-xl bg-(--accent) text-(--background) font-semibold hover:opacity-90 transition-opacity text-base mt-2 disabled:opacity-50 disabled:cursor-not-allowed"
       >
-        Войти
+        {disabled ? "Загрузка..." : "Войти"}
       </button>
     </form>
   );

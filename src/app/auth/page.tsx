@@ -8,11 +8,24 @@ import { SignInForm } from "../../services/SignInForm";
 import { SignUpForm } from "../../services/SignUpForm";
 import { ArrowLeft } from "lucide-react";
 import { HomeLink } from "@/components/Buttons/HomeLink";
+import { useUser } from "@/context/UserContext";
+import { AuthService } from "@/services/auth.service";
+import { useRouter } from "next/navigation";
 
 export default function AuthPage() {
   const [activeTab, setActiveTab] = useState<"login" | "register">("login");
   const [isDesktop, setIsDesktop] = useState(false);
   const [isLogin, setIsLogin] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+  const { login, isLoggedIn } = useUser();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      router.push("/");
+    }
+  }, [isLoggedIn, router]);
 
   useEffect(() => {
     const checkDesktop = () => {
@@ -23,26 +36,56 @@ export default function AuthPage() {
     return () => window.removeEventListener("resize", checkDesktop);
   }, []);
 
-  const handleLogin = (data: { email: string; password: string }) => {
-    console.log("Login:", data);
+  const handleLogin = async (data: { email: string; password: string }) => {
+    setError(null);
+    setLoading(true);
+    try {
+      const response = await AuthService.login({
+        login: data.email,
+        password: data.password,
+      });
+      login(response.token, response.user);
+      router.push("/");
+    } catch (err: any) {
+      setError(err.message || "Login failed");
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const handleRegister = (data: {
+  const handleRegister = async (data: {
     name: string;
     email: string;
     password: string;
     passwordConfirm: string;
   }) => {
-    console.log("Register:", data);
+    setError(null);
+    setLoading(true);
+    try {
+      if (data.password !== data.passwordConfirm) {
+        throw new Error("Passwords do not match");
+      }
+
+      const response = await AuthService.register({
+        username: data.name,
+        email: data.email,
+        password: data.password,
+        role: "User",
+      });
+      login(response.token, response.user);
+      router.push("/");
+    } catch (err: any) {
+      setError(err.message || "Registration failed");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <div className="flex min-h-screen w-full relative items-center justify-center">
-      {/* === MOBILE BACKGROUND (< 768px) === */}
       <div className="md:hidden absolute inset-0 bg-[url('/banner.png')] bg-cover bg-center" />
       <div className="md:hidden absolute inset-0 bg-black/60" />
 
-      {/* === DESKTOP BACKGROUND (≥ 768px) === */}
       <video
         autoPlay
         loop
@@ -54,12 +97,16 @@ export default function AuthPage() {
       </video>
       <div className="hidden md:block absolute inset-0 bg-black/60" />
 
-      {/* === MOBILE HEADER (< 768px) === */}
       <div className="absolute top-4 right-4 z-50">
         <ThemeToggle />
       </div>
 
-      {/* === MOBILE LAYOUT (< 768px) === */}
+      {error && (
+        <div className="absolute top-20 left-1/2 -translate-x-1/2 z-50 bg-red-500 text-white px-6 py-3 rounded-lg shadow-lg">
+          {error}
+        </div>
+      )}
+
       <div className="md:hidden relative z-10 w-full max-w-md px-4 py-8">
         <div className="bg-(--card-bg)/95 backdrop-blur-sm rounded-2xl border border-(--border) p-6 shadow-2xl">
           <div className="text-center mb-6">
@@ -96,17 +143,16 @@ export default function AuthPage() {
 
           <div className="min-h-75">
             {activeTab === "login" ? (
-              <SignInForm onSubmit={handleLogin} />
+              <SignInForm onSubmit={handleLogin} disabled={loading} />
             ) : (
-              <SignUpForm onSubmit={handleRegister} onSwitchToLogin={() => setActiveTab("login")} />
+              <SignUpForm onSubmit={handleRegister} onSwitchToLogin={() => setActiveTab("login")} disabled={loading} />
             )}
           </div>
         </div>
       </div>
 
-      {/* === DESKTOP LAYOUT (≥ 768px) === */}
       <div className="hidden md:block relative z-10 w-full max-w-212.5 p-8">
-        <div 
+        <div
           style={{
             borderRadius: '100px',
             transition: 'border-radius 700ms ease-in-out',
@@ -114,14 +160,14 @@ export default function AuthPage() {
           className="relative h-137.5 bg-(--card-bg)/90 backdrop-blur-sm shadow-2xl overflow-hidden flex border border-(--border)"
         >
           <div className="absolute top-0 left-0 w-1/2 h-full flex flex-col items-center justify-center px-12">
-            <SignInForm onSubmit={handleLogin} autoFocus={isLogin} />
+            <SignInForm onSubmit={handleLogin} autoFocus={isLogin} disabled={loading} />
           </div>
 
           <div className="absolute top-0 right-0 w-1/2 h-full flex flex-col items-center justify-center px-12">
-            <SignUpForm onSubmit={handleRegister} />
+            <SignUpForm onSubmit={handleRegister} disabled={loading} />
           </div>
 
-          <div 
+          <div
             style={{
               transform: isLogin ? 'translateX(0%)' : 'translateX(100%)',
               borderRadius: isLogin ? '100px 0 0 100px' : '0 100px 100px 0',

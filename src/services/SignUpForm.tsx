@@ -7,13 +7,14 @@ import React from "react";
 interface SignUpFormProps {
   onSubmit: (data: { name: string; email: string; password: string; passwordConfirm: string }) => void;
   onSwitchToLogin?: () => void;
+  disabled?: boolean;
 }
 
 interface SignUpFormPropsExt extends SignUpFormProps {
   autoFocus?: boolean;
 }
 
-export function SignUpForm({ onSubmit, autoFocus, onSwitchToLogin }: SignUpFormPropsExt) {
+export function SignUpForm({ onSubmit, autoFocus, onSwitchToLogin, disabled }: SignUpFormPropsExt) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -146,10 +147,10 @@ export function SignUpForm({ onSubmit, autoFocus, onSwitchToLogin }: SignUpFormP
 
       <button
         type="submit"
-        disabled={!agreedToTerms}
+        disabled={!agreedToTerms || disabled}
         className="w-full py-4 rounded-xl bg-(--accent) text-(--background) font-semibold hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed text-base"
       >
-        Зарегистрироваться
+        {disabled ? "Загрузка..." : "Зарегистрироваться"}
       </button>
     </form>
   );

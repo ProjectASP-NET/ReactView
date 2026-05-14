@@ -6,21 +6,15 @@ import { ProductCard } from "@/components/Product/ProductCard";
 import { useLikeandFav } from "@/context/LikeandFavContext";
 import { MOCK_PRODUCTS } from "@/types/Products";
 import { PAGES } from "@/config/pages.config";
-import  Link  from "next/link";
-import { User, Mail, Phone, MapPin, Edit2, Save, X, Package, Heart, ThumbsUp } from "lucide-react";
+import Link from "next/link";
+import { User, Mail, Edit2, Save, X, Package } from "lucide-react";
+import { ProtectedRoute } from "@/components/Auth/ProtectedRoute";
 
 const MOCK_ORDERS = [
   { id: "1234", date: "15.03.2024", total: 1500, status: "delivered", items: 2 },
   { id: "1235", date: "10.03.2024", total: 2200, status: "shipped", items: 3 },
   { id: "1236", date: "05.03.2024", total: 800, status: "processing", items: 1 },
 ];
-
-const DEFAULT_USER = {
-  name: "Алексей",
-  email: "alex@example.com",
-  phone: "+373 00 000 000",
-  address: "Кишинев, ул. Пушкина 10",
-};
 
 const getStatusLabel = (status: string) => {
   switch (status) {
@@ -36,34 +30,42 @@ const getStatusLabel = (status: string) => {
 };
 
 export default function UserProfilePage() {
-  const { user, updateUser, logout, login, isLoggedIn } = useUser();
+  const { user, updateUser, logout, isLoggedIn } = useUser();
   const { favorites, likedProducts } = useLikeandFav();
   const [isEditing, setIsEditing] = useState(false);
-  const [formData, setFormData] = useState(DEFAULT_USER);
+  const [formData, setFormData] = useState({
+    username: "",
+    email: "",
+  });
 
   useEffect(() => {
     if (user) {
-      setFormData(user);
+      setFormData({
+        username: user.username,
+        email: user.email,
+      });
     }
   }, [user]);
 
   const handleSave = () => {
-    if (!isLoggedIn) {
-      login(formData);
-    } else {
+    if (user) {
       updateUser(formData);
     }
     setIsEditing(false);
   };
 
   const handleCancel = () => {
-    setFormData(user || DEFAULT_USER);
+    if (user) {
+      setFormData({
+        username: user.username,
+        email: user.email,
+      });
+    }
     setIsEditing(false);
   };
 
   const handleLogout = () => {
     logout();
-    setFormData(DEFAULT_USER);
   };
 
   const favoriteProducts = MOCK_PRODUCTS.filter((p) =>
@@ -74,13 +76,14 @@ export default function UserProfilePage() {
   const likedProds = MOCK_PRODUCTS.filter((p) => likedProductIds.includes(p.id));
 
   return (
+    <ProtectedRoute>
     <main className="mx-auto max-w-7xl px-6 py-24 lg:px-8">
       <div className="mb-12">
         <h1 className="text-4xl font-black tracking-tight sm:text-5xl">
           ЛИЧНЫЙ <span className="text-(--text-muted)">КАБИНЕТ</span>
         </h1>
         <p className="mt-4 text-lg text-(--text-secondary)">
-          Добро пожаловать{user ? `, ${user.name}!` : "!"}
+          Добро пожаловать{user ? `, ${user.username}!` : "!"}
         </p>
       </div>
 
@@ -125,12 +128,12 @@ export default function UserProfilePage() {
                   {isEditing ? (
                     <input
                       type="text"
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      value={formData.username}
+                      onChange={(e) => setFormData({ ...formData, username: e.target.value })}
                       className="w-full bg-transparent text-(--text-primary) outline-none"
                     />
                   ) : (
-                    <p className="font-medium text-(--text-primary)">{user?.name || "—"}</p>
+                    <p className="font-medium text-(--text-primary)">{user?.username || "—"}</p>
                   )}
                 </div>
               </div>
@@ -153,36 +156,10 @@ export default function UserProfilePage() {
               </div>
 
               <div className="flex items-center gap-3 rounded-xl border border-(--border) bg-(--card-bg) p-4">
-                <Phone size={20} className="text-(--text-secondary)" />
+                <User size={20} className="text-(--text-secondary)" />
                 <div className="flex-1">
-                  <p className="text-xs text-(--text-muted)">Телефон</p>
-                  {isEditing ? (
-                    <input
-                      type="tel"
-                      value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full bg-transparent text-(--text-primary) outline-none"
-                    />
-                  ) : (
-                    <p className="font-medium text-(--text-primary)">{user?.phone || "—"}</p>
-                  )}
-                </div>
-              </div>
-
-              <div className="flex items-center gap-3 rounded-xl border border-(--border) bg-(--card-bg) p-4">
-                <MapPin size={20} className="text-(--text-secondary)" />
-                <div className="flex-1">
-                  <p className="text-xs text-(--text-muted)">Адрес</p>
-                  {isEditing ? (
-                    <input
-                      type="text"
-                      value={formData.address}
-                      onChange={(e) => setFormData({ ...formData, address: e.target.value })}
-                      className="w-full bg-transparent text-(--text-primary) outline-none"
-                    />
-                  ) : (
-                    <p className="font-medium text-(--text-primary)">{user?.address || "—"}</p>
-                  )}
+                  <p className="text-xs text-(--text-muted)">Роль</p>
+                  <p className="font-medium text-(--text-primary)">{user?.role.name || "—"}</p>
                 </div>
               </div>
             </div>
@@ -276,5 +253,6 @@ export default function UserProfilePage() {
         </div>
       </div>
     </main>
+    </ProtectedRoute>
   );
 }

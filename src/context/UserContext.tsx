@@ -8,77 +8,84 @@ import {
   useEffect,
   ReactNode,
 } from "react";
-
-export interface User {
-  name: string;
-  email: string;
-  phone: string;
-  address: string;
-}
+import { UserResponseData } from "@/types/auth.types";
+import { AuthService } from "@/services/auth.service";
 
 interface UserContextType {
-  user: User | null;
+  user: UserResponseData | null;
+  token: string | null;
   isLoggedIn: boolean;
   isLoading: boolean;
-  login: (user: User) => void;
+  login: (token: string, user: UserResponseData) => void;
   logout: () => void;
-  updateUser: (updates: Partial<User>) => void;
+  updateUser: (updates: Partial<UserResponseData>) => void;
 }
 
 const UserContext = createContext<UserContextType | undefined>(undefined);
 
-const STORAGE_KEY = "reactview_user";
+const TOKEN_KEY = "auth_token";
+const USER_KEY = "auth_user";
 
-function getStoredUser(): User | null {
-  if (typeof window === "undefined") return null;
+function getStoredAuth(): { token: string | null; user: UserResponseData | null } {
+  if (typeof window === "undefined") return { token: null, user: null };
   try {
-    const stored = localStorage.getItem(STORAGE_KEY);
-    if (stored) return JSON.parse(stored);
-    
-    const demoUser = {
-      name: "Алексей",
-      email: "alex@example.com",
-      phone: "+373 00 000 000",
-      address: "Кишинев, ул. Пушкина 10",
-    };
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(demoUser));
-    return demoUser;
+    const token = localStorage.getItem(TOKEN_KEY);
+    const userStr = localStorage.getItem(USER_KEY);
+    const user = userStr ? JSON.parse(userStr) : null;
+    return { token, user };
   } catch {
-    return null;
+    return { token: null, user: null };
   }
 }
 
 export function UserProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<UserResponseData | null>(null);
+  const [token, setToken] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    setUser(getStoredUser());
+    const { token: storedToken, user: storedUser } = getStoredAuth();
+
+    if (storedToken && storedUser) {
+      setToken(storedToken);
+      setUser(storedUser);
+
+      AuthService.getCurrentUser(storedToken)
+        .then((freshUser) => {
+          setUser(freshUser);
+          localStorage.setItem(USER_KEY, JSON.stringify(freshUser));
+        })
+        .catch(() => {
+          localStorage.removeItem(TOKEN_KEY);
+          localStorage.removeItem(USER_KEY);
+          setToken(null);
+          setUser(null);
+        });
+    }
+
     setIsLoading(false);
   }, []);
 
-  useEffect(() => {
-    if (!isLoading) {
-      if (user) {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(user));
-      } else {
-        localStorage.removeItem(STORAGE_KEY);
-      }
-    }
-  }, [user, isLoading]);
-
-  const login = useCallback((newUser: User) => {
+  const login = useCallback((newToken: string, newUser: UserResponseData) => {
+    setToken(newToken);
     setUser(newUser);
+    localStorage.setItem(TOKEN_KEY, newToken);
+    localStorage.setItem(USER_KEY, JSON.stringify(newUser));
   }, []);
 
   const logout = useCallback(() => {
+    setToken(null);
     setUser(null);
+    localStorage.removeItem(TOKEN_KEY);
+    localStorage.removeItem(USER_KEY);
   }, []);
 
-  const updateUser = useCallback((updates: Partial<User>) => {
+  const updateUser = useCallback((updates: Partial<UserResponseData>) => {
     setUser((current) => {
       if (!current) return null;
-      return { ...current, ...updates };
+      const updated = { ...current, ...updates };
+      localStorage.setItem(USER_KEY, JSON.stringify(updated));
+      return updated;
     });
   }, []);
 
@@ -86,7 +93,8 @@ export function UserProvider({ children }: { children: ReactNode }) {
     <UserContext.Provider
       value={{
         user,
-        isLoggedIn: !!user,
+        token,
+        isLoggedIn: !!user && !!token,
         isLoading,
         login,
         logout,
@@ -97,6 +105,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
     </UserContext.Provider>
   );
 }
+
 export function useUser() {
   const context = useContext(UserContext);
   if (context === undefined) {

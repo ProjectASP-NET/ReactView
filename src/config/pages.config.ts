@@ -8,6 +8,7 @@ export const PAGES = {
     FAVORITES: "/favorites",
     LIKES : "/likes",
     USERPROFILE: "/userprofile",
+    ADMIN: "/admin",
 
     getProduct: (id: string) => `/catalog/${id}`,
     getCatalog: (sort?: string) => sort ? `/catalog?sort=${sort}` : "/catalog",

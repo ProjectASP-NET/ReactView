@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { User, LogIn, LogOut, Star, Heart } from "lucide-react";
+import { User, LogIn, LogOut, Star, Heart, Shield } from "lucide-react";
 import Link from "next/link";
 import { useUser } from "@/context/UserContext";
 import { PAGES } from "@/config/pages.config";
@@ -12,12 +12,14 @@ interface MenuItem {
   label: string;
   href: string;
   onClick?: () => void;
+  adminOnly?: boolean;
 }
 
 const loggedInMenuItems: MenuItem[] = [
   { icon: User, label: "Профиль", href: PAGES.USERPROFILE },
   { icon: Star, label: "Избранное", href: PAGES.FAVORITES },
   { icon: Heart, label: "Мои лайки", href: PAGES.LIKES },
+  { icon: Shield, label: "Админ панель", href: PAGES.ADMIN, adminOnly: true },
   { icon: LogOut, label: "Выйти", href: "#", },
 ];
 
@@ -53,9 +55,15 @@ const itemVariants = {
 export function FloatingAuthButton() {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
-  const { isLoggedIn, logout } = useUser();
+  const { isLoggedIn, logout, user } = useUser();
 
-  const menuItems = isLoggedIn ? loggedInMenuItems : loggedOutMenuItems;
+  const isAdminOrManager = user?.role?.name === "Admin" || user?.role?.name === "Manager";
+
+  const filteredMenuItems = loggedInMenuItems.filter(item =>
+    !item.adminOnly || isAdminOrManager
+  );
+
+  const menuItems = isLoggedIn ? filteredMenuItems : loggedOutMenuItems;
 
   const handleItemClick = (item: MenuItem) => {
     if (item.href === "#") {
