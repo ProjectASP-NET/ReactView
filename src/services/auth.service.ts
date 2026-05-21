@@ -5,8 +5,9 @@ import {
   ChangePasswordData,
   UserResponseData,
 } from "@/types/auth.types";
+import { siteConfig } from "@/config/site.config";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5131/api";
+const API_URL = siteConfig.api.baseUrl;
 
 export class AuthService {
   static async login(data: UserLoginData): Promise<AuthResponseData> {

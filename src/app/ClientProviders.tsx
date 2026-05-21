@@ -6,6 +6,7 @@ import { ThemeProvider } from "@/context/ThemeContext";
 import { CompareProvider } from "@/context/CompareContext";
 import { LikeandFavProvider } from "@/context/LikeandFavContext";
 import { UserProvider } from "@/context/UserContext";
+import { ProductProvider } from "@/context/ProductContext";
 import { FloatingAuthButton } from "@/components/Buttons/FloatingAuthButton";
 import { ErrorBoundary } from "@/components/UI/ErrorBoundary";
 import { ToastProvider } from "@/components/UI/Toast";
@@ -30,16 +31,18 @@ export function ClientProviders({ children }: { children: ReactNode }) {
     <ErrorBoundary fallback={<ErrorFallback />}>
       <ThemeProvider>
         <UserProvider>
-          <CartProvider>
-            <CompareProvider>
-              <LikeandFavProvider>
-                <ToastProvider>
-                  {children}
-                  <FloatingAuthButton />
-                </ToastProvider>
-              </LikeandFavProvider>
-            </CompareProvider>
-          </CartProvider>
+          <ProductProvider>
+            <CartProvider>
+              <CompareProvider>
+                <LikeandFavProvider>
+                  <ToastProvider>
+                    {children}
+                    <FloatingAuthButton />
+                  </ToastProvider>
+                </LikeandFavProvider>
+              </CompareProvider>
+            </CartProvider>
+          </ProductProvider>
         </UserProvider>
       </ThemeProvider>
     </ErrorBoundary>

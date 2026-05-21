@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { renderHook, act } from '@testing-library/react'
 import { CartProvider, useCart } from '../../context/CartContext'
-import { Product } from '@/types/Mockdata'
+import { Product } from '@/types/product.types'
 
 const mockProduct: Product = {
   id: '1',

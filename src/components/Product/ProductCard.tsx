@@ -5,7 +5,7 @@ import { Scale, Heart, Star } from "lucide-react"
 import { PAGES } from "@/config/pages.config"
 import { AddtoCart } from "../Buttons/AddtoCartB"
 import { QuickViewButton } from "../Buttons/QuickViewButton"
-import { Product } from "@/types/Mockdata"
+import { Product } from "@/types/product.types"
 import { useCompare } from "@/context/CompareContext"
 import { useLikeandFav } from "@/context/LikeandFavContext"
 import { motion } from "framer-motion"
@@ -33,12 +33,16 @@ export function ProductCard({ product, index = 0 }: CardProps) {
     >
       <Link href={productURL} className="block relative mb-4 aspect-square w-full overflow-hidden rounded-2xl bg-black/50 p-6">
         <Image
-          src={product.img}
+          src={product.img || "/placeholder.jpg"}
           alt={product.name}
           fill
           className="object-contain transition-transform duration-500 group-hover:scale-110"
           sizes="(max-width: 768px) 100vw, 33vw"
           priority={Number(product.id) < 4}
+          onError={(e) => {
+            const target = e.currentTarget as HTMLImageElement;
+            target.src = "/placeholder.jpg";
+          }}
         />
         <span className="absolute left-3 top-3 rounded-full bg-black/60 px-3 py-1 text-[10px] font-bold tracking-widest text-white backdrop-blur-md uppercase">
           {product.type === "liquid" ? "Жидкость" : product.type === "vape" ? "Девайс" : "Расходник"}

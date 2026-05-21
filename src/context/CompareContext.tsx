@@ -8,7 +8,7 @@ import {
   useMemo,
   ReactNode,
 } from "react";
-import { Product } from "@/types/Mockdata";
+import { Product } from "@/types/product.types";
 
 interface CompareContextType {
   items: Product[];

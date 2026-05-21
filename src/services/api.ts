@@ -1,4 +1,6 @@
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5131/api";
+import { siteConfig } from "@/config/site.config";
+
+const API_URL = siteConfig.api.baseUrl;
 
 const getToken = (): string | null => {
   if (typeof window === "undefined") return null;

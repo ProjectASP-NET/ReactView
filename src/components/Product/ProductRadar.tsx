@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { Product, ILiquid, IVape } from "@/types/Mockdata";
+import { Product, ILiquid, IVape } from "@/types/product.types";
 
 interface Props {
   product: Product;

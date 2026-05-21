@@ -2,9 +2,9 @@
 
 import { useState, useEffect } from "react";
 import { useUser } from "@/context/UserContext";
+import { useProducts } from "@/context/ProductContext";
 import { ProductCard } from "@/components/Product/ProductCard";
 import { useLikeandFav } from "@/context/LikeandFavContext";
-import { MOCK_PRODUCTS } from "@/types/Products";
 import { PAGES } from "@/config/pages.config";
 import Link from "next/link";
 import { User, Mail, Edit2, Save, X, Package } from "lucide-react";
@@ -32,6 +32,7 @@ const getStatusLabel = (status: string) => {
 export default function UserProfilePage() {
   const { user, updateUser, logout, isLoggedIn } = useUser();
   const { favorites, likedProducts } = useLikeandFav();
+  const { products, isLoading } = useProducts();
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({
     username: "",
@@ -68,12 +69,12 @@ export default function UserProfilePage() {
     logout();
   };
 
-  const favoriteProducts = MOCK_PRODUCTS.filter((p) =>
+  const favoriteProducts = products.filter((p) =>
     favorites.some((f) => f.id === p.id)
   );
 
   const likedProductIds = Array.from(likedProducts);
-  const likedProds = MOCK_PRODUCTS.filter((p) => likedProductIds.includes(p.id));
+  const likedProds = products.filter((p) => likedProductIds.includes(p.id));
 
   return (
     <ProtectedRoute>

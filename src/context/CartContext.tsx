@@ -7,7 +7,7 @@ import {
   useCallback,
   ReactNode,
 } from "react";
-import { Product } from "@/types/Mockdata";
+import { Product } from "@/types/product.types";
 
 interface CartItem {
   product: Product;

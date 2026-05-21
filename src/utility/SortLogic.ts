@@ -1,5 +1,5 @@
 
-import { Product } from "../types/Mockdata";
+import { Product } from "@/types/product.types";
 
 export function SortLogic(products: Product[], sortType: string): Product[] {
   return [...products].sort((a, b) => {

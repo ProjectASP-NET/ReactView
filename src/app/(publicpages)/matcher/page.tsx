@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import { useCompare } from "@/context/CompareContext";
-import { MOCK_PRODUCTS } from "@/types/Products";
-import { Product } from "@/types/Mockdata";
+import { useProducts } from "@/context/ProductContext";
+import { Product } from "@/types/product.types";
 import { X, Search, Trash2, ChevronDown, ChevronUp } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -47,6 +47,7 @@ const VAPE_FIELDS: FieldConfig[] = [
 
 export default function MatcherPage() {
   const { items, removeFromCompare, clearCompare, toggleCompare } = useCompare();
+  const { products, isLoading } = useProducts();
   const [searchQuery, setSearchQuery] = useState("");
   const [typeFilter, setTypeFilter] = useState("all");
   const [expandedSections, setExpandedSections] = useState({
@@ -56,7 +57,7 @@ export default function MatcherPage() {
 
   const currentType = items[0]?.type ?? null;
 
-  const availableProducts = MOCK_PRODUCTS.filter((product) => {
+  const availableProducts = products.filter((product) => {
     if (currentType && product.type !== currentType) return false;
     if (typeFilter !== "all" && product.type !== typeFilter) return false;
     if (!items.some((item) => item.id === product.id)) {

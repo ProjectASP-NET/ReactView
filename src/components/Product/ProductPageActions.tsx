@@ -1,7 +1,7 @@
 "use client";
 
 import { Heart, Star } from "lucide-react";
-import { Product } from "@/types/Mockdata";
+import { Product } from "@/types/product.types";
 import { useLikeandFav } from "@/context/LikeandFavContext";
 
 interface ProductPageActionsProps {

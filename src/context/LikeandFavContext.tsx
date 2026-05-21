@@ -8,7 +8,7 @@ import {
   useEffect,
   ReactNode,
 } from "react";
-import { Product } from "@/types/Mockdata";
+import { Product } from "@/types/product.types";
 
 interface LikeandFavContextType {
   likedProducts: Set<string>;

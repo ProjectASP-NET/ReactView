@@ -1,4 +1,5 @@
 import { Droplets, Award, Truck, Shield, Clock, Heart } from "lucide-react";
+import { siteConfig } from "@/config/site.config";
 
 const STATS = [
   { value: "5+", label: "Лет на рынке" },
@@ -186,7 +187,7 @@ export default function AboutUs() {
             Позвонить
           </a>
           <a
-            href="https://t.me/ddliqiud"
+            href={siteConfig.links.telegram}
             target="_blank"
             rel="noopener noreferrer"
             className="rounded-xl border border-(--border) px-6 py-3 font-bold transition-colors hover:border-(--text-secondary)"

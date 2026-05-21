@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Product } from "@/types/Mockdata";
+import { Product } from "@/types/product.types";
 import { useEffect } from "react";
 import { AddtoCart } from "../Buttons/AddtoCartB";
 import { X, Heart, Star } from "lucide-react";

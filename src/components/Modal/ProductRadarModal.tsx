@@ -3,7 +3,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { X, BarChart3 } from "lucide-react";
 import { useState, useEffect } from "react";
-import { Product } from "@/types/Mockdata";
+import { Product } from "@/types/product.types";
 import { ProductRadar } from "../Product/ProductRadar";
 
 interface Props {

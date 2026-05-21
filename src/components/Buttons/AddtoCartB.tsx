@@ -2,7 +2,7 @@
 import { ShoppingCart } from "lucide-react"
 import { useState } from "react"
 import { useCart } from "@/context/CartContext"
-import { MOCK_PRODUCTS } from "@/types/Products"
+import { useProducts } from "@/context/ProductContext"
 import { useToast } from "@/components/UI/Toast"
 import { motion, AnimatePresence } from "framer-motion"
 
@@ -14,10 +14,11 @@ interface AddtoCartProps {
 export function AddtoCart({ productID, inStock }: AddtoCartProps) {
   const [isAdded, setIsAdded] = useState(false)
   const { addToCart } = useCart()
+  const { getProductById } = useProducts()
   const { showToast } = useToast()
 
   const handleAdd = () => {
-    const product = MOCK_PRODUCTS.find((p) => p.id === productID)
+    const product = getProductById(productID)
     if (product) {
       addToCart(product)
       setIsAdded(true)

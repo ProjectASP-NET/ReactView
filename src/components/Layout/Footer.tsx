@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { siteConfig } from "@/config/site.config";
 
 const NAVIGATION = [
   { name: "Каталог", href: "/catalog" },
@@ -72,7 +73,7 @@ export function Footer() {
                 dmitrii.olaresco@isa.utm.md
               </a>
               <a
-                href="https://t.me/placeholder"
+                href={siteConfig.links.telegram}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-sm text-(--text-secondary) hover:text-(--text-primary) transition-colors"

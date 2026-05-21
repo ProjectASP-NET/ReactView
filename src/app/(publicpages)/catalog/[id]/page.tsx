@@ -1,26 +1,39 @@
+"use client";
+
+import { useParams, notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { MOCK_PRODUCTS } from "@/types/Products";
+import { useProducts } from "@/context/ProductContext";
 import { AddtoCart } from "@/components/Buttons/AddtoCartB";
 import { ProductRadarModal } from "@/components/Modal/ProductRadarModal";
 import { ProductPageActions } from "@/components/Product/ProductPageActions";
-import { notFound } from "next/navigation";
 import { ProductCard } from "@/components/Product/ProductCard";
 import { PAGES } from "@/config/pages.config";
 
-interface ProductPageProps {
-  params: Promise<{ id: string }>;
-}
+export default function ProductPage() {
+  const params = useParams();
+  const id = params.id as string;
+  const { getProductById, products, isLoading } = useProducts();
+  const product = !isLoading ? getProductById(id) : null;
 
-export default async function ProductPage({ params }: ProductPageProps) {
-  const { id } = await params;
-  const product = MOCK_PRODUCTS.find((p) => p.id === id);
+  if (isLoading) {
+    return (
+      <main className="mx-auto max-w-7xl px-6 py-24 lg:px-8">
+        <div className="flex items-center justify-center min-h-[400px]">
+          <div className="text-center">
+            <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent"></div>
+            <p className="mt-4 text-(--text-secondary)">Загрузка...</p>
+          </div>
+        </div>
+      </main>
+    );
+  }
 
   if (!product) {
     notFound();
   }
 
-  const relatedProducts = MOCK_PRODUCTS.filter(
+  const relatedProducts = products.filter(
     (p) => p.id !== id && p.type === product.type
   ).slice(0, 4);
 

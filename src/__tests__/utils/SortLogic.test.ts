@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { SortLogic } from '../../utility/SortLogic'
-import { Product } from '@/types/Mockdata'
+import { Product } from '@/types/product.types'
 
 const mockProducts: Product[] = [
   { id: '1', name: 'Product A', price: 100, img: '/a.jpg', InStock: true, LikeCount: 5, type: 'liquid', volume: 30, flavor: ['berry'], nicotine: 12, Icelevel: 50 },

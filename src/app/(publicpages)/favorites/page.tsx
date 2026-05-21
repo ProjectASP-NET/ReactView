@@ -1,7 +1,7 @@
 "use client";
 
 import { useLikeandFav } from "@/context/LikeandFavContext";
-import { MOCK_PRODUCTS } from "@/types/Products";
+import { useProducts } from "@/context/ProductContext";
 import { ProductCard } from "@/components/Product/ProductCard";
 import Link from "next/link";
 import { PAGES } from "@/config/pages.config";
@@ -9,10 +9,24 @@ import { Heart } from "lucide-react";
 
 export default function FavoritesPage() {
   const { favorites } = useLikeandFav();
+  const { products, isLoading } = useProducts();
 
-  const favoriteProducts = MOCK_PRODUCTS.filter((p) =>
+  const favoriteProducts = products.filter((p) =>
     favorites.some((f) => f.id === p.id)
   );
+
+  if (isLoading) {
+    return (
+      <main className="mx-auto max-w-7xl px-6 py-24 lg:px-8">
+        <div className="flex items-center justify-center min-h-[400px]">
+          <div className="text-center">
+            <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent"></div>
+            <p className="mt-4 text-(--text-secondary)">Загрузка...</p>
+          </div>
+        </div>
+      </main>
+    );
+  }
 
   return (
     <main className="mx-auto max-w-7xl px-6 py-24 lg:px-8">

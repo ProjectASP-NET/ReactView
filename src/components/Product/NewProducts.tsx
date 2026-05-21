@@ -3,13 +3,29 @@
 import useEmblaCarousel from "embla-carousel-react";
 import Link from "next/link";
 import { ProductCard } from "./ProductCard";
-import { MOCK_PRODUCTS } from "../../types/Products";
+import { useProducts } from "@/context/ProductContext";
 import { PAGES } from "@/config/pages.config";
+
 export default function NewProducts() {
   const [emblaRef] = useEmblaCarousel({ dragFree: true });
-  const NewItems = [...MOCK_PRODUCTS]
-  .sort((a,b) =>Number(b.id) - Number(a.id)) 
-  .slice(0, 7);
+  const { products, isLoading } = useProducts();
+
+  const NewItems = [...products]
+    .sort((a, b) => Number(b.id) - Number(a.id))
+    .slice(0, 7);
+
+  if (isLoading) {
+    return (
+      <section className="w-full bg-(--section-bg) py-24 text-(--text-primary)">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="flex items-center justify-center py-12">
+            <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent"></div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className="w-full bg-(--section-bg) py-24 text-(--text-primary)">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">

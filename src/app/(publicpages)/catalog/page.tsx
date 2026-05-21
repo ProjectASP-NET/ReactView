@@ -7,7 +7,7 @@ import { Filter } from "@/components/Filters/Filter";
 import { SearchInput } from "@/components/Filters/SearchInput";
 import { Pagination } from "@/components/Filters/Pagination";
 import { SortLogic } from "@/utility/SortLogic";
-import { MOCK_PRODUCTS } from "@/types/Products";
+import { useProducts } from "@/context/ProductContext";
 import { Suspense } from "react";
 import FadeIn from "@/components/UI/FadeIn";
 import { ErrorBoundary } from "@/components/UI/ErrorBoundary";
@@ -31,6 +31,7 @@ function CatalogContent() {
   const sortQuery = searchParams.get("sort") || "new";
   const filterQuery = searchParams.get("filter") || "all";
   const searchQuery = searchParams.get("search") || "";
+  const { products, isLoading, error } = useProducts();
 
   const getCatalogBg = () => {
     switch (filterQuery) {
@@ -45,10 +46,32 @@ function CatalogContent() {
     }
   };
 
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center min-h-[400px]">
+        <div className="text-center">
+          <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent"></div>
+          <p className="mt-4 text-(--text-secondary)">Загрузка продуктов...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="flex items-center justify-center min-h-[400px]">
+        <div className="text-center">
+          <p className="text-red-500 text-lg font-bold">Ошибка загрузки продуктов</p>
+          <p className="text-(--text-secondary) mt-2">{error}</p>
+        </div>
+      </div>
+    );
+  }
+
   let filteredProducts =
     filterQuery === "all"
-      ? MOCK_PRODUCTS
-      : MOCK_PRODUCTS.filter((p) => p.type === filterQuery);
+      ? products
+      : products.filter((p) => p.type === filterQuery);
 
   if (searchQuery.length >= 2) {
     const q = searchQuery.toLowerCase();

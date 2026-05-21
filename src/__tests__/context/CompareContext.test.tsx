@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { renderHook, act } from '@testing-library/react'
 import { CompareProvider, useCompare } from '../../context/CompareContext'
-import { Product } from '@/types/Mockdata'
+import { Product } from '@/types/product.types'
 
 const mockProduct1: Product = {
   id: '1',
