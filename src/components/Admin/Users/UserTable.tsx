@@ -1,30 +1,50 @@
 "use client";
 
+import { useState } from "react";
 import { UserResponseData } from "@/types/auth.types";
 import { useUser } from "@/context/UserContext";
+import { PAGES } from "@/config/pages.config";
+import { Dropdown } from "@/components/UI/Dropdown";
 import { Trash2, Edit } from "lucide-react";
 import Link from "next/link";
 
 interface UserTableProps {
   users: UserResponseData[];
   onDelete: (id: number) => void;
+  onRoleChange: (id: number, roleId: number) => Promise<void>;
   onRefresh: () => void;
 }
 
-export function UserTable({ users, onDelete }: UserTableProps) {
+const roleOptions = [
+  { value: "1", label: "User" },
+  { value: "2", label: "Manager" },
+  { value: "3", label: "Admin" },
+];
+
+export function UserTable({ users, onDelete, onRoleChange }: UserTableProps) {
   const { user: currentUser } = useUser();
   const isAdmin = currentUser?.role.name === "Admin";
+  const [changingRole, setChangingRole] = useState<number | null>(null);
 
   const getRoleBadgeColor = (roleName: string) => {
     switch (roleName) {
       case "Admin":
-        return "bg-red-500/10 text-red-500 border-red-500/20";
+        return "bg-red-100 text-red-700 border-red-200";
       case "Manager":
-        return "bg-blue-500/10 text-blue-500 border-blue-500/20";
+        return "bg-blue-100 text-blue-700 border-blue-200";
       case "User":
-        return "bg-green-500/10 text-green-500 border-green-500/20";
+        return "bg-green-100 text-green-700 border-green-200";
       default:
-        return "bg-gray-500/10 text-gray-500 border-gray-500/20";
+        return "bg-gray-100 text-gray-700 border-gray-200";
+    }
+  };
+
+  const handleRoleChange = async (userId: number, roleId: number) => {
+    setChangingRole(userId);
+    try {
+      await onRoleChange(userId, roleId);
+    } finally {
+      setChangingRole(null);
     }
   };
 
@@ -34,21 +54,11 @@ export function UserTable({ users, onDelete }: UserTableProps) {
         <table className="w-full">
           <thead className="bg-(--background) border-b border-(--border)">
             <tr>
-              <th className="px-6 py-4 text-left text-sm font-semibold text-(--text-primary)">
-                ID
-              </th>
-              <th className="px-6 py-4 text-left text-sm font-semibold text-(--text-primary)">
-                Имя
-              </th>
-              <th className="px-6 py-4 text-left text-sm font-semibold text-(--text-primary)">
-                Email
-              </th>
-              <th className="px-6 py-4 text-left text-sm font-semibold text-(--text-primary)">
-                Роль
-              </th>
-              <th className="px-6 py-4 text-right text-sm font-semibold text-(--text-primary)">
-                Действия
-              </th>
+              <th className="px-6 py-4 text-left text-sm font-semibold text-(--text-primary)">ID</th>
+              <th className="px-6 py-4 text-left text-sm font-semibold text-(--text-primary)">Имя</th>
+              <th className="px-6 py-4 text-left text-sm font-semibold text-(--text-primary)">Email</th>
+              <th className="px-6 py-4 text-left text-sm font-semibold text-(--text-primary)">Роль</th>
+              <th className="px-6 py-4 text-right text-sm font-semibold text-(--text-primary)">Действия</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-(--border)">
@@ -61,28 +71,31 @@ export function UserTable({ users, onDelete }: UserTableProps) {
             ) : (
               users.map((user) => (
                 <tr key={user.id} className="hover:bg-(--background) transition-colors">
-                  <td className="px-6 py-4 text-sm text-(--text-secondary)">
-                    #{user.id}
-                  </td>
-                  <td className="px-6 py-4 text-sm font-medium text-(--text-primary)">
-                    {user.username}
-                  </td>
-                  <td className="px-6 py-4 text-sm text-(--text-secondary)">
-                    {user.email}
-                  </td>
+                  <td className="px-6 py-4 text-sm text-(--text-secondary)">#{user.id}</td>
+                  <td className="px-6 py-4 text-sm font-medium text-(--text-primary)">{user.username}</td>
+                  <td className="px-6 py-4 text-sm text-(--text-secondary)">{user.email}</td>
                   <td className="px-6 py-4">
-                    <span
-                      className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium border ${getRoleBadgeColor(
-                        user.role.name
-                      )}`}
-                    >
-                      {user.role.name}
-                    </span>
+                    {isAdmin && user.id !== currentUser?.id ? (
+                      <Dropdown
+                        options={roleOptions}
+                        value={String(user.role.id)}
+                        onChange={(v) => handleRoleChange(user.id, Number(v))}
+                        className="w-32"
+                      />
+                    ) : (
+                      <span
+                        className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium border ${getRoleBadgeColor(
+                          user.role.name
+                        )}`}
+                      >
+                        {user.role.name}
+                      </span>
+                    )}
                   </td>
                   <td className="px-6 py-4 text-right">
                     <div className="flex items-center justify-end gap-2">
                       <Link
-                        href={`/admin/users/${user.id}`}
+                        href={PAGES.getAdminUser(user.id)}
                         className="p-2 rounded-lg text-(--text-secondary) hover:bg-(--background) hover:text-(--text-primary) transition-colors"
                         title="Редактировать"
                       >

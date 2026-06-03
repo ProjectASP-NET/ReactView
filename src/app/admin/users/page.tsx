@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { AdminUserService } from "@/services/admin/user.service";
 import { UserResponseData } from "@/types/auth.types";
 import { UserTable } from "@/components/Admin/Users/UserTable";
+import { Dropdown } from "@/components/UI/Dropdown";
 import { Search, UserPlus } from "lucide-react";
 
 export default function UsersPage() {
@@ -39,6 +40,16 @@ export default function UsersPage() {
     } catch (error) {
       console.error("Failed to delete user:", error);
       alert("Ошибка при удалении пользователя");
+    }
+  };
+
+  const handleRoleChange = async (id: number, roleId: number) => {
+    try {
+      const updated = await AdminUserService.updateRole(id, { roleId });
+      setUsers(users.map((u) => (u.id === id ? updated : u)));
+    } catch (error) {
+      console.error("Failed to update role:", error);
+      alert("Ошибка при изменении роли");
     }
   };
 
@@ -88,19 +99,20 @@ export default function UsersPage() {
           />
         </div>
 
-        <select
+        <Dropdown
+          options={[
+            { value: "all", label: "Все роли" },
+            { value: "Admin", label: "Admin" },
+            { value: "Manager", label: "Manager" },
+            { value: "User", label: "User" },
+          ]}
           value={roleFilter}
-          onChange={(e) => setRoleFilter(e.target.value)}
-          className="px-4 py-3 rounded-xl bg-(--card-bg) border border-(--border) text-(--text-primary) focus:outline-none focus:border-(--accent)"
-        >
-          <option value="all">Все роли</option>
-          <option value="Admin">Admin</option>
-          <option value="Manager">Manager</option>
-          <option value="User">User</option>
-        </select>
+          onChange={setRoleFilter}
+          className="w-36"
+        />
       </div>
 
-      <UserTable users={filteredUsers} onDelete={handleDelete} onRefresh={loadUsers} />
+      <UserTable users={filteredUsers} onDelete={handleDelete} onRoleChange={handleRoleChange} onRefresh={loadUsers} />
     </div>
   );
 }

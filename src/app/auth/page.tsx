@@ -23,7 +23,7 @@ export default function AuthPage() {
 
   useEffect(() => {
     if (isLoggedIn) {
-      router.push("/");
+      router.push(PAGES.HOME);
     }
   }, [isLoggedIn, router]);
 
@@ -45,7 +45,7 @@ export default function AuthPage() {
         password: data.password,
       });
       login(response.token, response.user);
-      router.push("/");
+      router.push(PAGES.HOME);
     } catch (err: any) {
       setError(err.message || "Login failed");
     } finally {
@@ -73,7 +73,7 @@ export default function AuthPage() {
         role: "User",
       });
       login(response.token, response.user);
-      router.push("/");
+      router.push(PAGES.HOME);
     } catch (err: any) {
       setError(err.message || "Registration failed");
     } finally {

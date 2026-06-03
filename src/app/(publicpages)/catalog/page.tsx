@@ -1,6 +1,7 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
+import { useEffect } from "react";
 import { ProductCard } from "@/components/Product/ProductCard";
 import { Sort } from "@/components/Filters/Sort";
 import { Filter } from "@/components/Filters/Filter";
@@ -31,7 +32,11 @@ function CatalogContent() {
   const sortQuery = searchParams.get("sort") || "new";
   const filterQuery = searchParams.get("filter") || "all";
   const searchQuery = searchParams.get("search") || "";
-  const { products, isLoading, error } = useProducts();
+  const { products, isLoading, error, refreshProducts } = useProducts();
+
+  useEffect(() => {
+    refreshProducts();
+  }, []);
 
   const getCatalogBg = () => {
     switch (filterQuery) {

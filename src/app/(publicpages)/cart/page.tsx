@@ -131,7 +131,7 @@ export default function CartPage() {
                 style={{ animationDelay: `${index * 50}ms` }}
               >
                 <Link
-                  href={`/catalog/${product.id}`}
+                  href={PAGES.getProduct(product.id)}
                   className="relative h-20 w-20 sm:h-24 sm:w-24 shrink-0 overflow-hidden rounded-xl bg-black/50"
                 >
                   <Image
@@ -147,7 +147,7 @@ export default function CartPage() {
                       {product.brand}
                     </p>
                     <Link
-                      href={`/catalog/${product.id}`}
+                      href={PAGES.getProduct(product.id)}
                       className="font-bold text-(--text-primary) hover:text-(--text-secondary) transition-colors"
                     >
                       {product.name}

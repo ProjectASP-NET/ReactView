@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useUser } from "@/context/UserContext";
+import { PAGES } from "@/config/pages.config";
 import {
   LayoutDashboard,
   Users,
@@ -21,11 +22,11 @@ interface MenuItem {
 }
 
 const menuItems: MenuItem[] = [
-  { name: "Dashboard", href: "/admin", icon: LayoutDashboard },
-  { name: "Пользователи", href: "/admin/users", icon: Users, adminOnly: true },
-  { name: "Товары", href: "/admin/products", icon: Package },
-  { name: "Заказы", href: "/admin/orders", icon: ShoppingCart },
-  { name: "Аналитика", href: "/admin/analytics", icon: BarChart3 },
+  { name: "Dashboard", href: PAGES.ADMIN, icon: LayoutDashboard },
+  { name: "Пользователи", href: PAGES.ADMIN_USERS, icon: Users, adminOnly: true },
+  { name: "Товары", href: PAGES.ADMIN_PRODUCTS, icon: Package },
+  { name: "Заказы", href: PAGES.ADMIN_ORDERS, icon: ShoppingCart },
+  { name: "Аналитика", href: PAGES.ADMIN_ANALYTICS, icon: BarChart3 },
 ];
 
 export function AdminSidebar() {
@@ -72,7 +73,7 @@ export function AdminSidebar() {
 
       <div className="p-4 border-t border-(--border)">
         <Link
-          href="/"
+          href={PAGES.HOME}
           className="flex items-center gap-3 px-4 py-3 rounded-xl font-medium text-(--text-secondary) hover:bg-(--background) hover:text-(--text-primary) transition-colors mb-2"
         >
           <Settings size={20} />

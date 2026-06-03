@@ -9,8 +9,17 @@ export const PAGES = {
     FAVORITES: "/favorites",
     LIKES : "/likes",
     USERPROFILE: "/userprofile",
+
     ADMIN: "/admin",
+    ADMIN_PRODUCTS: "/admin/products",
+    ADMIN_PRODUCTS_CREATE: "/admin/products/create",
+    ADMIN_ORDERS: "/admin/orders",
+    ADMIN_USERS: "/admin/users",
+    ADMIN_ANALYTICS: "/admin/analytics",
 
     getProduct: (id: string) => `/catalog/${id}`,
     getCatalog: (sort?: string) => sort ? `/catalog?sort=${sort}` : "/catalog",
+    getBrand: (id: number) => `/brands/${id}`,
+    getAdminOrder: (id: number) => `/admin/orders/${id}`,
+    getAdminUser: (id: number) => `/admin/users/${id}`,
 };

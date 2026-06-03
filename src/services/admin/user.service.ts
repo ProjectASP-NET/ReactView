@@ -1,5 +1,5 @@
 import { apiFetch } from "../api";
-import { UserResponseData, UserUpdateData } from "@/types/auth.types";
+import { UserResponseData, UserUpdateData, RoleUpdateData } from "@/types/auth.types";
 
 export class AdminUserService {
   static async getAllUsers(): Promise<UserResponseData[]> {
@@ -16,6 +16,13 @@ export class AdminUserService {
 
   static async updateUser(id: number, data: UserUpdateData): Promise<UserResponseData> {
     return apiFetch(`/user/${id}`, {
+      method: "PUT",
+      body: JSON.stringify(data),
+    });
+  }
+
+  static async updateRole(id: number, data: RoleUpdateData): Promise<UserResponseData> {
+    return apiFetch(`/user/${id}/role`, {
       method: "PUT",
       body: JSON.stringify(data),
     });

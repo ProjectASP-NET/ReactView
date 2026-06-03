@@ -61,10 +61,10 @@ export function LikeandFavProvider({ children }: { children: ReactNode }) {
     if (isLoggedIn) {
       InteractionService.getMyLikes().then((ids) => {
         setLikedProducts(new Set(ids.map((id) => id.toString())));
-      });
+      }).catch(() => setLikedProducts(new Set()));
       InteractionService.getMyFavorites().then((ids) => {
         setFavorites(new Set(ids.map((id) => id.toString())));
-      });
+      }).catch(() => setFavorites(new Set()));
     } else {
       setLikedProducts(getStoredLikes());
       setFavorites(getStoredFavorites());
@@ -94,7 +94,7 @@ export function LikeandFavProvider({ children }: { children: ReactNode }) {
           return next;
         });
         updateLikeCount(Number(productId), res.likeCount);
-      });
+      }).catch((err) => console.error("Toggle like failed:", err));
     } else {
       const wasLiked = likedProducts.has(productId);
       setLikedProducts((current) => {
@@ -125,7 +125,7 @@ export function LikeandFavProvider({ children }: { children: ReactNode }) {
           }
           return next;
         });
-      });
+      }).catch((err) => console.error("Toggle favorite failed:", err));
     } else {
       setFavorites((current) => {
         const next = new Set(current);

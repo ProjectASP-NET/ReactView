@@ -37,6 +37,11 @@ export interface ChangePasswordData {
 export interface UserUpdateData {
   username?: string;
   email?: string;
+  roleId?: number;
+}
+
+export interface RoleUpdateData {
+  roleId: number;
 }
 
 export interface AuthState {

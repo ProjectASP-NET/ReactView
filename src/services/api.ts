@@ -1,4 +1,5 @@
 import { siteConfig } from "@/config/site.config";
+import { PAGES } from "@/config/pages.config";
 
 const API_URL = siteConfig.api.baseUrl;
 
@@ -35,15 +36,15 @@ export const apiFetch = async (endpoint: string, options: RequestInit = {}) => {
     if (typeof window !== "undefined") {
       localStorage.removeItem("auth_token");
       localStorage.removeItem("auth_user");
-      window.location.href = "/auth";
+      window.location.href = PAGES.AUTH;
     }
     throw new Error("Unauthorized");
   }
 
   const data = await response.json();
 
-  if (!response.ok || (data.errorMassage && data.errorMassage.length > 0)) {
-    throw new Error(data.errorMassage?.[0] || `API Error: ${response.status}`);
+  if (!response.ok || (data.errorMessage && data.errorMessage.length > 0)) {
+    throw new Error(data.errorMessage?.[0] || `API Error: ${response.status}`);
   }
   return data.data || data;
 };

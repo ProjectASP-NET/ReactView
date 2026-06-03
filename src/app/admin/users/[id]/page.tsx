@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter, useParams } from "next/navigation";
 import { AdminUserService } from "@/services/admin/user.service";
 import { UserResponseData } from "@/types/auth.types";
+import { PAGES } from "@/config/pages.config";
 import { ArrowLeft, Save } from "lucide-react";
 import Link from "next/link";
 
@@ -36,7 +37,7 @@ export default function UserEditPage() {
     } catch (error) {
       console.error("Failed to load user:", error);
       alert("Ошибка загрузки пользователя");
-      router.push("/admin/users");
+      router.push(PAGES.ADMIN_USERS);
     } finally {
       setLoading(false);
     }
@@ -49,7 +50,7 @@ export default function UserEditPage() {
     try {
       await AdminUserService.updateUser(userId, formData);
       alert("Пользователь успешно обновлен");
-      router.push("/admin/users");
+      router.push(PAGES.ADMIN_USERS);
     } catch (error) {
       console.error("Failed to update user:", error);
       alert("Ошибка при обновлении пользователя");
@@ -75,7 +76,7 @@ export default function UserEditPage() {
     <div className="p-8">
       <div className="mb-8">
         <Link
-          href="/admin/users"
+          href={PAGES.ADMIN_USERS}
           className="inline-flex items-center gap-2 text-(--text-secondary) hover:text-(--text-primary) mb-4"
         >
           <ArrowLeft size={20} />
@@ -128,7 +129,7 @@ export default function UserEditPage() {
                 {saving ? "Сохранение..." : "Сохранить"}
               </button>
               <Link
-                href="/admin/users"
+                href={PAGES.ADMIN_USERS}
                 className="px-6 py-3 rounded-xl border border-(--border) text-(--text-secondary) font-semibold hover:bg-(--background) transition-colors"
               >
                 Отмена

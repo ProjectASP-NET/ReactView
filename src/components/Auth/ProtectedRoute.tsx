@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useUser } from "@/context/UserContext";
+import { PAGES } from "@/config/pages.config";
 
 interface ProtectedRouteProps {
   children: React.ReactNode;
@@ -14,7 +15,7 @@ export function ProtectedRoute({ children }: ProtectedRouteProps) {
 
   useEffect(() => {
     if (!isLoading && !isLoggedIn) {
-      router.push("/auth");
+      router.push(PAGES.AUTH);
     }
   }, [isLoggedIn, isLoading, router]);
 

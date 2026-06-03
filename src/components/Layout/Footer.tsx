@@ -1,12 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { siteConfig } from "@/config/site.config";
+import { PAGES } from "@/config/pages.config";
 
 const NAVIGATION = [
-  { name: "Каталог", href: "/catalog" },
-  { name: "О нас", href: "/about" },
-  { name: "Избранное", href: "/favorites" },
-  { name: "Корзина", href: "/cart" },
+  { name: "Каталог", href: PAGES.CATALOG },
+  { name: "О нас", href: PAGES.ABOUT },
+  { name: "Избранное", href: PAGES.FAVORITES },
+  { name: "Корзина", href: PAGES.CART },
 ];
 
 const BUYER = [

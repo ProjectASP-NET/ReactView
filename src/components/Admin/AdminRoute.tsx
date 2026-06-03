@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useUser } from "@/context/UserContext";
+import { PAGES } from "@/config/pages.config";
 
 interface AdminRouteProps {
   children: React.ReactNode;
@@ -16,12 +17,12 @@ export function AdminRoute({ children, allowedRoles = ["Admin", "Manager"] }: Ad
   useEffect(() => {
     if (!isLoading) {
       if (!isLoggedIn) {
-        router.push("/auth");
+        router.push(PAGES.AUTH);
         return;
       }
 
       if (user && !allowedRoles.includes(user.role?.name || "")) {
-        router.push("/");
+        router.push(PAGES.HOME);
       }
     }
   }, [isLoggedIn, isLoading, user, router, allowedRoles]);
