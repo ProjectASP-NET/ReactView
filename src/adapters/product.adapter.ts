@@ -27,6 +27,7 @@ export class ProductAdapter {
       price: dto.price,
       img: this.getPrimaryImage(dto.images),
       brand: dto.brand?.name,
+      brandId: dto.brand?.id,
       description: dto.description,
       InStock: this.isInStock(dto),
       LikeCount: dto.likeCount,
@@ -62,7 +63,7 @@ export class ProductAdapter {
   }
 
   static toMockFormatArray(dtos: ProductUnion[]): Product[] {
-    return dtos.map(dto => this.toMockFormat(dto));
+    return (dtos ?? []).map(dto => this.toMockFormat(dto));
   }
 
   static getProductType(dto: ProductUnion): 'liquid' | 'vape' | 'consumables' {

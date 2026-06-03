@@ -13,4 +13,8 @@ export const MENU: IMenuItem[] = [
         href: PAGES.CATALOG,
         name: 'Каталог'
     },
+    {
+        href: PAGES.BRANDS,
+        name: 'Бренды'
+    },
 ];

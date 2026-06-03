@@ -1,6 +1,7 @@
 export const PAGES = {
     HOME: "/",
     CATALOG: "/catalog",
+    BRANDS: "/brands",
     CART: "/cart",
     MATCHER: "/matcher",
     ABOUT: "/about",

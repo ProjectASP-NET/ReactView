@@ -4,6 +4,7 @@ export interface ProductBase {
   price: number;
   img: string;
   brand?: string;
+  brandId?: number;
   description?: string;
   InStock: boolean;
   LikeCount: number;
@@ -44,6 +45,7 @@ export interface BrandDTO {
   description?: string;
   logoUrl?: string;
   country?: CountryDTO;
+  products?: ProductUnion[];
 }
 
 export interface CategoryDTO {

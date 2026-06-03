@@ -12,6 +12,7 @@
 
 # testing
 /coverage
+/Dockerfile
 
 # next.js
 /.next/
