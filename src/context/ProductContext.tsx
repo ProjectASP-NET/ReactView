@@ -24,6 +24,7 @@ interface ProductContextType {
   refreshProducts: () => Promise<void>;
   getProductById: (id: string) => Product | undefined;
   getProductDTOById: (id: number) => ProductUnion | undefined;
+  updateLikeCount: (productId: number, count: number) => void;
 }
 
 const ProductContext = createContext<ProductContextType | undefined>(undefined);
@@ -80,6 +81,17 @@ export function ProductProvider({ children }: { children: ReactNode }) {
     return productsDTO.find(p => p.id === id);
   }, [productsDTO]);
 
+  const updateLikeCount = useCallback((productId: number, count: number) => {
+    setProductsDTO(prev =>
+      prev.map(p => (p.id === productId ? { ...p, likeCount: count } : p))
+    );
+    setProducts(prev =>
+      prev.map(p =>
+        Number(p.id) === productId ? { ...p, LikeCount: count } : p
+      )
+    );
+  }, []);
+
   const liquids = products.filter(p => p.type === 'liquid');
   const vapes = products.filter(p => p.type === 'vape');
   const consumables = products.filter(p => p.type === 'consumables');
@@ -97,6 +109,7 @@ export function ProductProvider({ children }: { children: ReactNode }) {
         refreshProducts,
         getProductById,
         getProductDTOById,
+        updateLikeCount,
       }}
     >
       {children}

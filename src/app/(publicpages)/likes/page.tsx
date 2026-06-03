@@ -11,8 +11,7 @@ export default function LikesPage() {
   const { likedProducts } = useLikeandFav();
   const { products, isLoading } = useProducts();
 
-  const likedProductIds = Array.from(likedProducts);
-  const likedProductsList = products.filter((p) => likedProductIds.includes(p.id));
+  const likedProductsList = products.filter((p) => likedProducts.has(p.id));
 
   if (isLoading) {
     return (

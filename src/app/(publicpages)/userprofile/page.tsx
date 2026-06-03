@@ -70,11 +70,10 @@ export default function UserProfilePage() {
   };
 
   const favoriteProducts = products.filter((p) =>
-    favorites.some((f) => f.id === p.id)
+    favorites.has(p.id)
   );
 
-  const likedProductIds = Array.from(likedProducts);
-  const likedProds = products.filter((p) => likedProductIds.includes(p.id));
+  const likedProds = products.filter((p) => likedProducts.has(p.id));
 
   return (
     <ProtectedRoute>

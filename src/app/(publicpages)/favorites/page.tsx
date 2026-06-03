@@ -12,7 +12,7 @@ export default function FavoritesPage() {
   const { products, isLoading } = useProducts();
 
   const favoriteProducts = products.filter((p) =>
-    favorites.some((f) => f.id === p.id)
+    favorites.has(p.id)
   );
 
   if (isLoading) {

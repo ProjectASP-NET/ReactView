@@ -9,10 +9,13 @@ import {
   ReactNode,
 } from "react";
 import { Product } from "@/types/product.types";
+import { useUser } from "./UserContext";
+import { useProducts } from "./ProductContext";
+import { InteractionService } from "@/services/interaction.service";
 
 interface LikeandFavContextType {
   likedProducts: Set<string>;
-  favorites: Product[];
+  favorites: Set<string>;
   toggleLike: (productId: string) => void;
   toggleFavorite: (product: Product) => void;
   isLiked: (productId: string) => boolean;
@@ -36,66 +39,105 @@ function getStoredLikes(): Set<string> {
   }
 }
 
-function getStoredFavorites(): Product[] {
-  if (typeof window === "undefined") return [];
+function getStoredFavorites(): Set<string> {
+  if (typeof window === "undefined") return new Set();
   try {
     const stored = localStorage.getItem(STORAGE_KEYS.FAVORITES);
-    return stored ? JSON.parse(stored) : [];
+    return stored ? new Set(JSON.parse(stored)) : new Set();
   } catch {
-    return [];
+    return new Set();
   }
 }
 
 export function LikeandFavProvider({ children }: { children: ReactNode }) {
+  const { isLoggedIn, isLoading: authLoading } = useUser();
+  const { updateLikeCount, productsDTO } = useProducts();
   const [likedProducts, setLikedProducts] = useState<Set<string>>(new Set());
-  const [favorites, setFavorites] = useState<Product[]>([]);
-  const [isHydrated, setIsHydrated] = useState(false);
+  const [favorites, setFavorites] = useState<Set<string>>(new Set());
 
   useEffect(() => {
-    setLikedProducts(getStoredLikes());
-    setFavorites(getStoredFavorites());
-    setIsHydrated(true);
-  }, []);
+    if (authLoading) return;
 
-  useEffect(() => {
-    if (isHydrated) {
-      localStorage.setItem(
-        STORAGE_KEYS.LIKES,
-        JSON.stringify([...likedProducts])
-      );
+    if (isLoggedIn) {
+      InteractionService.getMyLikes().then((ids) => {
+        setLikedProducts(new Set(ids.map((id) => id.toString())));
+      });
+      InteractionService.getMyFavorites().then((ids) => {
+        setFavorites(new Set(ids.map((id) => id.toString())));
+      });
+    } else {
+      setLikedProducts(getStoredLikes());
+      setFavorites(getStoredFavorites());
     }
-  }, [likedProducts, isHydrated]);
+  }, [isLoggedIn, authLoading]);
 
   useEffect(() => {
-    if (isHydrated) {
-      localStorage.setItem(
-        STORAGE_KEYS.FAVORITES,
-        JSON.stringify(favorites)
-      );
-    }
-  }, [favorites, isHydrated]);
+    if (isLoggedIn) return;
+    localStorage.setItem(STORAGE_KEYS.LIKES, JSON.stringify([...likedProducts]));
+  }, [likedProducts, isLoggedIn]);
+
+  useEffect(() => {
+    if (isLoggedIn) return;
+    localStorage.setItem(STORAGE_KEYS.FAVORITES, JSON.stringify([...favorites]));
+  }, [favorites, isLoggedIn]);
 
   const toggleLike = useCallback((productId: string) => {
-    setLikedProducts((current) => {
-      const next = new Set(current);
-      if (next.has(productId)) {
-        next.delete(productId);
-      } else {
-        next.add(productId);
-      }
-      return next;
-    });
-  }, []);
+    if (isLoggedIn) {
+      InteractionService.toggleLike(Number(productId)).then((res) => {
+        setLikedProducts((current) => {
+          const next = new Set(current);
+          if (res.isLiked) {
+            next.add(productId);
+          } else {
+            next.delete(productId);
+          }
+          return next;
+        });
+        updateLikeCount(Number(productId), res.likeCount);
+      });
+    } else {
+      const wasLiked = likedProducts.has(productId);
+      setLikedProducts((current) => {
+        const next = new Set(current);
+        if (next.has(productId)) {
+          next.delete(productId);
+        } else {
+          next.add(productId);
+        }
+        return next;
+      });
+      const productDTO = productsDTO.find(p => p.id === Number(productId));
+      const currentCount = productDTO?.likeCount ?? 0;
+      updateLikeCount(Number(productId), currentCount + (wasLiked ? -1 : 1));
+    }
+  }, [isLoggedIn, updateLikeCount, likedProducts, productsDTO]);
 
   const toggleFavorite = useCallback((product: Product) => {
-    setFavorites((current) => {
-      const exists = current.find((item) => item.id === product.id);
-      if (exists) {
-        return current.filter((item) => item.id !== product.id);
-      };
-      return [...current, product];
-    });
-  }, []);
+    const idStr = product.id;
+    if (isLoggedIn) {
+      InteractionService.toggleFavorite(Number(idStr)).then((res) => {
+        setFavorites((current) => {
+          const next = new Set(current);
+          if (res.isFavorited) {
+            next.add(idStr);
+          } else {
+            next.delete(idStr);
+          }
+          return next;
+        });
+      });
+    } else {
+      setFavorites((current) => {
+        const next = new Set(current);
+        if (next.has(idStr)) {
+          next.delete(idStr);
+        } else {
+          next.add(idStr);
+        }
+        return next;
+      });
+    }
+  }, [isLoggedIn]);
 
   const isLiked = useCallback(
     (productId: string) => likedProducts.has(productId),
@@ -103,7 +145,7 @@ export function LikeandFavProvider({ children }: { children: ReactNode }) {
   );
 
   const isFavorite = useCallback(
-    (productId: string) => favorites.some((item) => item.id === productId),
+    (productId: string) => favorites.has(productId),
     [favorites]
   );
 
