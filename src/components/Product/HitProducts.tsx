@@ -1,7 +1,7 @@
 "use client";
 
 import useEmblaCarousel from "embla-carousel-react";
-import Link from "next/link";
+import { Link } from 'next-view-transitions';
 import { ProductCard } from "./ProductCard";
 import { useProducts } from "@/context/ProductContext";
 import { PAGES } from "@/config/pages.config";

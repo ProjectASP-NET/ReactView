@@ -6,7 +6,7 @@ import { AdminUserService } from "@/services/admin/user.service";
 import { UserResponseData } from "@/types/auth.types";
 import { PAGES } from "@/config/pages.config";
 import { ArrowLeft, Save } from "lucide-react";
-import Link from "next/link";
+import { Link } from 'next-view-transitions';
 
 export default function UserEditPage() {
   const router = useRouter();

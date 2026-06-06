@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Search, Trash2, Eye } from "lucide-react";
-import Link from "next/link";
+import { Link } from 'next-view-transitions';
 import { AdminOrderService } from "@/services/admin/order.service";
 import { OrderDTO, OrderStatusEnum } from "@/types/admin.types";
 import { PAGES } from "@/config/pages.config";

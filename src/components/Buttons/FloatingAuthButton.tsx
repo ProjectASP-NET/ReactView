@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { User, LogIn, LogOut, Star, Heart, Shield } from "lucide-react";
-import Link from "next/link";
+import { Link } from 'next-view-transitions';
 import { useUser } from "@/context/UserContext";
 import { PAGES } from "@/config/pages.config";
 

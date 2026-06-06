@@ -7,7 +7,7 @@ import { OrderDTO, OrderStatusEnum } from "@/types/admin.types";
 import { PAGES } from "@/config/pages.config";
 import { Dropdown } from "@/components/UI/Dropdown";
 import { ArrowLeft } from "lucide-react";
-import Link from "next/link";
+import { Link } from 'next-view-transitions';
 
 const statusLabels: Record<string, string> = {
   Pending: "Ожидает",

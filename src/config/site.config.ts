@@ -3,6 +3,8 @@ export const siteConfig = {
     telegram: 'https://t.me/ddliqiud',
   },
   api: {
-    baseUrl: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5131/api',
+    baseUrl: typeof window !== 'undefined'
+      ? (process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5131/api')
+      : (process.env.API_URL || 'http://backend:5131/api'),
   },
 };

@@ -6,7 +6,7 @@ import { useProducts } from "@/context/ProductContext";
 import { ProductCard } from "@/components/Product/ProductCard";
 import { useLikeandFav } from "@/context/LikeandFavContext";
 import { PAGES } from "@/config/pages.config";
-import Link from "next/link";
+import { Link } from 'next-view-transitions';
 import { User, Mail, Edit2, Save, X, Package } from "lucide-react";
 import { ProtectedRoute } from "@/components/Auth/ProtectedRoute";
 

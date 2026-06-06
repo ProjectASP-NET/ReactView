@@ -6,7 +6,7 @@ import { useUser } from "@/context/UserContext";
 import { PAGES } from "@/config/pages.config";
 import { Dropdown } from "@/components/UI/Dropdown";
 import { Trash2, Edit } from "lucide-react";
-import Link from "next/link";
+import { Link } from 'next-view-transitions';
 
 interface UserTableProps {
   users: UserResponseData[];

@@ -1,6 +1,7 @@
 "use client";
 
 import { ReactNode } from "react";
+import { ViewTransitions } from "next-view-transitions";
 import { CartProvider } from "@/context/CartContext";
 import { ThemeProvider } from "@/context/ThemeContext";
 import { CompareProvider } from "@/context/CompareContext";
@@ -28,23 +29,25 @@ function ErrorFallback() {
 
 export function ClientProviders({ children }: { children: ReactNode }) {
   return (
-    <ErrorBoundary fallback={<ErrorFallback />}>
-      <ThemeProvider>
-        <UserProvider>
-          <ProductProvider>
-            <CartProvider>
-              <CompareProvider>
-                <LikeandFavProvider>
-                  <ToastProvider>
-                    {children}
-                    <FloatingAuthButton />
-                  </ToastProvider>
-                </LikeandFavProvider>
-              </CompareProvider>
-            </CartProvider>
-          </ProductProvider>
-        </UserProvider>
-      </ThemeProvider>
-    </ErrorBoundary>
+    <ViewTransitions>
+      <ErrorBoundary fallback={<ErrorFallback />}>
+        <ThemeProvider>
+          <UserProvider>
+            <ProductProvider>
+              <CartProvider>
+                <CompareProvider>
+                  <LikeandFavProvider>
+                    <ToastProvider>
+                      {children}
+                      <FloatingAuthButton />
+                    </ToastProvider>
+                  </LikeandFavProvider>
+                </CompareProvider>
+              </CartProvider>
+            </ProductProvider>
+          </UserProvider>
+        </ThemeProvider>
+      </ErrorBoundary>
+    </ViewTransitions>
   );
 }

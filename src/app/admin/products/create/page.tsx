@@ -6,7 +6,7 @@ import { AdminProductService } from "@/services/admin/product.service";
 import { PAGES } from "@/config/pages.config";
 import { Dropdown } from "@/components/UI/Dropdown";
 import { ArrowLeft } from "lucide-react";
-import Link from "next/link";
+import { Link } from 'next-view-transitions';
 
 type ProductType = "Liquid" | "Vape" | "Consumable";
 

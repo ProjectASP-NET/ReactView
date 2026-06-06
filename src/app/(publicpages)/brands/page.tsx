@@ -5,7 +5,7 @@ import { BrandService } from "@/services/brand.service";
 import { BrandDTO } from "@/types/product.types";
 import { PAGES } from "@/config/pages.config";
 import FadeIn from "@/components/UI/FadeIn";
-import Link from "next/link";
+import { Link } from 'next-view-transitions';
 
 export default function BrandsPage() {
   const [brands, setBrands] = useState<BrandDTO[]>([]);

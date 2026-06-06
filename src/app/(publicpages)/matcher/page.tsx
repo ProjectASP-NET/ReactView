@@ -6,7 +6,7 @@ import { useProducts } from "@/context/ProductContext";
 import { Product } from "@/types/product.types";
 import { X, Search, Trash2, ChevronDown, ChevronUp } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from 'next-view-transitions';
 import { PAGES } from "@/config/pages.config";
 
 const TYPE_FILTERS = [

@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import { Link } from 'next-view-transitions'
 import { PAGES } from '@/config/pages.config';
 
 export default function NotFound() {

@@ -3,7 +3,7 @@
 import { useLikeandFav } from "@/context/LikeandFavContext";
 import { useProducts } from "@/context/ProductContext";
 import { ProductCard } from "@/components/Product/ProductCard";
-import Link from "next/link";
+import { Link } from 'next-view-transitions';
 import { PAGES } from "@/config/pages.config";
 import { ThumbsUp } from "lucide-react";
 

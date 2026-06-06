@@ -5,7 +5,7 @@ import { AdminStatsService } from "@/services/admin/stats.service";
 import { AdminStatsDTO, OrderStatusEnum } from "@/types/admin.types";
 import { PAGES } from "@/config/pages.config";
 import { ShoppingCart, Package, Users, DollarSign, TrendingUp } from "lucide-react";
-import Link from "next/link";
+import { Link } from 'next-view-transitions';
 
 const statusLabels: Record<string, string> = {
   Pending: "Ожидает",

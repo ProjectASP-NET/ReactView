@@ -2,7 +2,7 @@
 
 import { useParams, notFound } from "next/navigation";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from 'next-view-transitions';
 import { useProducts } from "@/context/ProductContext";
 import { AddtoCart } from "@/components/Buttons/AddtoCartB";
 import { ProductRadarModal } from "@/components/Modal/ProductRadarModal";
