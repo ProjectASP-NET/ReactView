@@ -1,13 +1,13 @@
 "use client";
 
 import { useParams, notFound } from "next/navigation";
-import Image from "next/image";
 import { Link } from 'next-view-transitions';
 import { useProducts } from "@/context/ProductContext";
 import { AddtoCart } from "@/components/Buttons/AddtoCartB";
 import { ProductRadarModal } from "@/components/Modal/ProductRadarModal";
 import { ProductPageActions } from "@/components/Product/ProductPageActions";
 import { ProductCard } from "@/components/Product/ProductCard";
+import { ImageGallery } from "@/components/Product/ImageGallery";
 import { PAGES } from "@/config/pages.config";
 
 export default function ProductPage() {
@@ -61,18 +61,7 @@ export default function ProductPage() {
       </nav>
 
       <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
-        <div className="relative aspect-square w-full overflow-hidden rounded-3xl bg-black/50">
-          <Image
-            src={product.img}
-            alt={product.name}
-            fill
-            className="object-contain p-8"
-            priority
-          />
-          <span className="absolute left-4 top-4 rounded-full bg-black/60 px-4 py-2 text-xs font-bold tracking-widest text-white backdrop-blur-md uppercase">
-            {getTypeLabel(product.type)}
-          </span>
-        </div>
+        <ImageGallery product={product} typeLabel={getTypeLabel(product.type)} />
 
         <div className="flex flex-col gap-8">
           <div className="flex flex-col justify-center">

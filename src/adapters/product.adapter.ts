@@ -26,6 +26,7 @@ export class ProductAdapter {
       name: dto.name,
       price: dto.price,
       img: this.getPrimaryImage(dto.images),
+      images: this.getAllImages(dto),
       brand: dto.brand?.name,
       brandId: dto.brand?.id,
       description: dto.description,

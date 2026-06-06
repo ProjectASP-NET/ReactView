@@ -3,9 +3,9 @@ import { SortLogic } from '../../utility/SortLogic'
 import { Product } from '@/types/product.types'
 
 const mockProducts: Product[] = [
-  { id: '1', name: 'Product A', price: 100, img: '/a.jpg', InStock: true, LikeCount: 5, type: 'liquid', volume: 30, flavor: ['berry'], nicotine: 12, Icelevel: 50 },
-  { id: '2', name: 'Product B', price: 300, img: '/b.jpg', InStock: true, LikeCount: 15, type: 'liquid', volume: 50, flavor: ['fruits'], nicotine: 6, Icelevel: 25 },
-  { id: '3', name: 'Product C', price: 200, img: '/c.jpg', InStock: false, LikeCount: 10, type: 'vape', batteryCapacity: 1500, maxPower: 80, color: 'black', TankCapacity: 4, CoilResistence: 0.5 },
+  { id: '1', name: 'Product A', price: 100, img: '/a.jpg', images: ['/a.jpg'], InStock: true, LikeCount: 5, type: 'liquid', volume: 30, flavor: ['berry'], nicotine: 12, Icelevel: 50 },
+  { id: '2', name: 'Product B', price: 300, img: '/b.jpg', images: ['/b.jpg'], InStock: true, LikeCount: 15, type: 'liquid', volume: 50, flavor: ['fruits'], nicotine: 6, Icelevel: 25 },
+  { id: '3', name: 'Product C', price: 200, img: '/c.jpg', images: ['/c.jpg'], InStock: false, LikeCount: 10, type: 'vape', batteryCapacity: 1500, maxPower: 80, color: 'black', TankCapacity: 4, CoilResistence: 0.5 },
 ]
 
 describe('SortLogic', () => {

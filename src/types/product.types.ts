@@ -3,6 +3,7 @@ export interface ProductBase {
   name: string;
   price: number;
   img: string;
+  images: string[];
   brand?: string;
   brandId?: number;
   description?: string;

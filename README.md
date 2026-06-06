@@ -1,36 +1,76 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# D&DLiquid — Frontend
 
-## Getting Started
+Фронтенд интернет-магазина **"D&DLiquid"**
 
-First, run the development server:
+## Стек
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+| Технология | Назначение |
+|------------|-----------|
+| **Next.js 16** (App Router) | Фреймворк |
+| **React 19** | UI-библиотека |
+| **TypeScript 5** | Типизация (strict mode) |
+| **Tailwind CSS 4** | Стилизация |
+| **Framer Motion** | Анимации |
+| **Embla Carousel React** | Карусели |
+| **Recharts** | Графики в админ-панели |
+| **Lucide React** | Иконки |
+| **Headless UI** | Accessibility-компоненты |
+| **next-view-transitions** | Плавные переходы между страницами |
+| **React Context API** | Управление состоянием (Theme, Auth, Cart, Compare, Favorites) |
+| **Vitest + React Testing Library + jsdom** | Модульное тестирование |
+| **ESLint 9** (flat config) | Линтинг |
+| **React Compiler** | Автоматическая мемоизация |
+| **PostCSS** | Сборка CSS |
+
+## Структура проекта
+
+```
+src/
+├── app/                     # Next.js App Router (страницы)
+│   ├── (publicpages)/       # Публичные страницы (каталог, корзина, профиль)
+│   ├── auth/                # Авторизация
+│   └── admin/               # Админ-панель (дашборд, заказы, товары, пользователи)
+├── components/              # UI-компоненты
+│   ├── Admin/               # Админка: Sidebar, UserTable
+│   ├── Auth/                # Формы, переключатели
+│   ├── Buttons/             # AddToCart, Like, Favorite
+│   ├── Filters/             # Filter, Sort, Search, Pagination
+│   ├── Layout/              # Header, Footer, Navigation
+│   ├── Modal/               # AgeModal, ProductModal
+│   ├── Product/             # ProductCard, ImageGallery, HitProducts
+│   └── UI/                  # Toast, Skeleton, FadeIn, ThemeToggle
+├── context/                 # Context providers (6 шт)
+├── services/                # API-клиенты
+├── types/                   # TypeScript-типы и интерфейсы
+├── adapters/                # Мапперы DTO → Frontend Model
+├── utility/                 # Утилиты (сортировка)
+├── config/                  # Конфигурация (роуты, site.config)
+└── __tests__/               # Тесты
+public/                      # Статика (изображения, видео)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Запуск
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Локально
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm install
+npm run dev   
+```
 
-## Learn More
+### Docker
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+docker compose up -d --build frontend
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Тесты
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm run test       
+npm run test:run   
+```
+## Deploy
 
-## Deploy on Vercel
+Проект задеплоин на Vercel 
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
