@@ -6,8 +6,6 @@ import { PAGES } from "@/config/pages.config";
 import { ThemeToggle } from "@/components/UI/ThemeToggle";
 import { SignInForm } from "../../services/SignInForm";
 import { SignUpForm } from "../../services/SignUpForm";
-import { ArrowLeft } from "lucide-react";
-import { HomeLink } from "@/components/Buttons/HomeLink";
 import { useUser } from "@/context/UserContext";
 import { AuthService } from "@/services/auth.service";
 import { useRouter } from "next/navigation";
@@ -70,6 +68,7 @@ export default function AuthPage() {
         username: data.name,
         email: data.email,
         password: data.password,
+        passwordConfirm: data.passwordConfirm,
         role: "User",
       });
       login(response.token, response.user);

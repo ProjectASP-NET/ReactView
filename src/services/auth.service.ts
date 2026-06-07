@@ -4,6 +4,7 @@ import {
   UserRegisterData,
   ChangePasswordData,
   UserResponseData,
+  UserUpdateData,
 } from "@/types/auth.types";
 import { apiFetch } from "./api";
 
@@ -34,5 +35,19 @@ export class AuthService {
 
   static async getCurrentUser(_token: string): Promise<UserResponseData> {
     return apiFetch("/user/me", { method: "GET" });
+  }
+
+  static async updateProfile(id: number, data: UserUpdateData): Promise<UserResponseData> {
+    return apiFetch(`/user/${id}`, {
+      method: "PUT",
+      body: JSON.stringify(data),
+    });
+  }
+
+  static async changePasswordApi(data: ChangePasswordData): Promise<{ message: string }> {
+    return apiFetch("/auth/change-password", {
+      method: "POST",
+      body: JSON.stringify(data),
+    });
   }
 }

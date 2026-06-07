@@ -34,6 +34,7 @@ export const apiFetch = async (endpoint: string, options: RequestInit = {}) => {
 
   if (response.status === 401) {
     if (typeof window !== "undefined") {
+      sessionStorage.setItem("redirect_after_auth", window.location.href);
       localStorage.removeItem("auth_token");
       localStorage.removeItem("auth_user");
       window.location.href = PAGES.AUTH;

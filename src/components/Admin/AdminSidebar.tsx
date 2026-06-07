@@ -11,7 +11,13 @@ import {
   ShoppingCart,
   BarChart3,
   Settings,
-  LogOut
+  LogOut,
+  Tag,
+  Layers,
+  Wine,
+  Image,
+  Globe,
+  Building2
 } from "lucide-react";
 
 interface MenuItem {
@@ -25,6 +31,12 @@ const menuItems: MenuItem[] = [
   { name: "Dashboard", href: PAGES.ADMIN, icon: LayoutDashboard },
   { name: "Пользователи", href: PAGES.ADMIN_USERS, icon: Users, adminOnly: true },
   { name: "Товары", href: PAGES.ADMIN_PRODUCTS, icon: Package },
+  { name: "Бренды", href: PAGES.ADMIN_BRANDS, icon: Building2 },
+  { name: "Категории", href: PAGES.ADMIN_CATEGORIES, icon: Layers },
+  { name: "Вкусы", href: PAGES.ADMIN_FLAVORS, icon: Wine },
+  { name: "Теги", href: PAGES.ADMIN_TAGS, icon: Tag },
+  { name: "Изображения", href: PAGES.ADMIN_IMAGES, icon: Image },
+  { name: "Страны", href: PAGES.ADMIN_COUNTRIES, icon: Globe },
   { name: "Заказы", href: PAGES.ADMIN_ORDERS, icon: ShoppingCart },
   { name: "Аналитика", href: PAGES.ADMIN_ANALYTICS, icon: BarChart3 },
 ];

@@ -7,7 +7,7 @@ interface HomeLinkProps {
 export function HomeLink({ className = "" }: HomeLinkProps) {
     return (
                    <Link 
-          href={PAGES.CATALOG} 
+          href={PAGES.HOME} 
           className={`z-50 flex items-center gap-2 px-3 py-2 border border-white/50 rounded-lg text-white/80 hover:text-white hover:border-white transition-colors ${className}`}
         >
           <Home size={20} /> 

@@ -69,6 +69,11 @@ export default function ProductPage() {
               {product.brand}
             </p>
             <h1 className="text-4xl font-black text-(--text-primary) mb-4">{product.name}</h1>
+            {product.category && (
+              <p className="text-sm text-(--accent) mb-2">
+                {product.category}
+              </p>
+            )}
 
             <div className="mb-6 flex items-baseline gap-2">
               <span className="text-5xl font-black text-(--text-primary)">
@@ -83,6 +88,14 @@ export default function ProductPage() {
                   <p className="text-(--text-muted)">Тип</p>
                   <p className="font-bold text-(--text-primary)">{getTypeLabel(product.type)}</p>
                 </div>
+                {product.tags.length > 0 && (
+                  <div>
+                    <p className="text-(--text-muted)">Теги</p>
+                    <p className="font-bold text-(--text-primary)">
+                      {product.tags.join(", ")}
+                    </p>
+                  </div>
+                )}
                 {"volume" in product && (
                   <div>
                     <p className="text-(--text-muted)">Объём</p>

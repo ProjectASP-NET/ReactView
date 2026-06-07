@@ -1,8 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { AdminProductService } from "@/services/admin/product.service";
+import { BrandDTO, CategoryDTO, TagDTO, FlavorDTO } from "@/types/product.types";
+import { AdminBrandService } from "@/services/admin/brand.service";
+import { AdminCategoryService } from "@/services/admin/category.service";
+import { AdminTagService } from "@/services/admin/tag.service";
+import { AdminFlavorService } from "@/services/admin/flavor.service";
 import { PAGES } from "@/config/pages.config";
 import { Dropdown } from "@/components/UI/Dropdown";
 import { ArrowLeft } from "lucide-react";
@@ -23,21 +28,10 @@ interface ProductForm {
   color: string;
   tankCapacity: string;
   coilResistance: string;
-}
-
-interface ProductPayload {
-  name: string;
-  description?: string;
-  price: number;
-  stockQuantity: number;
-  volume?: number;
-  nicotine?: number;
-  iceLevel?: number;
-  batteryCapacity?: number;
-  maxPower?: number;
-  color?: string;
-  tankCapacity?: number;
-  coilResistance?: number;
+  brandId: string;
+  categoryId: string;
+  tagIds: string;
+  flavorIds: string;
 }
 
 const typeOptions = [
@@ -50,22 +44,47 @@ export default function CreateProductPage() {
   const router = useRouter();
   const [saving, setSaving] = useState(false);
   const [productType, setProductType] = useState<ProductType>("Liquid");
+  const [brands, setBrands] = useState<BrandDTO[]>([]);
+  const [categories, setCategories] = useState<CategoryDTO[]>([]);
+  const [tags, setTags] = useState<TagDTO[]>([]);
+  const [flavors, setFlavors] = useState<FlavorDTO[]>([]);
   const [form, setForm] = useState<ProductForm>({
     name: "", description: "", price: "0", stockQuantity: "0",
     volume: "30", nicotine: "3", iceLevel: "0",
     batteryCapacity: "3000", maxPower: "80", color: "", tankCapacity: "2", coilResistance: "0.5",
+    brandId: "", categoryId: "", tagIds: "", flavorIds: "",
   });
+
+  useEffect(() => {
+    Promise.all([
+      AdminBrandService.getAll(),
+      AdminCategoryService.getAll(),
+      AdminTagService.getAll(),
+      AdminFlavorService.getAll(),
+    ]).then(([b, c, t, f]) => {
+      setBrands(b);
+      setCategories(c);
+      setTags(t);
+      setFlavors(f);
+    }).catch(() => {});
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSaving(true);
     try {
-      const payload: ProductPayload = {
+      const payload: Record<string, unknown> = {
         name: form.name,
         description: form.description || undefined,
         price: Number(form.price),
         stockQuantity: Number(form.stockQuantity),
       };
+      if (form.brandId) payload.brandId = Number(form.brandId);
+      if (form.categoryId) payload.categoryId = Number(form.categoryId);
+      if (form.tagIds) payload.tagIds = form.tagIds.split(",").filter(Boolean).map(Number);
+      if (form.flavorIds && productType === "Liquid") {
+        payload.flavorIds = form.flavorIds.split(",").filter(Boolean).map(Number);
+      }
       if (productType === "Liquid") {
         payload.volume = Number(form.volume);
         payload.nicotine = Number(form.nicotine);
@@ -146,6 +165,47 @@ export default function CreateProductPage() {
               className="w-full px-4 py-3 rounded-xl bg-(--card-bg) border border-(--border) text-(--text-primary) focus:outline-none focus:border-(--accent)"
             />
           </div>
+        </div>
+
+        <div className="grid grid-cols-2 gap-4">
+          <div>
+            <label className="block text-sm font-medium text-(--text-secondary) mb-2">Бренд</label>
+            <Dropdown
+              options={[
+                { value: "", label: "Без бренда" },
+                ...brands.map(b => ({ value: b.id.toString(), label: b.name })),
+              ]}
+              value={form.brandId}
+              onChange={(v) => setForm({ ...form, brandId: v })}
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-(--text-secondary) mb-2">Категория</label>
+            <Dropdown
+              options={[
+                { value: "", label: "Без категории" },
+                ...categories.map(c => ({ value: c.id.toString(), label: c.name })),
+              ]}
+              value={form.categoryId}
+              onChange={(v) => setForm({ ...form, categoryId: v })}
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-(--text-secondary) mb-2">Теги (ID через запятую)</label>
+            <input value={form.tagIds} onChange={(e) => setForm({ ...form, tagIds: e.target.value })}
+              placeholder="1,2,3"
+              className="w-full px-4 py-3 rounded-xl bg-(--card-bg) border border-(--border) text-(--text-primary) focus:outline-none focus:border-(--accent)" />
+            <p className="text-xs text-(--text-muted) mt-1">{tags.map(t => `${t.id}:${t.name}`).join(", ")}</p>
+          </div>
+          {productType === "Liquid" && (
+            <div>
+              <label className="block text-sm font-medium text-(--text-secondary) mb-2">Вкусы (ID через запятую)</label>
+              <input value={form.flavorIds} onChange={(e) => setForm({ ...form, flavorIds: e.target.value })}
+                placeholder="1,2,3"
+                className="w-full px-4 py-3 rounded-xl bg-(--card-bg) border border-(--border) text-(--text-primary) focus:outline-none focus:border-(--accent)" />
+              <p className="text-xs text-(--text-muted) mt-1">{flavors.map(f => `${f.id}:${f.name}`).join(", ")}</p>
+            </div>
+          )}
         </div>
 
         {productType === "Liquid" && (

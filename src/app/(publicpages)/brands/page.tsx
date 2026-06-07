@@ -41,7 +41,7 @@ export default function BrandsPage() {
             {brands.map((brand) => (
               <Link href={PAGES.getBrand(brand.id)} key={brand.id}>
                 <div className="group relative overflow-hidden rounded-3xl border border-(--card-border) bg-(--card-bg) p-8 transition-all duration-500 hover:border-(--primary) hover:shadow-2xl hover:shadow-(--primary)/20">
-                  <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                  <div className="absolute inset-0 bg-linear-to-br from-white/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                   <h3 className="text-2xl font-bold mb-4">{brand.name}</h3>
                   <p className="text-(--text-secondary) line-clamp-3 mb-6">
                     {brand.description || "Производитель премиальной продукции."}

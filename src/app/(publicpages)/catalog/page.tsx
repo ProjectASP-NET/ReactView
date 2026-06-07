@@ -32,6 +32,7 @@ function CatalogContent() {
   const sortQuery = searchParams.get("sort") || "new";
   const filterQuery = searchParams.get("filter") || "all";
   const searchQuery = searchParams.get("search") || "";
+  const categoryIdQuery = searchParams.get("categoryId") || "";
   const { products, isLoading, error, refreshProducts } = useProducts();
 
   useEffect(() => {
@@ -77,6 +78,12 @@ function CatalogContent() {
     filterQuery === "all"
       ? products
       : products.filter((p) => p.type === filterQuery);
+
+  if (categoryIdQuery) {
+    filteredProducts = filteredProducts.filter(
+      (p) => p.categoryId?.toString() === categoryIdQuery
+    );
+  }
 
   if (searchQuery.length >= 2) {
     const q = searchQuery.toLowerCase();

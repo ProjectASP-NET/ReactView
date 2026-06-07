@@ -21,6 +21,7 @@ export class ProductAdapter {
   }
 
   static toMockFormat(dto: ProductUnion): Product {
+    const tags = (dto as ProductDTO).tags?.map(t => t.name) ?? [];
     const base = {
       id: dto.id.toString(),
       name: dto.name,
@@ -29,6 +30,9 @@ export class ProductAdapter {
       images: this.getAllImages(dto),
       brand: dto.brand?.name,
       brandId: dto.brand?.id,
+      category: dto.category?.name,
+      categoryId: dto.category?.id,
+      tags,
       description: dto.description,
       InStock: this.isInStock(dto),
       LikeCount: dto.likeCount,

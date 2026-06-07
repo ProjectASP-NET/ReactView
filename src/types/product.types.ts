@@ -6,6 +6,9 @@ export interface ProductBase {
   images: string[];
   brand?: string;
   brandId?: number;
+  category?: string;
+  categoryId?: number;
+  tags: string[];
   description?: string;
   InStock: boolean;
   LikeCount: number;

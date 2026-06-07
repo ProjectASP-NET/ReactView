@@ -24,7 +24,7 @@ export default function BrandDetailPage() {
 
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center min-h-[400px]">
+      <div className="flex items-center justify-center min-h-100">
         <div className="text-center">
           <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent"></div>
         </div>
@@ -43,6 +43,11 @@ export default function BrandDetailPage() {
           <h1 className="text-5xl font-black tracking-tight mb-6">
             {brand.name}
           </h1>
+          {brand.country && (
+            <p className="text-sm text-(--text-muted) mb-2">
+              Страна: {brand.country.name}
+            </p>
+          )}
           <p className="text-xl text-(--text-secondary) max-w-3xl">
             {brand.description || "Откройте для себя наш ассортимент продукции этого бренда."}
           </p>

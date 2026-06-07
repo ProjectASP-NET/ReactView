@@ -145,7 +145,7 @@ export default function ProductsPage() {
                   <td className="p-4 text-right">
                     <div className="flex items-center justify-end gap-2">
                       <Link
-                        href={`/admin/products/${product.id}/edit`}
+                        href={`/admin/products/${product.id}/edit?type=${getProductType(product)}`}
                         className="p-2 rounded-lg hover:bg-(--background) text-(--text-secondary) hover:text-(--accent) transition-colors"
                       >
                         <Edit size={16} />

@@ -17,6 +17,10 @@ export class AdminProductService {
     return apiFetch(`/product/${id}`, { method: "GET" });
   }
 
+  static async getByType(type: ProductApiType, id: number): Promise<ProductUnion> {
+    return apiFetch(`/${type}/${id}`, { method: "GET" });
+  }
+
   static async create(type: "Liquid" | "Vape" | "Consumable", data: Partial<ProductUnion>): Promise<ProductUnion> {
     const endpoint = type.toLowerCase();
     return apiFetch(`/${endpoint}`, {

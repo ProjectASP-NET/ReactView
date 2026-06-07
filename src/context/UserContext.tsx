@@ -54,16 +54,18 @@ export function UserProvider({ children }: { children: ReactNode }) {
         .then((freshUser) => {
           setUser(freshUser);
           localStorage.setItem(USER_KEY, JSON.stringify(freshUser));
+          setIsLoading(false);
         })
         .catch(() => {
           localStorage.removeItem(TOKEN_KEY);
           localStorage.removeItem(USER_KEY);
           setToken(null);
           setUser(null);
+          setIsLoading(false);
         });
+    } else {
+      setIsLoading(false);
     }
-
-    setIsLoading(false);
   }, []);
 
   const login = useCallback((newToken: string, newUser: UserResponseData) => {
