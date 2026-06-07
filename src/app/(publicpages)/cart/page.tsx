@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { Link } from 'next-view-transitions';
+import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Minus, Plus, Trash2 } from "lucide-react";
 import { useCart } from "@/context/CartContext";
@@ -13,6 +14,7 @@ const FREE_DELIVERY_THRESHOLD = 300;
 export default function CartPage() {
   const { items, updateQuantity, removeFromCart, totalPrice, clearCart } =
     useCart();
+  const router = useRouter();
   const [removingItems, setRemovingItems] = useState<Set<string>>(new Set());
 
   const remainingForFreeDelivery = Math.max(0, FREE_DELIVERY_THRESHOLD - totalPrice);
@@ -213,7 +215,10 @@ export default function CartPage() {
               <span className="text-sm font-light">MDL</span>
             </span>
           </div>
-          <button className="w-full rounded-xl bg-(--text-primary) py-4 text-sm font-bold text-(--background) transition-transform hover:scale-[1.02] active:scale-[0.98]">
+          <button
+            onClick={() => router.push(PAGES.CHECKOUT)}
+            className="w-full rounded-xl bg-(--text-primary) py-4 text-sm font-bold text-(--background) transition-transform hover:scale-[1.02] active:scale-[0.98]"
+          >
             ОФОРМИТЬ ЗАКАЗ
           </button>
           <p className="mt-3 text-center text-xs text-(--text-muted)">

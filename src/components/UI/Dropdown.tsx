@@ -44,7 +44,7 @@ export function Dropdown({ options, value, onChange, placeholder, className = ""
         <ChevronDown size={16} className={`transition-transform ${open ? "rotate-180" : ""}`} />
       </button>
       {open && (
-        <div className="absolute z-50 mt-1 w-full rounded-xl border border-(--border) bg-(--card-bg) shadow-xl overflow-hidden" style={{ backgroundColor: 'var(--card-bg)', color: 'var(--text-primary)' }}>
+        <div className="absolute z-50 mt-1 w-full rounded-xl border border-(--border) bg-(--card-bg) shadow-2xl overflow-hidden backdrop-blur-xl">
           {options.map((option) => (
             <button
               key={option.value}

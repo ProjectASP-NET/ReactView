@@ -157,13 +157,13 @@ export default function AuthPage() {
             borderRadius: '100px',
             transition: 'border-radius 700ms ease-in-out',
           }}
-          className="relative h-137.5 bg-(--card-bg)/90 backdrop-blur-sm shadow-2xl overflow-hidden flex border border-(--border)"
+          className="relative h-137.5 bg-(--card-bg)/90 backdrop-blur-sm shadow-2xl flex border border-(--border)"
         >
-          <div className="absolute top-0 left-0 w-1/2 h-full flex flex-col items-center justify-center px-12">
+          <div className="absolute top-0 left-0 w-1/2 h-full flex flex-col items-center justify-center px-12 overflow-y-auto">
             <SignInForm onSubmit={handleLogin} autoFocus={isLogin} disabled={loading} />
           </div>
 
-          <div className="absolute top-0 right-0 w-1/2 h-full flex flex-col items-center justify-center px-12">
+          <div className="absolute top-0 right-0 w-1/2 h-full flex flex-col items-center justify-center px-12 overflow-y-auto">
             <SignUpForm onSubmit={handleRegister} disabled={loading} />
           </div>
 

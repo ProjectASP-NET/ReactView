@@ -9,35 +9,37 @@ import { PAGES } from "@/config/pages.config";
 import { Link } from 'next-view-transitions';
 import { User, Mail, Edit2, Save, X, Package } from "lucide-react";
 import { ProtectedRoute } from "@/components/Auth/ProtectedRoute";
+import { OrderService } from "@/services/order.service";
+import { OrderDTO, OrderStatusEnum } from "@/types/admin.types";
 
-const MOCK_ORDERS = [
-  { id: "1234", date: "15.03.2024", total: 1500, status: "delivered", items: 2 },
-  { id: "1235", date: "10.03.2024", total: 2200, status: "shipped", items: 3 },
-  { id: "1236", date: "05.03.2024", total: 800, status: "processing", items: 1 },
-];
-
-const getStatusLabel = (status: string) => {
-  switch (status) {
-    case "delivered":
-      return { label: "Доставлен", color: "text-green-500" };
-    case "shipped":
-      return { label: "В пути", color: "text-blue-500" };
-    case "processing":
-      return { label: "В обработке", color: "text-yellow-500" };
-    default:
-      return { label: status, color: "text-(--text-secondary)" };
-  }
+const STATUS_LABELS: Record<OrderStatusEnum, { label: string; color: string }> = {
+  [OrderStatusEnum.Pending]:    { label: "Ожидает",       color: "text-yellow-500" },
+  [OrderStatusEnum.Confirmed]: { label: "Подтверждён",   color: "text-blue-500" },
+  [OrderStatusEnum.Processing]:{ label: "В обработке",   color: "text-blue-400" },
+  [OrderStatusEnum.Shipped]:   { label: "Отправлен",     color: "text-purple-500" },
+  [OrderStatusEnum.Delivered]: { label: "Доставлен",     color: "text-green-500" },
+  [OrderStatusEnum.Cancelled]: { label: "Отменён",       color: "text-red-500" },
+  [OrderStatusEnum.Refunded]:  { label: "Возврат",       color: "text-orange-500" },
 };
 
 export default function UserProfilePage() {
   const { user, updateUser, logout, isLoggedIn } = useUser();
   const { favorites, likedProducts } = useLikeandFav();
   const { products, isLoading } = useProducts();
+  const [orders, setOrders] = useState<OrderDTO[]>([]);
+  const [ordersLoading, setOrdersLoading] = useState(true);
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({
     username: "",
     email: "",
   });
+
+  useEffect(() => {
+    OrderService.getMyOrders()
+      .then(setOrders)
+      .catch(() => {})
+      .finally(() => setOrdersLoading(false));
+  }, []);
 
   useEffect(() => {
     if (user) {
@@ -167,33 +169,49 @@ export default function UserProfilePage() {
 
           <section className="rounded-3xl border border-(--border) bg-(--card-bg) p-6">
             <h2 className="mb-6 text-xl font-bold text-(--text-primary)">История заказов</h2>
-            <div className="space-y-4">
-              {MOCK_ORDERS.map((order) => {
-                const status = getStatusLabel(order.status);
-                return (
-                  <div
-                    key={order.id}
-                    className="flex items-center justify-between rounded-xl border border-(--border) bg-(--card-bg) p-4"
-                  >
-                    <div className="flex items-center gap-4">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-(--text-secondary)/10">
-                        <Package size={20} className="text-(--text-secondary)" />
+            {ordersLoading ? (
+              <div className="text-center py-8 text-(--text-muted)">Загрузка...</div>
+            ) : orders.length === 0 ? (
+              <div className="text-center py-8">
+                <Package size={40} className="mx-auto mb-3 text-(--text-muted)" />
+                <p className="text-(--text-muted)">У вас пока нет заказов</p>
+                <Link
+                  href={PAGES.CATALOG}
+                  className="mt-4 inline-block text-sm text-(--accent) hover:underline"
+                >
+                  Перейти в каталог
+                </Link>
+              </div>
+            ) : (
+              <div className="space-y-4">
+                {orders.map((order) => {
+                  const status = STATUS_LABELS[order.status as OrderStatusEnum] || STATUS_LABELS[OrderStatusEnum.Pending];
+                  const itemCount = order.items.reduce((s, i) => s + i.quantity, 0);
+                  return (
+                    <div
+                      key={order.id}
+                      className="flex items-center justify-between rounded-xl border border-(--border) bg-(--card-bg) p-4"
+                    >
+                      <div className="flex items-center gap-4">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-(--text-secondary)/10">
+                          <Package size={20} className="text-(--text-secondary)" />
+                        </div>
+                        <div>
+                          <p className="font-bold text-(--text-primary)">{order.orderNumber || `Заказ #${order.id}`}</p>
+                          <p className="text-sm text-(--text-muted)">
+                            {new Date(order.createdAt).toLocaleDateString("ru-RU")} • {itemCount} товара(ов)
+                          </p>
+                        </div>
                       </div>
-                      <div>
-                        <p className="font-bold text-(--text-primary)">Заказ #{order.id}</p>
-                        <p className="text-sm text-(--text-muted)">
-                          {order.date} • {order.items} товара(ов)
-                        </p>
+                      <div className="text-right">
+                        <p className="font-bold text-(--text-primary)">{order.totalAmount} MDL</p>
+                        <p className={`text-sm ${status.color}`}>{status.label}</p>
                       </div>
                     </div>
-                    <div className="text-right">
-                      <p className="font-bold text-(--text-primary)">{order.total} MDL</p>
-                      <p className={`text-sm ${status.color}`}>{status.label}</p>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
+                  );
+                })}
+              </div>
+            )}
           </section>
         </div>
 

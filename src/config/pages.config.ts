@@ -9,6 +9,7 @@ export const PAGES = {
     FAVORITES: "/favorites",
     LIKES : "/likes",
     USERPROFILE: "/userprofile",
+    CHECKOUT: "/checkout",
 
     ADMIN: "/admin",
     ADMIN_PRODUCTS: "/admin/products",

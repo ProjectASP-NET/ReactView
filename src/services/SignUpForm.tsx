@@ -56,6 +56,18 @@ export function SignUpForm({ onSubmit, autoFocus, onSwitchToLogin, disabled }: S
             required
           />
         </div>
+        {name.length > 0 && (
+          <div className="flex items-center gap-2 text-xs mt-1">
+            {name.length >= 3 && name.length <= 15 ? (
+              <Check size={14} className="text-green-500 shrink-0" />
+            ) : (
+              <X size={14} className="text-red-500 shrink-0" />
+            )}
+            <span className={name.length >= 3 && name.length <= 15 ? "text-green-500" : "text-(--text-secondary)"}>
+              От 3 до 15 символов
+            </span>
+          </div>
+        )}
       </div>
 
       <div className="flex flex-col gap-1">

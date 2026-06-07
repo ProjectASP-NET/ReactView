@@ -5,6 +5,7 @@ import {
   useContext,
   useState,
   useCallback,
+  useEffect,
   ReactNode,
 } from "react";
 import { Product } from "@/types/product.types";
@@ -24,10 +25,29 @@ interface CartContextType {
   totalPrice: number;
 }
 
+const CART_STORAGE_KEY = "ddliquid_cart";
+
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
+function loadCart(): CartItem[] {
+  if (typeof window === "undefined") return [];
+  try {
+    const raw = localStorage.getItem(CART_STORAGE_KEY);
+    return raw ? JSON.parse(raw) : [];
+  } catch {
+    return [];
+  }
+}
+
+function saveCart(items: CartItem[]) {
+  if (typeof window === "undefined") return;
+  try {
+    localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(items));
+  } catch { /* empty */ }
+}
+
 export function CartProvider({ children }: { children: ReactNode }) {
-  const [items, setItems] = useState<CartItem[]>([]);
+  const [items, setItems] = useState<CartItem[]>(loadCart);
 
   const addToCart = useCallback((product: Product) => {
     setItems((current) => {
@@ -66,6 +86,10 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const clearCart = useCallback(() => {
     setItems([]);
   }, []);
+
+  useEffect(() => {
+    saveCart(items);
+  }, [items]);
 
   const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
   const totalPrice = items.reduce(

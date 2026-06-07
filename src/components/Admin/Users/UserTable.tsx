@@ -16,9 +16,9 @@ interface UserTableProps {
 }
 
 const roleOptions = [
-  { value: "1", label: "User" },
-  { value: "2", label: "Manager" },
-  { value: "3", label: "Admin" },
+  { value: "1", label: "Admin" },
+  { value: "2", label: "User" },
+  { value: "3", label: "Manager" },
 ];
 
 export function UserTable({ users, onDelete, onRoleChange }: UserTableProps) {
@@ -49,8 +49,8 @@ export function UserTable({ users, onDelete, onRoleChange }: UserTableProps) {
   };
 
   return (
-    <div className="bg-(--card-bg) border border-(--border) rounded-2xl overflow-hidden">
-      <div className="overflow-x-auto">
+    <div className="bg-(--card-bg) border border-(--border) rounded-2xl">
+      <div className="overflow-x-auto rounded-2xl">
         <table className="w-full">
           <thead className="bg-(--background) border-b border-(--border)">
             <tr>

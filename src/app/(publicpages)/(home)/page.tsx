@@ -90,8 +90,8 @@ function HeroButton({ href, children, variant }: { href: string; children: React
   if (variant === 'primary') {
     return (
       <motion.div
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
+        whileHover={{ y: -3 }}
+        whileTap={{ y: 0 }}
       >
         <Link href={href} className={`${baseStyles} bg-white text-black block`}>
           <motion.span
@@ -107,10 +107,11 @@ function HeroButton({ href, children, variant }: { href: string; children: React
 
   return (
     <motion.div
-      whileHover={{ scale: 1.05, boxShadow: '0 0 20px rgba(255,255,255,0.1)' }}
-      whileTap={{ scale: 0.95 }}
+      whileHover={{ y: -3, boxShadow: '0 0 20px rgba(255,255,255,0.15)' }}
+      whileTap={{ y: 0 }}
+      className="rounded-full"
     >
-      <Link href={href} className={`${baseStyles} border border-(--border) bg-(--card-bg) text-(--text-primary) backdrop-blur-md`}>
+      <Link href={href} className={`${baseStyles} border border-(--border) bg-(--card-bg) text-(--text-primary) backdrop-blur-md block`}>
         {children}
       </Link>
     </motion.div>
